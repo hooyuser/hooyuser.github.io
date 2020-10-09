@@ -166,7 +166,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/banner.png') no-repeat center center;
+         style="background: url('/img/title2.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -181,8 +181,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-07 19:33" pubdate>
-        October 7, 2020 pm
+      <time datetime="2019-08-25 19:33" pubdate>
+        August 25, 2019 pm
       </time>
     </span>
   
@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.3k 字
     </span>
   
 
@@ -203,7 +203,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      32
        分钟
     </span>
   
@@ -362,26 +362,47 @@ A^\zeta = \Lambda =
 \begin{pmatrix} 
     \lambda_{1}& &&\\ & \lambda_{2} &&\\ & &\ddots&\\ &&& \lambda_{n} 
 \end{pmatrix} 
-= (\lambda_{1} \zeta_1 \; \lambda_{2} \zeta_2 \;\cdots\; \lambda_{n} \zeta_n) .</script><p>即$\lambda<em>{1},\lambda</em>{2},\cdots,\lambda_{n}$是线性变换$\mathcal{A}$的特征值,<br>而$\zeta_1,\zeta_2,\cdots,\zeta_n$是其对应的特征向量.</p>
-<p>现在让我们把再次目光转向选取了标准正交基 $ \epsilon $ 的欧式平面. 我们知道，矩阵</p>
+= (\lambda_{1} \zeta_1 \; \lambda_{2} \zeta_2 \;\cdots\; \lambda_{n} \zeta_n) .</script><p>即对角阵的 $n$ 个对角元 <script type="math/tex">\lambda_{1},\lambda_{2},\cdots,\lambda_{n}</script> 是线性变换 $\mathcal{A}$ 的特征值，而 $\zeta_1,\zeta_2,\cdots,\zeta_n$ 是其对应的特征向量. 从几何上看，若以 $n$ 个特征值对应的特征向量作为基，线性变换对基向量的作用仅仅是简单的缩放。</p>
+<p>为了计算一个具体的例子，让我们把再次目光转向选取了标准正交基 $ \epsilon $ 的欧式平面. 我们知道，矩阵</p>
 <script type="math/tex; mode=display">
 A ^\epsilon =
 \begin{pmatrix}
     1&2\\
     -1&4
-\end{pmatrix}</script><p>表示的线性变换把 $ \epsilon_1=(1,0)^T $ 映成 $ A ^\epsilon \epsilon_1=(1,-1)^T $， $ \epsilon_2=(0,1)^T $ 映成 $ A ^\epsilon \epsilon_2=(2,4)^T $.</p>
-<p>这个变换过程有点不太容易想象. 但如果我们选取这样一个基 $ \zeta_1=(2,1)^T $ , $ \zeta_2=(1,1)^T $</p>
+\end{pmatrix}</script><p>表示的线性变换把 $ \epsilon_1=(1,0)^T $ 映成 $ A^\epsilon \epsilon_1=(1,-1)^T $， $ \epsilon_2=(0,1)^T $ 映成 $ A ^\epsilon \epsilon_2=(2,4)^T $.</p>
+<p>这个变换过程有点不太容易想象. 但如果我们选取这样一个由特征向量构成的基 $ \zeta_1=(2,1)^T $ , $ \zeta_2=(1,1)^T $，并计算矩阵 $A^\epsilon$ 所表示的线性变换在基 $ \zeta_1,\zeta_2 $ 上的作用，我们会发现</p>
+<script type="math/tex; mode=display">
+A^\epsilon\zeta_1=
+\begin{pmatrix}
+    4\\
+    2
+\end{pmatrix}=2\zeta_1,\quad
+A^\epsilon\zeta_2=
+\begin{pmatrix}
+    3\\
+    3
+\end{pmatrix}
+=3\zeta_2.</script><p>这说明，矩阵 $A^\epsilon$ 所表示的线性变换可以看成 $ \zeta_1,\zeta_2$ 方向上的一个缩放.</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
                       <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
                     
                   </div>
                 
@@ -394,7 +415,7 @@ A ^\epsilon =
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/07/%E5%BC%A0%E9%87%8F-%E8%AE%A1%E7%AE%97%E7%AF%87/">
+                      <a href="/2020/01/12/%E5%BC%A0%E9%87%8F-%E8%AE%A1%E7%AE%97%E7%AF%87/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">张量-计算篇</span>
                         <span class="visible-mobile">Previous</span>
