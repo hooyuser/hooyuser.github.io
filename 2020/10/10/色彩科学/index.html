@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>色彩科学 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/demo/">
+                <i class="iconfont icon-exp-fill"></i>
+                Demo
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/color_science.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-10 01:31" pubdate>
+        October 10, 2020 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      30
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">色彩科学</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="色觉空间-CIE-RGB"><a href="#色觉空间-CIE-RGB" class="headerlink" title="色觉空间 CIE RGB"></a>色觉空间 CIE RGB</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>考虑离散化的 SPD（Spectral Power Distribution）空间，波长范围取380nm-720nm，波长梯度为0.1nm，则该空间是3401维线性空间 $\mathbb{R}^{3401}$。在一个固定的辐照度下（比如1W/m^2），一个基为：<script type="math/tex">\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}</script>．</p>
+<p>设 $C$ 为人类色觉映射，它将 SPD 空间的光谱能量分布映射成色觉空间中的色觉。我们下面将说明：色觉空间是 3 维线性空间 $\mathbb{R}^{3}$，色觉映射</p>
+<script type="math/tex; mode=display">
+C:\mathbb{R}^{3401}\longrightarrow \mathbb{R}^{3}</script><p>是一个线性映射。</p>
+<p>首先，因为人类产生色觉的前提是视网膜收到光的刺激，所以 $C$ 一定是满射。然后，Grassmann 定律告诉我们，色觉空间的加法可以被这样良定义：</p>
+<script type="math/tex; mode=display">
+C(\mathbf{s}_1)+C(\mathbf{s}_2):=C\left(\overline{\mathbf{s}_1}+\overline{\mathbf{s}_2}\right),</script><p>其中 $\overline{\mathbf{s}_1},\overline{\mathbf{s}_2}\in\mathbb{R}^{3401}$ 为满足 $C(\overline{\mathbf{s}_1})=C(\mathbf{s}_1),C(\overline{\mathbf{s}_2})=C(\mathbf{s}_2)$ 的任意光谱能量分布。</p>
+<p>进一步地，我们同样有良定义的乘法：对任意 $k&gt;0$，对任意 $\overline{\mathbf{s}}\in\mathbb{R}^{3401}$，只要 $\overline{\mathbf{s}}$ 满足 $C(\overline{\mathbf{s}})=C(\mathbf{s})$，就有</p>
+<script type="math/tex; mode=display">
+k\,C(s):=C(k\hspace{1pt}\overline{\mathbf{s}}).</script><p>因此色觉空间是线性空间，$C$ 是线性映射。按照习惯，$C(\mathbf{s})$ 将简记为 $C\mathbf{s}$。</p>
+<p>我们可以还定义色觉的减法：若存在 $\mathbf{s}_3$，使得 $C\mathbf{s}_1+C\mathbf{s}_3=C\mathbf{s}_2$，则定义 </p>
+<script type="math/tex; mode=display">
+C\mathbf{s}_2-C\mathbf{s}_1:=C\mathbf{s}_3.</script><p>色匹配实验告诉我们：红 <script type="math/tex">\mathbf{v}_R=C\,\mathbf{l}_{700.0}</script>，绿 <script type="math/tex">\mathbf{v}_G=C\,\mathbf{l}_{546.1}</script>，蓝 <script type="math/tex">\mathbf{v}_B=C\,\mathbf{l}_{435.8}</script> 是色觉空间的一个基，配备了这个基的色觉空间被称作 CIE RGB。</p>
+<h2 id="坐标计算"><a href="#坐标计算" class="headerlink" title="坐标计算"></a>坐标计算</h2><p>有了基之后，我们就可以进行基于坐标的计算了。任意 SPD $\mathbf{s}\in\mathbb{R}^{3401}$ 产生的色觉都可由 <script type="math/tex">\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B</script> 进行唯一的线性表示，即</p>
+<script type="math/tex; mode=display">
+C\mathbf{s}=R\cdot \mathbf{v}_R+G\cdot \mathbf{v}_G+B\cdot \mathbf{v}_B.</script><p>即拥有坐标 $(R,G,B)$. 特别地，任意单频光谱 <script type="math/tex">\mathbf{l}_\lambda</script> 产生的色觉都可由 <script type="math/tex">\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B</script> 进行唯一的线性表示</p>
+<script type="math/tex; mode=display">
+C\,\mathbf{l}_{\lambda}
+=( \mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B)
+\begin{pmatrix} 
+    R_{\lambda} \\ G_{\lambda} \\ B_{\lambda} 
+\end{pmatrix}.</script><p>设 $C$ 在基 <script type="math/tex">\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}</script> 和 <script type="math/tex">\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B</script> 下的矩阵表示为色匹配矩阵 $CMF$，则有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(C\,\mathbf{l}_{700.0},C\,\mathbf{l}_{700.1},\cdots,C\,\mathbf{l}_{720.0})&=\left(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B\right)\,CMF\\
+&=\left(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B\right)
+\begin{pmatrix} 
+    R_{380.0} & R_{380.1}& \cdots & R_{720.0} \\
+    G_{380.0} & G_{380.1}& \cdots & G_{720.0} \\
+    B_{380.0} & B_{380.1}& \cdots & B_{720.0} \\
+\end{pmatrix}.
+\end{align}</script><p>下图即为实验确定的 CIE RGB 空间的色匹配矩阵 $CMF$</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/3/36/CIE1931_RGBCMF.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p>如果已知色匹配矩阵 $CMF$，我们就能计算出任意 SPD 在色觉空间 CIE RGB 中的坐标。任给 SPD</p>
+<script type="math/tex; mode=display">
+\mathbf{s}=\left(\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}\right)
+\begin{pmatrix} 
+    k_{380.0}  \\
+    k_{380.1}  \\
+    \vdots     \\
+    k_{720.0}  \\
+\end{pmatrix},</script><p>我们有如下计算公式</p>
+<script type="math/tex; mode=display">
+C\mathbf{s}=\left(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B\right)
+\begin{pmatrix} 
+    R_{380.0} & R_{380.1}& \cdots & R_{720.0} \\
+    G_{380.0} & G_{380.1}& \cdots & G_{720.0} \\
+    B_{380.0} & B_{380.1}& \cdots & B_{720.0} \\
+\end{pmatrix}
+\begin{pmatrix} 
+    k_{380.0}  \\
+    k_{380.1}  \\
+    \vdots     \\
+    k_{720.0}  \\
+\end{pmatrix}</script><p>记 <script type="math/tex">\mathbf{k}=(k_{380.0},k_{380.1},\cdots,k_{720.0})^T</script>，并将 $CMF$ 按行分块</p>
+<script type="math/tex; mode=display">
+CMF=
+\begin{pmatrix} 
+    CMF_1 \\ CMF_2 \\ CMF_3 
+\end{pmatrix},</script><p>计算公式可以重写为</p>
+<script type="math/tex; mode=display">
+C\mathbf{s}=\left(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B\right)
+\begin{pmatrix} 
+    CMF_1\,\mathbf{k}\\ 
+    CMF_2\,\mathbf{k}\\ 
+    CMF_3\,\mathbf{k}
+\end{pmatrix}.</script><h2 id="rgb-空间"><a href="#rgb-空间" class="headerlink" title="rgb 空间"></a>rgb 空间</h2><p>色觉空间 CIE RGB 中任意一点可由三个坐标 $(R,G,B)$ 确定。映射</p>
+<script type="math/tex; mode=display">
+\begin{align}
+r&=\frac{R}{R+G+B},\\
+g&=\frac{G}{R+G+B},\\
+b&=\frac{B}{R+G+B}=1-r-g.
+\end{align}</script><p>将三维的色觉空间CIE RGB压缩成二维的平面。由 $(r,g)$ 构成的空间是一张与辐照度无关的色度图，也即等辐照度色度图。</p>
+<h1 id="色觉空间-CIE-XYZ"><a href="#色觉空间-CIE-XYZ" class="headerlink" title="色觉空间 CIE XYZ"></a>色觉空间 CIE XYZ</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>在色觉空间 CIE RGB 的基 <script type="math/tex">\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B</script> 下，有些色觉的坐标 $(R,G,B)$ 会出现负值，这在计算时不太方便。因此，我们为色觉空间更换一个更利于计算的基 <script type="math/tex">\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z</script>，这就得到了色觉空间 CIE XYZ。</p>
+<p>在新基 <script type="math/tex">\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z</script> 下，单频光谱产生的色觉有如下坐标表示</p>
+<script type="math/tex; mode=display">
+C\,\mathbf{l}_{\lambda}
+=( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)
+\begin{pmatrix} 
+    X_{\lambda} \\ Y_{\lambda} \\ Z_{\lambda} 
+\end{pmatrix}.</script><p>因为新基是恰当选取的，所以 <script type="math/tex">C\,\mathbf{l}_{\lambda}</script> 对应的坐标 <script type="math/tex">(X_{\lambda} ,Y_{\lambda}, Z_{\lambda} )</script> 各分量总是大于等于 $0$。</p>
+<h2 id="亮度的表示"><a href="#亮度的表示" class="headerlink" title="亮度的表示"></a>亮度的表示</h2><p>新基 <script type="math/tex">\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z</script> 在表示亮度时也有着明显的优势。辐照度是描述光的客观物理量，它描述人主观感受的亮度有如下关系关系</p>
+<script type="math/tex; mode=display">
+\text{亮度}=\int_\lambda V(\lambda)SPD(\lambda)d\lambda=\sum_{i=1}^{3401}V(\lambda_i)k_{\lambda_i},\quad\lambda_i=380.0+0.1*(i-1)</script><p>$\lambda$ 为波长，$V(\lambda)$ 为感受亮度的光谱敏感度函数，$SPD(\lambda)$ 为光谱能量分布。人对绿光最敏感，辐照度相同时，绿光最亮。</p>
+<p>设换基的转移矩阵为 $T$，我们有</p>
+<script type="math/tex; mode=display">
+( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)=(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B)T,</script><p>或</p>
+<script type="math/tex; mode=display">
+( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)T^{-1}=(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B),</script><p>因此 </p>
+<script type="math/tex; mode=display">
+C\mathbf{s}=\left(\mathbf{v}_R,\mathbf{v}_G,\mathbf{v}_B\right)CMF\,\mathbf{k}=(\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)T^{-1}\cdot CMF\,\mathbf{k}.</script><p>设 $C\mathbf{s}$ 在基 $( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)$ 下的坐标表示为</p>
+<script type="math/tex; mode=display">
+C\mathbf{s}=( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)
+\begin{pmatrix} 
+    X \\ Y\\ Z
+\end{pmatrix},</script><p>则有</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix} 
+    X \\ Y\\ Z
+\end{pmatrix}
+=T^{-1}\cdot CMF\,\mathbf{k}.</script><p>记 $T^{-1}\cdot CMF$ 的第 $i$ 行第 $j$ 列的元素为 $M_{ij}$, 我们有</p>
+<script type="math/tex; mode=display">
+Y=\sum_{j=1}^{3401}M_{2j}\hspace{1pt}k_{\lambda_{j}}</script><p>事实上，CIE XYZ 空间的转移矩阵 $T$ 是经过了特殊设置，使得 $M_{2j}=V(\lambda_j)$，故 $Y$ 可直接当作亮度。</p>
+<h2 id="xyY-空间"><a href="#xyY-空间" class="headerlink" title="xyY 空间"></a>xyY 空间</h2><p>对 CIE XYZ 做非线性变换</p>
+<script type="math/tex; mode=display">
+\begin{align}
+x&=\frac{X}{X+Y+Z},\\
+y&=\frac{Y}{X+Y+Z},\\
+z&=Y,
+\end{align}</script><p>就得到了一个非线性的色觉空间：xyY空间。$x,y$ 表示色度，$z表示亮度$。色度图Chromaticity diagrams见 <a target="_blank" rel="noopener" href="https://graphics.stanford.edu/courses/cs178/applets/threedgamut.html。">https://graphics.stanford.edu/courses/cs178/applets/threedgamut.html。</a></p>
+<h1 id="从-CIE-XYZ-到-sRGB"><a href="#从-CIE-XYZ-到-sRGB" class="headerlink" title="从 CIE XYZ 到 sRGB"></a>从 CIE XYZ 到 sRGB</h1><p>从 CIE XYZ 空间到 sRGB 空间需要经过两步。第一步是换基，将 CIE XYZ 空间变为线性 sRGB 空间</p>
+<h2 id="标准光源"><a href="#标准光源" class="headerlink" title="标准光源"></a>标准光源</h2><p>标准光源 CIE Standard Illuminant D65 是一个相对 SPD，与辐照度无关。一方面，它在 CIE XYZ 空间中为一条直线 $k(0.95047,1,1.08883)$，直线上 $Y=1$ 的点 $(0.95047,1,1.08883)$ 称为白点。<br>另一方面，它在 xyY 空间的色度图中为一个点 $(0.31271,0.32902)$。</p>
+<h2 id="线性-sRGB-空间"><a href="#线性-sRGB-空间" class="headerlink" title="线性 sRGB 空间"></a>线性 sRGB 空间</h2><p>给定由 CIE XYZ 空间中三个点 <script type="math/tex">\mathbf{c}_R^*,\mathbf{c}_G^*,\mathbf{c}_B^*</script> 构成的参考基 </p>
+<script type="math/tex; mode=display">
+(\mathbf{c}_R^*,\mathbf{c}_G^*,\mathbf{c}_B^*)=(\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)
+\begin{pmatrix} 
+    0.64&0.30&0.15\\ 
+    0.33&0.60&0.06\\
+    0.03&0.10&0.79
+\end{pmatrix},</script><p>sRGB 空间的基 $(\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)$ 由下列条件唯一确定：</p>
+<ol>
+<li>由参考基做缩放得到：<script type="math/tex; mode=display">
+(\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)=(w_1\mathbf{c}_R^*,w_2\mathbf{c}_G^*,w_3\mathbf{c}_B^*)</script></li>
+<li>将白点映到 sRGB 空间中的 $(1,1,1)$：<script type="math/tex; mode=display">
+(\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)
+\begin{pmatrix} 
+  0.95047\\ 
+  1\\
+  1.08883
+\end{pmatrix}
+= (\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)
+\begin{pmatrix} 
+  1\\ 
+  1\\
+  1
+\end{pmatrix}.</script></li>
+</ol>
+<p>计算可得</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix} 
+R_{\text {linear }} \\
+G_{\text {linear }} \\
+B_{\text {linear }}
+\end{pmatrix}=\begin{pmatrix} 
++3.24096994 & -1.53738318 & -0.49861076 \\
+-0.96924364 & +1.8759675 & +0.04155506 \\
++0.05563008 & -0.20397696 & +1.05697151
+\end{pmatrix}\begin{pmatrix} 
+X\\
+Y \\
+Z
+\end{pmatrix}</script>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/">色彩科学</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/01/12/%E5%BC%A0%E9%87%8F-%E8%AE%A1%E7%AE%97%E7%AF%87/">
+                        <span class="hidden-mobile">张量-计算篇</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "色彩科学&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
