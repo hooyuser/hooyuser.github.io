@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>辐射度量学与光度学 - Hexo</title>
+  <title>基于物理的渲染 - 表面反射 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,7 +166,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/radiometry_and_photometry.jpg') no-repeat center center;
+         style="background: url('/img/PBR_surface_reflection.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -181,8 +181,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-12 10:28" pubdate>
-        October 12, 2020 am
+      <time datetime="2020-10-13 02:00" pubdate>
+        October 13, 2020 am
       </time>
     </span>
   
@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      627 字
     </span>
   
 
@@ -203,7 +203,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      9
        分钟
     </span>
   
@@ -233,92 +233,30 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">辐射度量学与光度学</h1>
+            <h1 style="display: none">基于物理的渲染 - 表面反射</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><strong>辐射度量学</strong>（radiometry）是测量包括可见光在内的各种电磁辐射的学科．而<strong> 光度学</strong>（photometry）是测量人眼感知到的可见光强弱的学科．因为人眼对各种波长的光敏感度不同，所以只有把不同波长的辐射功率用光度函数加权，才能准确描述人类感受到的光的强弱．</p>
-<h1 id="辐射度量学"><a href="#辐射度量学" class="headerlink" title="辐射度量学"></a>辐射度量学</h1><h2 id="辐射通量"><a href="#辐射通量" class="headerlink" title="辐射通量"></a>辐射通量</h2><p>在辐射度量学中，<strong> 辐射通量</strong>（radiant flux）或<strong> 辐射功率</strong>（radiant power）$\Phi_\mathrm{e}$ 是单位时间内发射、反射、透过或接收的辐射能量，单位为瓦特 $\mathrm W$．</p>
-<p>与辐射通量 <script type="math/tex">\Phi_{\mathrm{e}}</script> 相关的一个物理量是<strong> 辐射通量的光谱密度函数 </strong> <script type="math/tex">\Phi_{\mathrm{e},\lambda}</script>，它与 $\Phi_\mathrm{e}$ 的关系如下</p>
+              <h1 id="双向反射分布函数"><a href="#双向反射分布函数" class="headerlink" title="双向反射分布函数"></a>双向反射分布函数</h1><p>考虑一张反射平面，在点 $\mathbf{p}$ 处来自入射光的辐照度可以表示成</p>
 <script type="math/tex; mode=display">
-\Phi_{\mathrm{e}, \lambda}=\frac{\mathrm{d} \Phi_{\mathrm{e}}}{\mathrm{d} \lambda},\quad \Phi_{\mathrm{e}}=\int_{0}^{\infty} \Phi_{\mathrm{e}, \lambda} \mathrm{d} \lambda.</script><p>考虑一个点光源，它的辐射通量 <script type="math/tex">\Phi_\mathrm{e}</script> 可以想象成发射的箭头的数量．</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/radiant_flux.png" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange;
-    font-size:14px;
-    display: inline-block;
-    color: #999;
-    padding: 10px;">图1 - 辐射通量示意图</div>
-</center>
-
-<p>上图中的点光源发射了 $11$ 根箭头，那么它的辐射通量就是 $11\mathrm W$．我们也可以考虑一片发光或受光的曲面，它的辐射通量就是发射或接收的箭头的数量．如果进一步假定箭头有各种颜色，那么 <script type="math/tex">\Phi_{\mathrm{e},\lambda}</script> 可以想象成颜色为 $\lambda$ 的箭头数量．</p>
-<h2 id="辐射强度"><a href="#辐射强度" class="headerlink" title="辐射强度"></a>辐射强度</h2><p><strong> 辐射强度</strong>（radiation intensity）$I_{\mathrm{e}, \Omega}$ 是某一方向上单位立体角内发射、反射、透过或接收的辐射通量，即</p>
+E_i(\mathbf{p})=\int_{H^2} L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega.</script><p>上式的直观理解是：将遍布半球的入射光分割成来自很多个小圆锥的入射光，其中 $\boldsymbol{\omega}_i$ 方向上的小圆锥贡献的辐照度为 $L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega$。将所有小圆锥贡献的辐照度加起来，就得到了来自入射光的总的辐照度 $E_i(\mathbf{p})$.</p>
+<p>上式有时也写作微分形式</p>
 <script type="math/tex; mode=display">
-I_{\mathrm{e}, \Omega}=\frac{\partial \Phi_{\mathrm{e}}}{\partial \Omega}</script><p>单位为 $\mathrm{W}/\mathrm{sr}$．若某一点光源在单位向量 $\omega$ 方向上的辐射强度为 $I_{\mathrm{e}, \Omega}(\boldsymbol{\omega})$，则空间中某曲面 $S$ 接收到的辐射通量为</p>
+dE_i(\mathbf{p},\boldsymbol{\omega}_i)=L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega.</script><p>如果我们要考虑点 $\mathbf{p}$ 处沿 <script type="math/tex">\boldsymbol{\omega}_o</script> 方向出射光的辐照率 <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script>，上述分割求和的思想依然可以沿用。假设 <script type="math/tex">\boldsymbol{\omega}_i</script> 方向上的小圆锥每增加 $1$ 个单位的辐照度，就能为 <script type="math/tex">\boldsymbol{\omega}_o</script> 方向的出射光多贡献 <script type="math/tex">f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)</script> 单位的辐照率，那么 <script type="math/tex">\boldsymbol{\omega}_i</script> 方向上的小圆锥对  <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script> 的贡献就是</p>
 <script type="math/tex; mode=display">
-\Phi_\mathrm{e}(S)=\int_S I_{\mathrm{e},\Omega}(\boldsymbol{\omega}) d\Omega.</script><p>设曲面 $S$ 被径向投影 $p: \mathbf{r}\mapsto \frac{\mathbf{r}}{\Vert\mathbf{r}\Vert}$ 映成 $\hat{S}$，则上式可转化成 $\hat{S}$ 上的第一类曲面积分</p>
+f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega.</script><p>将所有小圆锥的贡献累加起来，就得到 $L_o(\mathbf{p},\boldsymbol{\omega}_o)$ 的表达式</p>
 <script type="math/tex; mode=display">
-\Phi_\mathrm{e}(S)=\int_\hat{S} I_{\mathrm{e},\Omega}(\boldsymbol{\omega}) d\Omega,</script><p>其中 $d\Omega$ 为单位球面上的面积元．计算时，可如下进行参数化 </p>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=\int_{H^2}f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega.</script><p>上式也可写作对应的微分形式</p>
 <script type="math/tex; mode=display">
-\boldsymbol{\omega}=(\sin\theta\cos\phi,\sin\theta\sin\phi, \cos\theta),\quad\mathrm d\Omega=\sin\theta\: d\theta\:d\phi.</script><p>如果将辐射通量想象成箭头数，那么辐射强度的几何想象就是某一方向上一个很小的立体角内的箭头数比上立体角的角度．</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/radiation_intensity.png" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange;
-    font-size:14px;
-    display: inline-block;
-    color: #999;
-    padding: 10px;">图2 - 辐射强度示意图</div>
-</center>
-
-<p>考虑一个各向同性点光源，它在所有方向上的辐射强度都为 $2\mathrm{W}/\mathrm{sr}$，即一个立体角发射两个箭头．因为一个球面总的球面度为 $4\pi$，所以这个点光源一共发出了 $2\times 4\pi=8\pi$ 个箭头，它的辐射通量为 $8\pi\mathrm{W}$．</p>
-<p>一般地，若各向同性点光源的辐射强度为 $I_0$，那么它的辐射通量为</p>
+dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i),</script><p>或</p>
 <script type="math/tex; mode=display">
-\Phi_0=\int_\hat{S} I_{0}d\Omega=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}I_0 \sin\theta\: d\theta\:d\phi= 4\pi I_0.</script><h2 id="辐照度"><a href="#辐照度" class="headerlink" title="辐照度"></a>辐照度</h2><p><strong> 辐照度</strong>（irradiance）<script type="math/tex">E_{\mathrm{e}}</script> 是电磁辐射入射曲面时单位面积上接收的辐射通量</p>
-<script type="math/tex; mode=display">
-E_{\mathrm{e}}=\frac{\partial \Phi_{\mathrm{e}}}{\partial A},</script><p>单位为 $\mathrm{W}/\mathrm{m}^2$．</p>
-<p>承接前面的几何想象，曲面上某点处的辐照度可以被描述为一个很小的区域内发出（或接收）的箭头数比上区域的面积．</p>
-<h2 id="辐射率"><a href="#辐射率" class="headerlink" title="辐射率"></a>辐射率</h2><p>曲面的上某点在某一方向上的 <strong> 辐射率</strong>（radiance）$L_{\mathrm{e}, \Omega}$，是它在单位立体角内由单位投影面积发射、反射、透过或接收的辐射通量，公式为</p>
-<script type="math/tex; mode=display">
-L_{\mathrm{e}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{e}}}{\partial \Omega \partial A \cos \theta},</script><p>其中 $\Omega$ 表示立体角，$A \cos \theta$ 表示在某方向上的投影面积，$\theta$ 则表示曲面法向量与该方向的夹角．辐射率的单位是 $\mathrm{W}/(\mathrm{sr}\cdot \mathrm{m}^2)$．</p>
-<p>记曲面上点 $\mathbf{p}$ 在 $\boldsymbol\omega$ 方向上的的辐射率是 $L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})$，则该点处的辐照度为</p>
-<script type="math/tex; mode=display">
-E_{\mathrm{e}}(\mathbf{p})=\int_S L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})\cos\theta\:d\Omega.</script><p>若曲面是一个不透光的反射平面，那么上式可化为在一个单位半球面上的第一类曲面积分，并进一步化为重积分进行计算</p>
-<script type="math/tex; mode=display">
-E_{\mathrm{e}}(\mathbf{p})=\int_{H^2} L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})\cos\theta\:d\Omega=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})\cos\theta\sin\theta\:d\theta\:d\phi.</script><p>要形象表述曲面上某点处的沿某一方向的辐射率，可以想象曲面上包围该点的一个很小的区域，在该方向的一个小圆锥内接收箭头．辐射率就等于区域接收的箭头数先除以小圆锥的立体角，再除以区域被直射的面积．</p>
-<h1 id="光度学"><a href="#光度学" class="headerlink" title="光度学"></a>光度学</h1><p>将辐射度量学的物理量按波长加权，即可得到对应的光度学物理量．</p>
-<h2 id="光通量"><a href="#光通量" class="headerlink" title="光通量"></a>光通量</h2><p><strong>光通量</strong>（luminous flux）$\Phi_{\mathrm{v}}$ 定义为</p>
-<script type="math/tex; mode=display">
-\Phi_{\mathrm{v}} =K \cdot \int_{0}^{\infty} \Phi_{\mathrm{e},\lambda} \cdot V(\lambda) \mathrm{d} \lambda,</script><p>其中光敏度 $K= 683.002\:\mathrm{lm}/\mathrm{W}$．光通量的单位是流明（lumen) $\mathrm{lm}$．</p>
-<p>$V(\lambda)$ 是<strong> 光度函数</strong>（luminosity function），也称作相对视见函数，无量纲，描述了人眼对不同波长可见光亮度的感知敏感度．下图中黑色实线是CIE 1931标准下的明视光度函数，黑色虚线代表的其他版本的明视光度函数，绿色实线则代表暗视光度函数．</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/Luminosity.svg" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange;
-    display: inline-block;
-    color: #999;
-    font-size:14px;
-    padding: 10px;">图3 - 光度函数</div>
-</center>
-
-<p>注意到 $V(\lambda)$ 是经过归一化处理的．当 $\lambda=555\mathrm{nm}$ 时，$V(\lambda)$ 取得最大值 $1$．</p>
-<h2 id="发光强度"><a href="#发光强度" class="headerlink" title="发光强度"></a>发光强度</h2><p><strong>发光强度</strong>（Luminous intensity）$I_{\mathrm{v}, \Omega}$ 定义为</p>
-<script type="math/tex; mode=display">
-I_{\mathrm{v}, \Omega}=\frac{\partial \Phi_{\mathrm{v}}}{\partial \Omega},</script><p>单位是坎德拉（candela）$\mathrm{cd}$．$1$ 坎德拉是发出 $540\times10^{12} \mathrm{Hz}$ 频率的单色辐射源在给定方向上的发光强度，该方向上的辐射强度为 $\frac{1}{683} \mathrm{W}/\mathrm{sr}$．</p>
-<p>我们可以通过光度函数来检查坎德拉的定义是否合理．$540\times10^{12} \mathrm{Hz}$ 的频率对应 $555.016 \mathrm{nm}$ 的波长，而 $V(555.016\mathrm{nm})=0.999997$．因此，定义中光源的发光强度应为</p>
-<script type="math/tex; mode=display">
-I_{\mathrm{v}, \Omega}=K V(\lambda) I_{\mathrm{e}, \Omega} =683.002\:\mathrm{lm}/\mathrm{W}\times0.999997\times \frac{1}{683}\mathrm{W}/\mathrm{sr}=1\mathrm{lm}/\mathrm{sr}.</script><p>结果正好为 $1$ 坎德拉．</p>
-<h2 id="照度"><a href="#照度" class="headerlink" title="照度"></a>照度</h2><p><strong>照度</strong>（illuminance）$E_{\mathrm{v}}$ 是每单位面积所接收到的光通量，单位为勒克斯（lux) $\mathrm{lx}$．照度公式为</p>
-<script type="math/tex; mode=display">
-E_{\mathrm{v}}=\frac{\partial \Phi_{\mathrm{v}}}{\partial A}.</script><h2 id="亮度"><a href="#亮度" class="headerlink" title="亮度"></a>亮度</h2><p><strong>亮度</strong>（luminance）$L_{\mathrm{v}, \Omega}$ 是表示人眼对发光体或被照射物体表面的发光或反射光强度实际感受的物理量，定义为</p>
-<script type="math/tex; mode=display">
-L_{\mathrm{v}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{v}}}{\partial \Omega \partial A \cos \theta},</script><p>国际单位为 $\mathrm{cd}/\mathrm{m}^2$．亮度还有一个非国际单位尼特（nit) $\mathrm{nt}$，$1\mathrm{nt}=1\mathrm{cd}/\mathrm{m}^2$．</p>
+f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=\frac{dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)}{dE_i(\mathbf{p},\boldsymbol{\omega}_i)}.</script><p>以上导出的函数 $f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$，被称作<strong> 双向反射分布函数</strong>（bidirectional reflectance distribution function），简称为BRDF。</p>
+<p>基于物理的BRDF应该具有以下三条性质：</p>
+<ol>
+<li>非负性：$f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\ge 0$；</li>
+<li>Helmholtz互异性（Helmholtz reciprocity）：<script type="math/tex">f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}_o\right)</script>；</li>
+<li>能量守恒：<script type="math/tex; mode=display">
+\forall\boldsymbol{\omega}_i,\quad\int_{H^2} f_{\mathrm{r}}\left(\mathrm{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\cos\theta_o\:d\Omega\le 1.</script></li>
+</ol>
 
             </div>
             <hr>
@@ -338,9 +276,7 @@ L_{\mathrm{v}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{v}}}{\partial \Omega \pa
                     
                       <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/">辐射度量学</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%85%89%E5%BA%A6%E5%AD%A6/">光度学</a>
+                      <a class="hover-with-bg" href="/tags/PBR/">PBR</a>
                     
                   </div>
                 
@@ -353,18 +289,12 @@ L_{\mathrm{v}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{v}}}{\partial \Omega \pa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/13/%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93-%E8%A1%A8%E9%9D%A2%E5%8F%8D%E5%B0%84/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于物理的渲染 - 表面反射</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/10/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/">
-                        <span class="hidden-mobile">色彩科学</span>
+                      <a href="/2020/10/12/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B8%8E%E5%85%89%E5%BA%A6%E5%AD%A6/">
+                        <span class="hidden-mobile">辐射度量学与光度学</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -507,7 +437,7 @@ L_{\mathrm{v}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{v}}}{\partial \Omega \pa
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "辐射度量学与光度学&nbsp;",
+        "基于物理的渲染 - 表面反射&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
