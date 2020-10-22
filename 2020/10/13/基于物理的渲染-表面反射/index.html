@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.2k 字
     </span>
   
 
@@ -203,7 +203,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
+      19
        分钟
     </span>
   
@@ -259,7 +259,18 @@ L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, 
 <li>能量守恒：<script type="math/tex; mode=display">
 \forall\boldsymbol{\omega}_i,\quad\int_{H^2} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\cos\theta_o\:d\Omega_o\le 1.</script></li>
 </ol>
-<h1 id="实例：UE4-BRDF"><a href="#实例：UE4-BRDF" class="headerlink" title="实例：UE4 BRDF"></a>实例：UE4 BRDF</h1><p>UE4 引擎使用了如下 BRDF</p>
+<h1 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h1><p>处理积分</p>
+<script type="math/tex; mode=display">
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>的常见方式有三种：</p>
+<ol>
+<li><p>单位半球上的第一类曲面积分，用球坐标进行参数化</p>
+<script type="math/tex; mode=display">
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i(\theta_i,\phi_i)\right)L_{i}(\mathbf{p},\boldsymbol{\omega}_i(\theta_i,\phi_i))\cos\theta_i\sin\theta_i\:d\theta_i\:d\phi_i.</script></li>
+<li><p>转化为发光曲面 $A$ 上的积分</p>
+<script type="math/tex; mode=display">
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}}</script></li>
+</ol>
+<h1 id="实例：UE4-采用的-BRDF"><a href="#实例：UE4-采用的-BRDF" class="headerlink" title="实例：UE4 采用的 BRDF"></a>实例：UE4 采用的 BRDF</h1><p>UE4 引擎使用了如下 BRDF</p>
 <script type="math/tex; mode=display">
 f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>其中</p>
 <script type="math/tex; mode=display">
