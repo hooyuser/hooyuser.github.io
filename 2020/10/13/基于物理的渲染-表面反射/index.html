@@ -268,8 +268,9 @@ L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, 
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i(\theta_i,\phi_i)\right)L_{i}(\mathbf{p},\boldsymbol{\omega}_i(\theta_i,\phi_i))\cos\theta_i\sin\theta_i\:d\theta_i\:d\phi_i.</script></li>
 <li><p>转化为发光曲面 $A$ 上的积分</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}}</script></li>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}},</script></li>
 </ol>
+<p>其中 $\theta^\prime$ 是 $A$ 上某点处的法向量与 $-\boldsymbol{\omega}_i$ 之间的夹角．</p>
 <h1 id="实例：UE4-采用的-BRDF"><a href="#实例：UE4-采用的-BRDF" class="headerlink" title="实例：UE4 采用的 BRDF"></a>实例：UE4 采用的 BRDF</h1><p>UE4 引擎使用了如下 BRDF</p>
 <script type="math/tex; mode=display">
 f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>其中</p>
