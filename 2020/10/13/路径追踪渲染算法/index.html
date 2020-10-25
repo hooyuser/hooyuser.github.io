@@ -391,7 +391,8 @@ L\left(\mathbf{p}_{1} \rightarrow \mathbf{p}_{0}\right)=\sum_{n=1}^{\infty} P\le
 &=\sum_{n=1}^{2} P\left(\overline{\mathbf{p}}_{n}\right)+\sum_{n=3}^{\infty}\frac{1}{(1-q)^{n-2}} P\left(\overline{\mathbf{p}}_{n}\right)(1-q)^{n-2}\\
 &=\sum_{n=1}^{\infty} P\left(\overline{\mathbf{p}}_{n}\right).
 \end{aligned}</script><p>注意到 $\mathrm{P}(\tau&lt;\infty)=1$，即 $\widehat{Q}$ 为有限项的概率为 $1$，我们完全可以在现实中求出 $\widehat{Q}$ 的估计值．</p>
-<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><pre><code>shade(p, wo):
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>路径追踪算法的伪代码如下：</p>
+<pre><code>shade(p, wo):
     # Contribution from the light source.
     uniformly sample the light at x’ (pdf_light = 1 / A);
     shoot a ray from p to x’;
