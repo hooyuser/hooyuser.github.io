@@ -357,7 +357,7 @@ z&=Y,
 \end{align}</script><p>就得到了一个非线性的色彩空间：xyY空间．$x,y$ 表示色度，$z表示明度$．下图是等明度色度图．</p>
 <p><img src="/img/CIE1931xy_blank.svg" alt=""></p>
 <h1 id="从-CIE-XYZ-到-sRGB"><a href="#从-CIE-XYZ-到-sRGB" class="headerlink" title="从 CIE XYZ 到 sRGB"></a>从 CIE XYZ 到 sRGB</h1><p>从 CIE XYZ 空间到 sRGB 空间需要经过两步．第一步是换基，将 CIE XYZ 空间变为线性 sRGB 空间．第二步是 Gamma 变换，将线性 sRGB 空间变成最终的 sRGB 空间．</p>
-<h2 id="标准光源"><a href="#标准光源" class="headerlink" title="标准光源"></a>标准光源</h2><p>标准光源 CIE Standard Illuminant D65 是一个相对 SPD，与辐照度无关．一方面，它在 CIE XYZ 空间中为一条直线 $k(0.95047,1,1.08883)$，直线上 $Y=1$ 的点 $(0.95047,1,1.08883)$ 称为白点．<br>另一方面，它在 xyY 空间的色度图中为一个点 $(0.31271,0.32902)$．</p>
+<h2 id="标准光源"><a href="#标准光源" class="headerlink" title="标准光源"></a>标准光源</h2><p>标准光源 CIE Standard Illuminant D65 是一个相对 SPD，与辐照度无关．一方面，它在 CIE XYZ 空间中为一条直线 $k(0.95047,1,1.08883)$，直线上 $Y=1$ 的点 $(0.95047,1,1.08883)$ 称为白点．另一方面，它在 xyY 空间的色度图中为一个点 $(0.31271,0.32902)$．</p>
 <h2 id="线性-sRGB-空间"><a href="#线性-sRGB-空间" class="headerlink" title="线性 sRGB 空间"></a>线性 sRGB 空间</h2><p>给定由 CIE XYZ 空间中三个点 <script type="math/tex">\mathbf{c}_R^*,\mathbf{c}_G^*,\mathbf{c}_B^*</script> 构成的参考基 </p>
 <script type="math/tex; mode=display">
 (\mathbf{c}_R^*,\mathbf{c}_G^*,\mathbf{c}_B^*)=(\mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)
