@@ -296,7 +296,7 @@ G(\mathbf{l}, \mathbf{v})&=\frac{2(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot
 \end{align}</script><h2 id="菲涅尔项-F"><a href="#菲涅尔项-F" class="headerlink" title="菲涅尔项 $F$"></a>菲涅尔项 $F$</h2><p>Fresnel-Schlick 近似公式</p>
 <script type="math/tex; mode=display">
 \begin{align}
-F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(h \cdot v))^{5} \\
+F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \mathbf{v}))^{5} \\
 F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \rho, \text{metalness})
 \end{align}</script><p>其中 $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ 为线性插值函数．</p>
 
