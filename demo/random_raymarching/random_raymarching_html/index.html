@@ -25,6 +25,7 @@
 
         canvas {
             display: block;
+            margin: 10px;
         }
 
         #container {
@@ -69,6 +70,7 @@
             height: 24px;
             width: 48px;
             font-size: 17px;
+            margin-left: -8px;
         }
 
         #slider_container {
@@ -77,6 +79,22 @@
             grid-template-rows: repeat(6, 1fr);
             grid-template-areas: "rtext rtext" "rslider rvalue" "mtext mtext" "mslider mvalue" "stext stext" "sslider svalue";
             row-gap: 5px;
+        }
+
+        #baseColor{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #baseColorText{
+            text-align:center;
+        }
+
+        #colorPicker{
+            height: 30px;
+            width: 60px;
+            padding: 0px;
         }
 
         .slider-text-1 {
@@ -103,10 +121,14 @@
             font-size: 17px;
         }
 
+        .item{
+            margin-left: 10px;
+        }
+
         .subTitle{
             display:block;
             font-size: 18px;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
     </style>
 </head>
@@ -182,7 +204,6 @@
                                 class="iconfont icon-search"></i>&nbsp;</a>
                     </li>
 
-
                     <li class="nav-item" id="color-toggle-btn">
                         <a class="nav-link" href="javascript:">&nbsp;<i
                                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
@@ -199,14 +220,8 @@
             <div class="full-bg-img">
                 <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
                     <div class="container page-header text-center fade-in-up">
-                <span class="h2" id="subtitle">
-
-                </span>
-
-
+                        <span class="h2" id="subtitle"></span>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -238,55 +253,63 @@
     </div>
     <div class="item-4">
         <b class="subTitle">Settings</b>
-        <div id="slider_cutting"> Cutting Plane</div>
-        <label for="cuttingPlaneSlider"></label>
-        <input type="range" id="cuttingPlaneSlider" min="-0.6" max="0.6" step="0.01" value="0.3"/>
-        &ensp;
-        <label for="cuttingPlaneText"></label>
-        <input type="text" id="cuttingPlaneText" value="0.3">
-        <br/>
-        <input type="checkbox" id="animate"><label for="animate"> Animate</label>
-        <br/>
-        <input type="checkbox" id="stat" checked="checked"><label for="stat"> Show Statistics</label>
-        <br/><br/>
+        <div class="item">
+            <div id="slider_cutting"> Cutting Plane</div>
+            <label for="cuttingPlaneSlider"></label>
+            <input type="range" id="cuttingPlaneSlider" min="-0.6" max="0.6" step="0.01" value="0.3"/>
+            &ensp;
+            <label for="cuttingPlaneText"></label>
+            <input type="text" id="cuttingPlaneText" value="0.3">
+            <br/>
+            <input type="checkbox" id="animate"><label for="animate"> Animate</label>
+            <br/>
+            <input type="checkbox" id="stat" checked="checked"><label for="stat"> Show Statistics</label>
+            <br/><br/>
+        </div>
         <b class="subTitle">Pass</b>
-        <input type="checkbox" id="diffuse" checked="checked"><label for="diffuse"> Diffuse</label>
-        <br/>
-        <input type="checkbox" id="specular" checked="checked"><label for="specular"> Specular</label>
-        <br/>
-        <input type="checkbox" id="shadow" checked="checked"><label for="shadow"> Shadow</label>
-        <br/><br/>
+        <div class="item">
+            <input type="checkbox" id="diffuse" checked="checked"><label for="diffuse"> Diffuse</label>
+            <br/>
+            <input type="checkbox" id="specular" checked="checked"><label for="specular"> Specular</label>
+            <br/>
+            <input type="checkbox" id="shadow" checked="checked"><label for="shadow"> Shadow</label>
+            <br/><br/>
+        </div>
         <b class="subTitle">Material</b>
-        <div> Base Color &ensp;&ensp;<label for="colorPicker"></label>
-            <input type="color" id="colorPicker" value="#FFFF48"/></div>
-        <br/>
-        <div id="slider_container">
-            <div class="slider-text-1"> Roughness</div>
-            <div>
-                <label for="sRoughness"></label>
-                <input type="range" id="sRoughness" min="0.0" max="1.0" step="0.01" value="0.3"/>
+        <div class="item">
+            <div id="baseColor">
+                <div id="baseColorText">Base Color</div> &ensp;&ensp;<label for="colorPicker"></label>
+                <input type="color" id="colorPicker" value="#FFFF48"/>
             </div>
-            <div class="slider-value-box">
-                <label for="vRoughness"></label>
-                <input type="text" id="vRoughness" value="0.3" class="slider_value">
-            </div>
-            <div class="slider-text-2"> Metalness</div>
-            <div>
-                <label for="sMetalness"></label>
-                <input type="range" id="sMetalness" min="0.0" max="1.0" step="0.01" value="0"/>
-            </div>
-            <div class="slider-value-box">
-                <label for="vMetalness"></label>
-                <input type="text" id="vMetalness" value="0" class="slider_value">
-            </div>
-            <div class="slider-text-3"> Specular</div>
-            <div>
-                <label for="sSpecular"></label>
-                <input type="range" id="sSpecular" min="0.0" max="1.0" step="0.01" value="0.5"/>
-            </div>
-            <div class="slider-value-box">
-                <label for="vSpecular"></label>
-                <input type="text" id="vSpecular" value="0.5" class="slider_value">
+            <br/>
+            <div id="slider_container">
+                <div class="slider-text-1"> Roughness</div>
+                <div>
+                    <label for="sRoughness"></label>
+                    <input type="range" id="sRoughness" min="0.0" max="1.0" step="0.01" value="0.3"/>
+                </div>
+                <div class="slider-value-box">
+                    <label for="vRoughness"></label>
+                    <input type="text" id="vRoughness" value="0.3" class="slider_value">
+                </div>
+                <div class="slider-text-2"> Metalness</div>
+                <div>
+                    <label for="sMetalness"></label>
+                    <input type="range" id="sMetalness" min="0.0" max="1.0" step="0.01" value="0"/>
+                </div>
+                <div class="slider-value-box">
+                    <label for="vMetalness"></label>
+                    <input type="text" id="vMetalness" value="0" class="slider_value">
+                </div>
+                <div class="slider-text-3"> Specular</div>
+                <div>
+                    <label for="sSpecular"></label>
+                    <input type="range" id="sSpecular" min="0.0" max="1.0" step="0.01" value="0.5"/>
+                </div>
+                <div class="slider-value-box">
+                    <label for="vSpecular"></label>
+                    <input type="text" id="vSpecular" value="0.5" class="slider_value">
+                </div>
             </div>
         </div>
         <br/><br/>
