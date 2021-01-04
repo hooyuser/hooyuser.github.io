@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SDF Ray-marching</title>
+    <title>Solve PDE with Random Raymarching</title>
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css"/>
@@ -33,7 +33,6 @@
             margin-top: 30px;
             margin-bottom: 20px;
             padding-top: 20px;
-            /*grid-template-columns: 1fr 4.3fr 1.4fr;*/
             grid-template-columns: 1fr 3.9fr 1.3fr;
             grid-template-rows: 1fr 3fr;
             grid-template-areas: "stat    main control_area" "hue_bar main control_area";
@@ -548,7 +547,7 @@ float calcSoftshadow(vec3 ro, vec3 rd, float mint, float tmax)
     float t = mint;
     float ph = 1e10;// big, such that y = 0 on the first iteration
 
-    for (int i=0; i<32; i++)
+    for (int i=0; i<64; i++)
     {
         float h = sceneMap(ro+rd*t).sd;
         // use this if you are getting artifact on the first iteration, or unroll the
