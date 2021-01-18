@@ -591,12 +591,6 @@ vec3 randomOnSphere(void) {
 }
 
 
-//    vec3 randomOnSphere(vec2 screen) {
-//        float theta = (6.283185 ) * noise(screen);
-//        float u = (2.0 ) * noise(screen) - 1.0;
-//        return vec3(sqrt(max(0.0, 1.0 - u * u)) * vec2(cos(theta), sin(theta)), u);
-//    }
-
 vec3 march (vec3 p, vec2 screen, out int ii) { //Walk-on-spheres
     float h;
     vec3 pt=p;
@@ -611,7 +605,7 @@ vec3 march (vec3 p, vec2 screen, out int ii) { //Walk-on-spheres
     return vec3(0.);
 }
 
-//    const vec3 color1 = vec3(1.0, 1.0, 0.282352941);
+
 const vec3 color2 = vec3(0.03, 0.02, 0.2);
 vec3 hsvColorscale (vec3 color1, vec3 color2, float x) {
     vec3 c1 = rgb2hsv(1.0 - color1);
@@ -649,11 +643,6 @@ vec3 objectPBRLighting (Light light, vec3 p, vec3 v, vec3 n, int mID, vec2 scree
         }
         if (sumN > 0)
         sum /= float(sumN);
-        //            sum /= float(WOS_MARCH_ITERATIONS);
-        //            sum=clamp(-5.*interiorMap(p),0.,1.);
-        //            baseColor = hsvColorscale(fract(-interiorMap(p) * 30.0));
-        //            return hsvColorscale(sum);
-        //            baseColor = fract(10.*randomOnSphere(screen,4));  //show noise pattern
         baseColor = hsvColorscale(u_baseColor[0], vec3(0.03, 0.02, 0.2), sum);
         metalness = u_metalness[0];
         roughness = u_roughness[0];
@@ -677,11 +666,7 @@ vec3 objectPBRLighting (Light light, vec3 p, vec3 v, vec3 n, int mID, vec2 scree
     vec3 F0 = mix(vec3(0.16 * specular * specular), baseColor, metalness);
     vec3 F = F0 + (1. - F0) * (1. - dotHV) * (1. - dotHV) * (1. - dotHV) * (1. - dotHV) * (1. - dotHV);
     vec3 kD = (1. - F) * (1. - metalness);
-    //        vec3 fDiffuse = baseColor / PI;
-    //        vec3 fSpecular = F * D * Vis; //vec3 fSpecular = F * D * G / (4. * dotNV * dotNL)
-    //        vec3 f = kD * fDiffuse + fSpecular;
-    //        vec3 f = kD * baseColor / PI + F * D * Vis;
-    //        vec3 c = PI * f * light.color * dotNL * 17. / falloffLength;
+
     if (mID <= 1){
         shadowPass = calcSoftshadow(p, l, MIN_SHADOW_DIST, MAX_SHADOW_DIST);
     }
