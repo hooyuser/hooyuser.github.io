@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Yoneda引理</title>
+    <link href="/2021/01/29/Yoneda%E5%BC%95%E7%90%86/"/>
+    <url>/2021/01/29/Yoneda%E5%BC%95%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="mathrm-Hom-函子"><a href="#mathrm-Hom-函子" class="headerlink" title="$\mathrm{Hom}$ 函子"></a>$\mathrm{Hom}$ 函子</h1><h2 id="mathrm-Hom-mathsf-C-函子"><a href="#mathrm-Hom-mathsf-C-函子" class="headerlink" title="$\mathrm{Hom}_{\mathsf{C}}(-,-)$ 函子"></a>$\mathrm{Hom}_{\mathsf{C}}(-,-)$ 函子</h2><p>设 $\mathsf{C}$ 是一个范畴，它到集合范畴 $\mathsf{Set}$ 的二元函子</p><script type="math/tex; mode=display">\mathrm{Hom}_{\mathsf{C}}(-,-): \mathsf{C}^{\mathrm{op}} \times \mathsf{C} \rightarrow \mathsf{Set}.</script><p>定义如下：其对象映射为</p><script type="math/tex; mode=display">\begin{aligned}    \mathrm{Hom}_{\mathsf{C}}(-,-):\mathrm{Ob}(\mathsf{C})&\longrightarrow \mathrm{Ob}(\mathsf{Set})\\    (X,Y)&\longmapsto \mathrm{Hom}_{\mathsf{C}}(X,Y),\end{aligned}</script><p>态射映射为</p><script type="math/tex; mode=display">\begin{aligned}    \mathrm{Hom}_{\mathsf{C}}(-,-):\mathrm{Hom}_{\mathsf{C}}((X_1,Y_1),(X_2,Y_2))&\longrightarrow \mathrm{Hom}_{\mathsf{Set}}(\mathrm{Hom}_{\mathsf{C}}(X_1,Y_1),\mathrm{Hom}_{\mathsf{C}}(X_2,Y_2))\\    (f^{\mathrm{op}}:X_1\to X_2,\,g:Y_1\to Y_2)& \longmapsto g_*f^*:(\phi:X_1\to Y_1 \longmapsto g\phi f:X_2\to Y_2),\end{aligned}</script><p>用图表可以表示为</p><center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"     src="/img/commutative_diagram/f1.svg" width="50%">    <br></center><h2 id="mathrm-Hom-mathsf-C-Y-函子"><a href="#mathrm-Hom-mathsf-C-Y-函子" class="headerlink" title="$\mathrm{Hom}_{\mathsf{C}}(-,Y)$ 函子"></a>$\mathrm{Hom}_{\mathsf{C}}(-,Y)$ 函子</h2><p>对于 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,-)</script> 函子，将第二个分量固定为 $Y\in \mathrm{Ob}(\mathsf{C})$，就得到 $\mathrm{Hom}_{\mathsf{C}}(-,Y)$ 函子</p><script type="math/tex; mode=display">\mathrm{Hom}_{\mathsf{C}}(-,Y): \mathsf{C}^{\mathrm{op}}  \rightarrow \mathsf{Set}.</script><p>其对象映射为</p><script type="math/tex; mode=display">\begin{aligned}    \mathrm{Hom}_{\mathsf{C}}(-,Y):\mathrm{Ob}(\mathsf{C})&\longrightarrow \mathrm{Ob}(\mathsf{Set})\\    X&\longmapsto \mathrm{Hom}_{\mathsf{C}}(X,Y),\end{aligned}</script><p>态射映射为</p><script type="math/tex; mode=display">\begin{aligned}    \mathrm{Hom}_{\mathsf{C}}(-,Y):\mathrm{Hom}_{\mathsf{C}}(X_1,X_2)&\longrightarrow \mathrm{Hom}_{\mathsf{Set}}(\mathrm{Hom}_{\mathsf{C}}(X_1,Y),\mathrm{Hom}_{\mathsf{C}}(X_2,Y))\\    (f^{\mathrm{op}}:X_1\to X_2)& \longmapsto f^*:(\phi:X_1\to Y \longmapsto \phi f:X_2\to Y),\end{aligned}</script><p>用图表可以表示为</p><center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"     src="/img/commutative_diagram/f2.svg" width="50%">    <br></center><p>映射 $f^*$ 常被称作拉回。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+      <tag>范畴论</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>体积渲染</title>
     <link href="/2021/01/17/%E4%BD%93%E7%A7%AF%E6%B8%B2%E6%9F%93/"/>
     <url>/2021/01/17/%E4%BD%93%E7%A7%AF%E6%B8%B2%E6%9F%93/</url>
