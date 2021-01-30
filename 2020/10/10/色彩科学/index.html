@@ -166,7 +166,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/color_science.jpg') no-repeat center center;
+         style="background: url('/img/color_science/color_science_banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -326,12 +326,12 @@ b&=\frac{B}{R+G+B}=1-r-g.
 &=( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)T^{-1}CMF^{RGB}\\
 &=( \mathbf{v}_X,\mathbf{v}_Y,\mathbf{v}_Z)CMF^{XYZ},
 \end{align}</script><p>所以色彩空间 CIE XYZ 的色匹配矩阵 $CMF^{XYZ}=T^{-1}CMF^{RGB}$. 在精心选取 $T$ 后，得到的 $CMF^{XYZ}$ 如下图所示．</p>
-<p><img src="\img\CIE_1931_XYZ_Color_Matching_Functions.svg" alt=""></p>
+<p><img src="/img/color_science/CIE_1931_XYZ_Color_Matching_Functions.svg" alt=""></p>
 <p>从图中可以看出，色匹配矩阵 $CMF^{XYZ}$ 的每一项都是非负的．也就是说，在色彩空间 CIE XYZ 中，单频光谱产生的色彩 <script type="math/tex">C\,\mathbf{l}_{\lambda}</script> 始终具有非负的坐标 <script type="math/tex">(X_{\lambda} , Y_{\lambda}, Z_{\lambda})</script>．</p>
 <h2 id="明度的表示"><a href="#明度的表示" class="headerlink" title="明度的表示"></a>明度的表示</h2><p>除了坐标分量非负，色彩空间 CIE XYZ 在表示明度时也有着明显的优势．明度描述人对光明亮程度的主观感受，它与描述光的客观物理量辐照度有如下关系</p>
 <script type="math/tex; mode=display">
 \text{明度}=\int_\lambda V(\lambda)SPD(\lambda)d\lambda=\sum_{i=1}^{3401}V(\lambda_i)k_{\lambda_i},\quad\lambda_i=380.0+0.1*(i-1),</script><p>其中 $\lambda$ 为波长，$V(\lambda)$ 为人眼感受亮度的光谱敏感度函数 Luminosity function，$SPD(\lambda)$ 为光谱能量分布．下图画出了实验测得的 $V(\lambda)$．</p>
-<p><img src="/img/CIE_1931_Luminosity.png" alt=""></p>
+<p><img src="/img/color_science/CIE_1931_Luminosity.png" alt=""></p>
 <p>从图中可以看出，人对绿光最敏感．在辐照度相同时，绿光最亮．</p>
 <p>事实上，色彩空间 CIE XYZ 的 $Y$ 坐标可直接当作明度．因为</p>
 <script type="math/tex; mode=display">
@@ -355,7 +355,7 @@ x&=\frac{X}{X+Y+Z},\\
 y&=\frac{Y}{X+Y+Z},\\
 z&=Y,
 \end{align}</script><p>就得到了一个非线性的色彩空间：xyY空间．$x,y$ 表示色度，$z表示明度$．下图是等明度色度图．</p>
-<p><img src="/img/CIE1931xy_blank.svg" alt=""></p>
+<p><img src="/img/color_science/CIE1931xy_blank.svg" alt=""></p>
 <h1 id="从-CIE-XYZ-到-sRGB"><a href="#从-CIE-XYZ-到-sRGB" class="headerlink" title="从 CIE XYZ 到 sRGB"></a>从 CIE XYZ 到 sRGB</h1><p>从 CIE XYZ 空间到 sRGB 空间需要经过两步．第一步是换基，将 CIE XYZ 空间变为线性 sRGB 空间．第二步是 Gamma 变换，将线性 sRGB 空间变成最终的 sRGB 空间．</p>
 <h2 id="标准光源"><a href="#标准光源" class="headerlink" title="标准光源"></a>标准光源</h2><p>标准光源 CIE Standard Illuminant D65 是一个相对 SPD，与辐照度无关．一方面，它在 CIE XYZ 空间中为一条直线 $k(0.95047,1,1.08883)$，直线上 $Y=1$ 的点 $(0.95047,1,1.08883)$ 称为白点．另一方面，它在 xyY 空间的色度图中为一个点 $(0.31271,0.32902)$．</p>
 <h2 id="线性-sRGB-空间"><a href="#线性-sRGB-空间" class="headerlink" title="线性 sRGB 空间"></a>线性 sRGB 空间</h2><p>给定由 CIE XYZ 空间中三个点 <script type="math/tex">\mathbf{c}_R^*,\mathbf{c}_G^*,\mathbf{c}_B^*</script> 构成的参考基 </p>
@@ -413,7 +413,7 @@ B_{sRGB}
 \gamma(R_{\text {linear }})\\
 \gamma(G_{\text {linear }})\\
 \gamma(B_{\text {linear }})
-\end{pmatrix}.</script><p>此外，如果有坐标分量值超出了 $1$，那么该分量会被钳制到 $1$．下面展示了sRGB空间的色度图．<br><img src="/img/CIE1931xy_gamut_comparison.svg" alt=""></p>
+\end{pmatrix}.</script><p>此外，如果有坐标分量值超出了 $1$，那么该分量会被钳制到 $1$．下面展示了sRGB空间的色度图．<br><img src="/img/color_science/CIE1931xy_gamut_comparison.svg" alt=""></p>
 
             </div>
             <hr>
