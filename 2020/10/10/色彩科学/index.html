@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      2.9k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40
+      42
        分钟
     </span>
   
@@ -256,7 +256,8 @@
             <h1 style="display: none">色彩科学</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="CIE-RGB-色彩空间"><a href="#CIE-RGB-色彩空间" class="headerlink" title="CIE RGB 色彩空间"></a>CIE RGB 色彩空间</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>考虑离散化的 SPD（Spectral Power Distribution）空间，波长范围取 $380nm-720nm$，波长梯度取 $0.1nm$，则该空间是 $3401$ 维线性空间 $\mathbb{R}^{3401}$．在一个固定的辐照度下（比如 $1W/m^2$），一个基为：<script type="math/tex">\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}</script>．</p>
+              <p>色彩科学的研究表明，人类能感知到的所有颜色构成一个3维线性空间。只要选定一个基，我们就能将颜色编码成3维坐标。不同的编码方式，对应了不同的色彩空间。本文介绍了一些常见的色彩空间以及如何在色彩空间之间进行转换。</p>
+<h1 id="CIE-RGB-色彩空间"><a href="#CIE-RGB-色彩空间" class="headerlink" title="CIE RGB 色彩空间"></a>CIE RGB 色彩空间</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>考虑离散化的光谱能量分布（Spectral Power Distribution，简称 SPD）空间，波长范围取 $380nm-720nm$，波长梯度取 $0.1nm$，则该空间是 $3401$ 维线性空间 $\mathbb{R}^{3401}$．在一个固定的辐照度下（比如 $1W/m^2$），一个基为：<script type="math/tex">\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}</script>．</p>
 <p>设 $C$ 为人类色彩映射，它将 SPD 空间的光谱能量分布映射成色觉空间 $P$ 中的色彩．我们下面将说明：色觉空间是 $3$ 维线性空间，色彩映射</p>
 <script type="math/tex; mode=display">
 C:\mathbb{R}^{3401}\longrightarrow P</script><p>是一个线性映射．</p>
