@@ -11,8 +11,8 @@
    x="0px"
    y="0px"
    width="1280"
-   height="750"
-   viewBox="-9.144 -15.712 1280 750"
+   height="760"
+   viewBox="-9.144 -15.712 1280 760"
    enable-background="new -9.144 -15.712 446 271"
    xml:space="preserve"
    id="svg256"
@@ -27,27 +27,28 @@
    objecttolerance="10"
    gridtolerance="10"
    guidetolerance="10"
-   inkscape:pageopacity="0"
+   inkscape:pageopacity="1"
    inkscape:pageshadow="2"
    inkscape:window-width="1920"
    inkscape:window-height="1001"
    id="namedview258"
    showgrid="false"
    inkscape:zoom="0.48118141"
-   inkscape:cx="403.04044"
-   inkscape:cy="213.55074"
+   inkscape:cx="787.58107"
+   inkscape:cy="175.69343"
    inkscape:window-x="-9"
    inkscape:window-y="-9"
    inkscape:window-maximized="1"
-   inkscape:current-layer="layer1"
-   height="750px" />
+   inkscape:current-layer="layer2"
+   height="750px"
+   inkscape:document-rotation="0" />
 <defs
    id="defs2">
 <filter
    inkscape:collect="always"
    style="color-interpolation-filters:sRGB"
    id="filter1342"
-   x="-9.5010185e-07"
+   x="-9.5010188e-07"
    width="1.0000019"
    y="-1.6282722e-06"
    height="1.0000033"><feGaussianBlur
@@ -137,8 +138,9 @@
 <g
    inkscape:groupmode="layer"
    id="layer1"
-   inkscape:label="Layer 1"><rect
-     style="opacity:0.999;fill:#ffffff;stroke-width:30;stroke-dasharray:30, 30;stroke-dashoffset:42;paint-order:fill markers stroke;fill-opacity:1"
+   inkscape:label="Layer 1"
+   style="display:none"><rect
+     style="opacity:0.999;fill:#ffffff;fill-opacity:1;stroke-width:30;stroke-dasharray:30, 30;stroke-dashoffset:42;paint-order:fill markers stroke"
      id="rect1346"
      width="1515.0211"
      height="972.60614"
@@ -149,7 +151,7 @@
    inkscape:label="Layer 2"
    style="display:inline;filter:url(#filter1342)"><g
      id="g1213"
-     transform="matrix(2.7778458,0,0,2.7778458,35.61764,16.261119)"><polyline
+     transform="matrix(2.7778458,0,0,2.7778458,37.695858,28.730429)"><polyline
        fill="none"
        stroke="#0000ff"
        stroke-width="1.75"
