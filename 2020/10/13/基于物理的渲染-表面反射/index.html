@@ -296,7 +296,7 @@ L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \
 f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>其中</p>
 <script type="math/tex; mode=display">
 \begin{array}{l}
-f_{\text {lambert}}=\dfrac{\text {base_color}}{\pi} \\
+f_{\text {lambert}}=\dfrac{\text{base_color}}{\pi} \\
 f_{s}=\dfrac{F\left(\mathbf{h}, \mathbf{v}\right) G(\mathbf{l}, \mathbf{v}) D(\mathbf{h})}{4(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})} \\
 k_{s}=F\left(\mathbf{h}, \mathbf{v}\right) \\
 k_{d}=\left(1-k_{s}\right)(1-\text {metalness}).
@@ -317,7 +317,7 @@ G(\mathbf{l}, \mathbf{v})&=\frac{2(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot
 <script type="math/tex; mode=display">
 \begin{align}
 F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \mathbf{v}))^{5} \\
-F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \rho, \text{metalness})
+F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{metalness})
 \end{align}</script><p>其中 $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ 为线性插值函数．</p>
 
             </div>
