@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      723 字
+      1.2k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      20
        分钟
     </span>
   
@@ -300,7 +300,7 @@ C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathb
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/PBD/algorithm_project_constraints.png" width="540" height="320">
+    src="/img/PBD/algorithm_project_constraints.svg" width="620">
     <br>
     <div style="color:orange;
     font-size:14px;
@@ -309,6 +309,32 @@ C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathb
     padding: 10px;">图2 - $\mathrm{projectConstraints}$ 求解器伪代码</div>
 </center>
 
+<h1 id="特定约束"><a href="#特定约束" class="headerlink" title="特定约束"></a>特定约束</h1><h2 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h2><p>拉伸约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d,</script><p>其中 $d$ 代表初始长度。计算梯度，可得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \nabla_{\mathbf{p}_1} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_1} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
+    &=\nabla_{\mathbf{p}_1} \left(\left(\mathbf{p}_{1x}-\mathbf{p}_{2x}\right)^2+\left(\mathbf{p}_{1y}-\mathbf{p}_{2y}\right)^2+\left(\mathbf{p}_{1z}-\mathbf{p}_{2z}\right)^2\right)^{\frac{1}{2}}\\
+    &=\frac{1}{2\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}2(\mathbf{p}_1-\mathbf{p}_2)\\
+    &=\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert},
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+    \nabla_{\mathbf{p}_2} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_2} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
+    &=\nabla_{\mathbf{p}_2} \left(\left(\mathbf{p}_{1x}-\mathbf{p}_{2x}\right)^2+\left(\mathbf{p}_{1y}-\mathbf{p}_{2y}\right)^2+\left(\mathbf{p}_{1z}-\mathbf{p}_{2z}\right)^2\right)^{\frac{1}{2}}\\
+    &=\frac{1}{2\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}2(\mathbf{p}_2-\mathbf{p}_1)\\
+    &=\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}.
+\end{aligned}</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\lambda&=\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2},\\
+\Delta \mathbf{p}_1&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_1\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_1}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_2-\mathbf{p}_1),\\
+\Delta \mathbf{p}_2&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_2\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_2}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_1-\mathbf{p}_2).
+\end{aligned}</script><h2 id="SDF碰撞"><a href="#SDF碰撞" class="headerlink" title="SDF碰撞"></a>SDF碰撞</h2><p>SDF碰撞约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_i) = \mathrm{SDF}(\mathbf{p}_i).</script><p>矫正量</p>
+<script type="math/tex; mode=display">
+\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= \frac{-\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script>
             </div>
             <hr>
             <div>
