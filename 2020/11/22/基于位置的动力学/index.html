@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.5k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      25
        分钟
     </span>
   
@@ -334,7 +334,46 @@ C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert -
 <script type="math/tex; mode=display">
 C(\mathbf{p}_i) = \mathrm{SDF}(\mathbf{p}_i).</script><p>矫正量</p>
 <script type="math/tex; mode=display">
-\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= \frac{-\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script>
+\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= \frac{-\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="数值微分的计算"><a href="#数值微分的计算" class="headerlink" title="数值微分的计算"></a>数值微分的计算</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \mathbf{k}_0&=(1,-1,-1)\\
+    \mathbf{k}_1&=(-1,-1,1)\\
+    \mathbf{k}_2&=(-1,1,-1)\\
+    \mathbf{k}_3&=(1,1,1)\\.
+\end{aligned}</script><p>考虑求和</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+m &=\sum_{i=0}^3 \mathbf{k}_{i}\frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)}{\sqrt{3}h} \\
+&=\sum_{i=0}^3 \mathbf{k}_{i} \frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)-f(\mathbf{p})}{\sqrt{3}h}\\
+&\approx\sum_{i=0}^3\mathbf{k}_{i} \nabla_{\widehat{\mathbf{k}}_{i}}f(\mathbf{p})\\
+&=\sum_{i=0}^3
+\begin{pmatrix}
+k_{ix}\\
+k_{iy}\\
+k_{iz}\\
+\end{pmatrix}
+\left(\widehat{k}_{ix},\widehat{k}_{iy},\widehat{k}_{iz}\right)
+\begin{pmatrix}
+\nabla_{x}f(\mathbf{p})\\
+\nabla_{y}f(\mathbf{p})\\
+\nabla_{z}f(\mathbf{p})
+\end{pmatrix}\\
+&=\frac{1}{\sqrt{3}}\sum_{i=0}^3
+\begin{pmatrix}
+k_{ix}^2&k_{ix}k_{iy}&k_{ix}k_{iz}\\
+k_{ix}k_{iy}&k_{iy}^2&k_{iy}k_{iz}\\
+k_{ix}k_{iz}&k_{iy}k_{iz}&k_{iz}
+\end{pmatrix}
+\begin{pmatrix}
+\nabla_{x}f(\mathbf{p})\\
+\nabla_{y}f(\mathbf{p})\\
+\nabla_{z}f(\mathbf{p})\\
+\end{pmatrix}\\
+&=\frac{4}{\sqrt{3}}\nabla f(\mathbf{p})
+\end{aligned}.</script><p>由此可以得到</p>
+<script type="math/tex; mode=display">
+\nabla f(\mathbf{p})\approx\sum_{i=0}^3 \mathbf{k}_{i}\frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)}{4h}</script>
             </div>
             <hr>
             <div>
