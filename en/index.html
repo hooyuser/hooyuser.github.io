@@ -1,0 +1,926 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/icon.png">
+  <link rel="icon" type="image/png" href="/en/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Hooy">
+  <meta name="keywords" content="">
+  <title>Topos Cat</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/en/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/en/js/utils.js" ></script>
+  <script  src="/en/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/en/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/demo/">
+                <i class="iconfont icon-exp-fill"></i>
+                Demo
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/en/img/banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2021/01/29/Yoneda%E5%BC%95%E7%90%86/" target="_self">
+          <img src="/en/img/yoneda_lemma/yoneda_lemma_index.svg" alt="Yoneda引理">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2021/01/29/Yoneda%E5%BC%95%E7%90%86/">Yoneda引理</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2021/01/29/Yoneda%E5%BC%95%E7%90%86/">
+          
+          
+            
+          
+          Yoneda 引理是范畴论中一个颇具哲学色彩的定理，Dan Piponi 称它为“数学中最难的平凡之物”。本文尝试用清晰明了、符合动机、图文并茂的方式叙述并证明 Yoneda 引理，同时介绍它的重要推论 Yoneda 嵌入和可表函子。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-29 12:41" pubdate>
+              2021-01-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+              <a href="/en/tags/%E8%8C%83%E7%95%B4%E8%AE%BA/">范畴论</a>
+            
+              <a href="/en/tags/%E4%BB%A3%E6%95%B0/">代数</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2021/01/17/%E4%BD%93%E7%A7%AF%E6%B8%B2%E6%9F%93/" target="_self">
+          <img src="/en/img/volume_rendering/volume_rendering_index.png" alt="体积渲染">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2021/01/17/%E4%BD%93%E7%A7%AF%E6%B8%B2%E6%9F%93/">体积渲染</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2021/01/17/%E4%BD%93%E7%A7%AF%E6%B8%B2%E6%9F%93/">
+          
+          
+            
+          
+          体积渲染不仅要考虑光线与物体表面的交互，还要考虑与空间中大量微粒的交互。本文介绍了体积渲染的一般理论，导出了积分方程形式的光线传输方程，最后给出了实时体积渲染的实例。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-17 10:44" pubdate>
+              2021-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+              <a href="/en/tags/PBR/">PBR</a>
+            
+              <a href="/en/tags/%E4%BD%93%E7%A7%AF%E6%B8%B2%E6%9F%93/">体积渲染</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/12/04/%E5%BE%AE%E5%88%86%E6%B5%81%E5%BD%A2/" target="_self">
+          <img src="/en/img/differentiable_manifold/differentiable_manifold_index.png" alt="微分流形">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/12/04/%E5%BE%AE%E5%88%86%E6%B5%81%E5%BD%A2/">微分流形</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/12/04/%E5%BE%AE%E5%88%86%E6%B5%81%E5%BD%A2/">
+          
+          
+            
+          
+          流形的基本概念拓扑流形定义
+            $n$ 维 拓扑流形 是局部同胚于 $n$ 维欧式空间的 Hausdorff 拓扑空间．
+          
+所谓“局部同胚于 $n$ 维欧式空间”，就是说任取拓扑空间 $M$ 中一点 $p$，存在 $p$ 的一个邻域 $N(p)$，使得 $N(p)$ 与欧式空间 $\mathbb{R}^n$ 同胚．
+坐标卡
+            如果 $U
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-04 16:57" pubdate>
+              2020-12-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+              <a href="/en/tags/%E5%87%A0%E4%BD%95/">几何</a>
+            
+              <a href="/en/tags/%E5%BE%AE%E5%88%86%E6%B5%81%E5%BD%A2/">微分流形</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/11/22/%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%8A%A8%E5%8A%9B%E5%AD%A6/" target="_self">
+          <img src="/en/img/PBD/PBD_index.jpg" alt="基于位置的动力学">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/11/22/%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%8A%A8%E5%8A%9B%E5%AD%A6/">基于位置的动力学</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/11/22/%E5%9F%BA%E4%BA%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%8A%A8%E5%8A%9B%E5%AD%A6/">
+          
+          
+            
+          
+          算法描述物体的动力学可由 $N$ 个顶点和 $M$ 个关于顶点位置的约束进行描述．第 $i$ 个顶点的质量、位置、速度分别记作 m_i,\mathbf{x}_i,\mathbf{v}_i．第 $j$ 个约束可能为等式或不等式，记作
+
+C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})=0\quad \text{或}\quad C_{j}(\mathbf{x}
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-22 18:15" pubdate>
+              2020-11-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+              <a href="/en/tags/%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F/">物理模拟</a>
+            
+              <a href="/en/tags/PBD/">PBD</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/10/13/%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/" target="_self">
+          <img src="/en/img/path_tracing_rendering_algorithm/path_tracing_index.png" alt="路径追踪渲染算法">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/10/13/%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/">路径追踪渲染算法</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/10/13/%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/">
+          
+          
+            
+          
+          Monte Carlo 积分方法重要性采样Monte Carlo 积分方法是一种求解定积分的数值方法．假定需要计算的是下面的积分
+
+I=\int_a^b f(x)dx.先选取一个连续型随机变量 $X$，要求其概率密度函数 $p(x)$ 满足
+
+\forall x\in[a,b],\quad p(x)>0.然后令 $Y=g(X)=\frac{f(X)}{p(X)}$．注意到
+
+\mathrm{E}\
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-13 12:02" pubdate>
+              2020-10-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+              <a href="/en/tags/PBR/">PBR</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/10/13/%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93-%E8%A1%A8%E9%9D%A2%E5%8F%8D%E5%B0%84/" target="_self">
+          <img src="/en/img/PBR_surface_reflection_index.png" alt="基于物理的渲染 - 表面反射">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/10/13/%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93-%E8%A1%A8%E9%9D%A2%E5%8F%8D%E5%B0%84/">基于物理的渲染 - 表面反射</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/10/13/%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93-%E8%A1%A8%E9%9D%A2%E5%8F%8D%E5%B0%84/">
+          
+          
+            
+          
+          双向反射分布函数考虑一张反射平面，在点 $\mathbf{p}$ 处来自入射光的辐照度可以表示成
+
+E_i(\mathbf{p})=\int_{H^2} L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i,其中 $d\Omega_i=\sin\theta_i\: d\theta_i\:d\phi_i$．上式的直观理解是：将遍布半
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-13 02:00" pubdate>
+              2020-10-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+              <a href="/en/tags/PBR/">PBR</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/10/12/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/" target="_self">
+          <img src="/en/img/color_science/color_science_index.png" alt="色彩科学">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/10/12/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/">色彩科学</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/10/12/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/">
+          
+          
+            
+          
+          色彩科学的研究表明，人类能感知到的所有颜色构成一个3维线性空间。只要选定一个基，我们就能将颜色编码成3维坐标。不同的编码方式，对应了不同的色彩空间。本文介绍了一些常见的色彩空间以及如何在色彩空间之间进行转换。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-12 01:31" pubdate>
+              2020-10-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+              <a href="/en/tags/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/">色彩科学</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/10/10/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B8%8E%E5%85%89%E5%BA%A6%E5%AD%A6/" target="_self">
+          <img src="/en/img/radiometry_and_photometry/radiometry_and_photometry_index.jpg" alt="辐射度量学与光度学">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/10/10/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B8%8E%E5%85%89%E5%BA%A6%E5%AD%A6/">辐射度量学与光度学</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/10/10/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B8%8E%E5%85%89%E5%BA%A6%E5%AD%A6/">
+          
+          
+            
+          
+          辐射度量学和光度学都在研究光的强弱，区别在于前者是客观的物理视角，后者是主观的视觉感受。本文对这两个学科中基本的概念进行了详细的阐述，并通过对比的方式加深理解。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-10 10:28" pubdate>
+              2020-10-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+            
+              <a href="/en/tags/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/">辐射度量学</a>
+            
+              <a href="/en/tags/%E5%85%89%E5%BA%A6%E5%AD%A6/">光度学</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2020/01/12/%E5%BC%A0%E9%87%8F-%E8%AE%A1%E7%AE%97%E7%AF%87/" target="_self">
+          <img src="/en/img/tensor_calculating/tensor_calculating_index.svg" alt="张量 - 计算篇">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2020/01/12/%E5%BC%A0%E9%87%8F-%E8%AE%A1%E7%AE%97%E7%AF%87/">张量 - 计算篇</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2020/01/12/%E5%BC%A0%E9%87%8F-%E8%AE%A1%E7%AE%97%E7%AF%87/">
+          
+          
+            
+          
+          除非特殊说明，以下只考虑选取了标准正交基的欧式空间 $\mathbb{R}^n$ 及其对偶空间．张量采用黑体，标量则是标准罗马字体．
+$\mathbb{R}^m$ 的元素为列向量 $\mathbf{a}^i=[a^1,a^2,\cdots,a^m]^T$，(\mathbb{R}^n)^* 的元素为行向量 $ \mathbf{b}_j=[b_1,b_2,\cdots,b_n]$．$\mathbb{R
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-12 22:27" pubdate>
+              2020-01-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+              <a href="/en/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/en/2019/08/25/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" target="_self">
+          <img src="/en/img/linear_transformation/linear_transformation_index.svg" alt="线性变换的直观理解">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/en/2019/08/25/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/">线性变换的直观理解</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/en/2019/08/25/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/">
+          
+          
+            
+          
+          · 符号与约定为避免可能出现的歧义，先对相关符号进行约定．
+
+线性空间：本文目标是展示出直观的图像，因此考虑的线性空间 $V$ 默认是欧式空间 $\mathbb{R}^n$．依照惯例，$\mathbb{R}^n$ 中的向量都是列向量．同时也应注意到，本文在尽力保证一般性．对于那些不涉及 $ \mathbb{R}^n$ 特殊性质的论述，几乎可以原封不动地推广至更一般的线性空间．
+
+基： 一个基由能生
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-25 19:33" pubdate>
+              2019-08-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/en/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/en/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+              <a href="/en/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">鄂ICP备19020559号-2</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/en/js/debouncer.js" ></script>
+<script  src="/en/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/en/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is.&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/en/js/local-search.js" ></script>
+  <script>
+    var path = "/en/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

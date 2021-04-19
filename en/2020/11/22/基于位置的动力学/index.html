@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/icon.png">
+  <link rel="icon" type="image/png" href="/en/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Hooy">
+  <meta name="keywords" content="">
+  <title>基于位置的动力学 - Topos Cat</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/en/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/en/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/en/js/utils.js" ></script>
+  <script  src="/en/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/en/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/demo/">
+                <i class="iconfont icon-exp-fill"></i>
+                Demo
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/en/img/PBD/PBD_banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-22 18:15" pubdate>
+        November 22, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">基于位置的动力学</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h1><p>物体的动力学可由 $N$ 个顶点和 $M$ 个关于顶点位置的约束进行描述．第 $i$ 个顶点的质量、位置、速度分别记作 <script type="math/tex">m_i,\mathbf{x}_i,\mathbf{v}_i</script>．第 $j$ 个约束可能为等式或不等式，记作</p>
+<script type="math/tex; mode=display">
+C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})=0\quad \text{或}\quad C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})\ge0.</script><p>我们用符号 $\succ$ 来表示 $=$ 或 $\ge$，并且令 <script type="math/tex">\mathbf{x}=(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})</script>，则第 $j$ 个约束可简记为 <script type="math/tex">C_{j}(\mathbf{x})\succ 0</script>．</p>
+<p>基于位置的动力学（Position Based Dynamics）简称为PBD．该算法会先计算出每个顶点的初始预测位置 <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script>，然后尝试移动 <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script> 使其满足所有约束</p>
+<script type="math/tex; mode=display">
+C_j\succ 0(j=1,2,\cdots,M).</script><p>PBD的具体算法可由以下伪代码表示．</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/PBD/PBD_algorithm.png" width="90%">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图1 - PBD 伪代码</div>
+</center>
+
+<h1 id="求解器"><a href="#求解器" class="headerlink" title="求解器"></a>求解器</h1><p>在PBD伪代码中，第8至第10行是求解器的迭代求解．这里的函数</p>
+<script type="math/tex; mode=display">
+\mathrm{ projectConstraints }\left(C_{1}, \cdots, C_{M + M_{\mathrm{Coll }}}, \mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script><p>是方程/不等式组</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{array}{l}
+        C_{1}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\  
+        C_{2}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\
+        \quad\ldots\\
+        C_{M + M_{\mathrm{Coll }}}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\
+    \end{array}
+\right.</script><p>的一个非线性Gauss-Seidel求解器．求解器 <script type="math/tex">\mathrm{ projectConstraints}</script> 会对约束 <script type="math/tex">C_{1},C_{2},\cdots,C_{M + M_{\mathrm{Coll }}}</script> 依次进行一阶线性化求解．每次求解完 <script type="math/tex">C_{j}</script>，求解器会当即更新 <script type="math/tex">\mathbf{p}_{1},\mathbf{p}_{2},\cdots,\mathbf{p}_{N}</script> 的值，使之影响对 <script type="math/tex">C_{j+1}</script> 的求解．下面我们将具体介绍 <script type="math/tex">C_{j}</script> 的求解方法．</p>
+<p>如果约束是一个等式，我们希望找到一个 <script type="math/tex">\Delta \mathbf{p}</script> 使得 <script type="math/tex">C_{j}(\mathbf{p}+\Delta \mathbf{p})=0</script>，其中 <script type="math/tex">\mathbf{p}=\left(\mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script>．对其进行一阶线性化可得</p>
+<script type="math/tex; mode=display">
+C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathbf{p}) \cdot \Delta \mathbf{p} = 0</script><p>上述方程的一般会有无穷个解．如果我们将解 <script type="math/tex">\Delta \mathbf{p}=\left(\Delta\mathbf{p}_{1},\Delta\mathbf{p}_{2},\cdots,\Delta\mathbf{p}_{N}\right)</script> 限制在</p>
+<script type="math/tex; mode=display">
+\left(w_1\nabla_\mathbf{p_1} C_{j}(\mathbf{p}),w_2\nabla_\mathbf{p_2} C_{j}(\mathbf{p}),\cdots,w_N\nabla_\mathbf{p_N} C_{j}(\mathbf{p})\right)</script><p>的方向上，即令 </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Delta \mathbf{p}_i=\lambda w_i\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N,
+\end{equation}</script><p>我们就可以求出一个特解</p>
+<script type="math/tex; mode=display">
+\Delta \mathbf{p}_i=-\frac{w_iC_j\left(\mathbf{p}\right)}{\sum_{k=1}^N w_{k}\left|\nabla_{\mathbf{p}_{j}} C_j\left(\mathbf{p}\right)\right|^{2}}\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N.</script><p>$C_{j}$ 的求解方法，就是用 <script type="math/tex">\mathbf{p}+\Delta \mathbf{p}</script> 来更新原来的 <script type="math/tex">\mathbf{p}</script>．因此，<script type="math/tex">\mathrm{projectConstraints}</script> 函数可用伪代码表示成</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/PBD/algorithm_project_constraints.svg" width="620">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图2 - $\mathrm{projectConstraints}$ 求解器伪代码</div>
+</center>
+
+<h1 id="特定约束"><a href="#特定约束" class="headerlink" title="特定约束"></a>特定约束</h1><h2 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h2><p>拉伸约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d,</script><p>其中 $d$ 代表初始长度。计算梯度，可得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \nabla_{\mathbf{p}_1} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_1} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
+    &=\nabla_{\mathbf{p}_1} \left(\left(\mathbf{p}_{1x}-\mathbf{p}_{2x}\right)^2+\left(\mathbf{p}_{1y}-\mathbf{p}_{2y}\right)^2+\left(\mathbf{p}_{1z}-\mathbf{p}_{2z}\right)^2\right)^{\frac{1}{2}}\\
+    &=\frac{1}{2\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}2(\mathbf{p}_1-\mathbf{p}_2)\\
+    &=\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert},
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+    \nabla_{\mathbf{p}_2} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_2} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
+    &=\nabla_{\mathbf{p}_2} \left(\left(\mathbf{p}_{1x}-\mathbf{p}_{2x}\right)^2+\left(\mathbf{p}_{1y}-\mathbf{p}_{2y}\right)^2+\left(\mathbf{p}_{1z}-\mathbf{p}_{2z}\right)^2\right)^{\frac{1}{2}}\\
+    &=\frac{1}{2\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}2(\mathbf{p}_2-\mathbf{p}_1)\\
+    &=\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}.
+\end{aligned}</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\lambda&=\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2},\\
+\Delta \mathbf{p}_1&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_1\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_1}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_2-\mathbf{p}_1),\\
+\Delta \mathbf{p}_2&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_2\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_2}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_1-\mathbf{p}_2).
+\end{aligned}</script><h2 id="SDF碰撞"><a href="#SDF碰撞" class="headerlink" title="SDF碰撞"></a>SDF碰撞</h2><p>SDF碰撞约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_i) = \mathrm{SDF}(\mathbf{p}_i).</script><p>矫正量</p>
+<script type="math/tex; mode=display">
+\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= -\frac{\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="例子：球面SDF碰撞"><a href="#例子：球面SDF碰撞" class="headerlink" title="例子：球面SDF碰撞"></a>例子：球面SDF碰撞</h3><p>给定半径为 $r$ 的球面，它的SDF碰撞约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_i) = \left\Vert\mathbf{p}_i\right\Vert-r.</script><p>矫正量</p>
+<script type="math/tex; mode=display">
+\Delta\mathbf{p}_i = -\frac{\left\Vert\mathbf{p}_i\right\Vert-r}{\left\Vert\mathbf{p}_i\right\Vert^2/\left\Vert\mathbf{p}_i\right\Vert^2}\frac{\mathbf{p}_i}{\left\Vert\mathbf{p}_i\right\Vert}=\left(\frac{r}{\left\Vert\mathbf{p}_i\right\Vert}-1\right)\mathbf{p}_i.</script><h3 id="数值微分的计算"><a href="#数值微分的计算" class="headerlink" title="数值微分的计算"></a>数值微分的计算</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \mathbf{k}_0&=(1,-1,-1)\\
+    \mathbf{k}_1&=(-1,-1,1)\\
+    \mathbf{k}_2&=(-1,1,-1)\\
+    \mathbf{k}_3&=(1,1,1)\\.
+\end{aligned}</script><p>考虑求和</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+m &=\sum_{i=0}^3 \mathbf{k}_{i}\frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)}{\sqrt{3}h} \\
+&=\sum_{i=0}^3 \mathbf{k}_{i} \frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)-f(\mathbf{p})}{\sqrt{3}h}\\
+&\approx\sum_{i=0}^3\mathbf{k}_{i} \nabla_{\widehat{\mathbf{k}}_{i}}f(\mathbf{p})\\
+&=\sum_{i=0}^3
+\begin{pmatrix}
+k_{ix}\\
+k_{iy}\\
+k_{iz}\\
+\end{pmatrix}
+\left(\widehat{k}_{ix},\widehat{k}_{iy},\widehat{k}_{iz}\right)
+\begin{pmatrix}
+\nabla_{x}f(\mathbf{p})\\
+\nabla_{y}f(\mathbf{p})\\
+\nabla_{z}f(\mathbf{p})
+\end{pmatrix}\\
+&=\frac{1}{\sqrt{3}}\sum_{i=0}^3
+\begin{pmatrix}
+k_{ix}^2&k_{ix}k_{iy}&k_{ix}k_{iz}\\
+k_{ix}k_{iy}&k_{iy}^2&k_{iy}k_{iz}\\
+k_{ix}k_{iz}&k_{iy}k_{iz}&k_{iz}
+\end{pmatrix}
+\begin{pmatrix}
+\nabla_{x}f(\mathbf{p})\\
+\nabla_{y}f(\mathbf{p})\\
+\nabla_{z}f(\mathbf{p})\\
+\end{pmatrix}\\
+&=\frac{4}{\sqrt{3}}\nabla f(\mathbf{p})
+\end{aligned}.</script><p>由此可以得到</p>
+<script type="math/tex; mode=display">
+\nabla f(\mathbf{p})\approx\sum_{i=0}^3 \mathbf{k}_{i}\frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)}{4h}</script>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F/">物理模拟</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/PBD/">PBD</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/en/2020/12/04/%E5%BE%AE%E5%88%86%E6%B5%81%E5%BD%A2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">微分流形</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/en/2020/10/13/%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">路径追踪渲染算法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "vjkw64ePz7yaH6jhWSQCKRQx-gzGzoHsz",
+          app_key: "FnH9uRrc0O6C9Rc00UjmDqgl",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">鄂ICP备19020559号-2</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/en/js/debouncer.js" ></script>
+<script  src="/en/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/en/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "基于位置的动力学&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/en/js/local-search.js" ></script>
+  <script>
+    var path = "/en/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
