@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/icon.png">
+  <link rel="icon" type="image/png" href="/en/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Hooy">
+  <meta name="keywords" content="">
+  <title>辐射度量学与光度学 - Topos Cat</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/en/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/en/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/en/js/utils.js" ></script>
+  <script  src="/en/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/en/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/demo/">
+                <i class="iconfont icon-exp-fill"></i>
+                Demo
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Link
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/en/img/radiometry_and_photometry/radiometry_and_photometry_banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-10 10:28" pubdate>
+        October 10, 2020 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k Words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       Minute
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> Views
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">辐射度量学与光度学</h1>
+            
+              <p class="note note-info">
+                
+                  Last Update：March 14, 2021 pm
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p><strong>辐射度量学</strong>（radiometry）是测量包括可见光在内的各种电磁辐射的学科．而<strong> 光度学</strong>（photometry）是测量人眼感知到的可见光强弱的学科．因为人眼对各种波长的光敏感度不同，所以只有把不同波长的辐射功率用光度函数加权，才能准确描述人类感受到的光的强弱．</p>
+<h1 id="辐射度量学"><a href="#辐射度量学" class="headerlink" title="辐射度量学"></a>辐射度量学</h1><h2 id="辐射通量"><a href="#辐射通量" class="headerlink" title="辐射通量"></a>辐射通量</h2><p>在辐射度量学中，<strong> 辐射通量</strong>（radiant flux）或<strong> 辐射功率</strong>（radiant power）$\Phi_\mathrm{e}$ 是单位时间内发射、反射、透过或接收的辐射能量，单位为瓦特 $\mathrm W$．</p>
+<p>与辐射通量 <script type="math/tex">\Phi_{\mathrm{e}}</script> 相关的一个物理量是<strong> 辐射通量的光谱密度函数 </strong> <script type="math/tex">\Phi_{\mathrm{e},\lambda}</script>，它与 $\Phi_\mathrm{e}$ 的关系如下</p>
+<script type="math/tex; mode=display">
+\Phi_{\mathrm{e}, \lambda}=\frac{\mathrm{d} \Phi_{\mathrm{e}}}{\mathrm{d} \lambda},\quad \Phi_{\mathrm{e}}=\int_{0}^{\infty} \Phi_{\mathrm{e}, \lambda} \mathrm{d} \lambda.</script><p>考虑一个点光源，它的辐射通量 <script type="math/tex">\Phi_\mathrm{e}</script> 可以想象成发射的箭头的数量．</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/radiometry_and_photometry/radiant_flux.png">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图1 - 辐射通量示意图</div>
+</center>
+
+<p>上图中的点光源发射了 $11$ 根箭头，那么它的辐射通量就是 $11\mathrm W$．我们也可以考虑一片发光或受光的曲面，它的辐射通量就是发射或接收的箭头的数量．如果进一步假定箭头有各种颜色，那么 <script type="math/tex">\Phi_{\mathrm{e},\lambda}</script> 可以想象成颜色为 $\lambda$ 的箭头数量．</p>
+<h2 id="辐射强度"><a href="#辐射强度" class="headerlink" title="辐射强度"></a>辐射强度</h2><p><strong> 辐射强度</strong>（radiation intensity）$I_{\mathrm{e}, \Omega}$ 是某一方向上单位立体角内发射、反射、透过或接收的辐射通量，即</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{e}, \Omega}=\frac{\partial \Phi_{\mathrm{e}}}{\partial \Omega}</script><p>单位为 $\mathrm{W}/\mathrm{sr}$．若某一点光源在单位向量 $\omega$ 方向上的辐射强度为 $I_{\mathrm{e}, \Omega}(\boldsymbol{\omega})$，则空间中某曲面 $S$ 接收到的辐射通量为</p>
+<script type="math/tex; mode=display">
+\Phi_\mathrm{e}(S)=\int_S I_{\mathrm{e},\Omega}(\boldsymbol{\omega}) d\Omega.</script><p>设曲面 $S$ 被径向投影 $p: \mathbf{r}\mapsto \frac{\mathbf{r}}{\Vert\mathbf{r}\Vert}$ 映成 $\hat{S}$，则上式可转化成 $\hat{S}$ 上的第一类曲面积分</p>
+<script type="math/tex; mode=display">
+\Phi_\mathrm{e}(S)=\int_\hat{S} I_{\mathrm{e},\Omega}(\boldsymbol{\omega}) d\Omega,</script><p>其中 $d\Omega$ 为单位球面上的面积元．计算时，可如下进行参数化 </p>
+<script type="math/tex; mode=display">
+\boldsymbol{\omega}=(\sin\theta\cos\phi,\sin\theta\sin\phi, \cos\theta),\quad d\Omega=\sin\theta\: d\theta\:d\phi.</script><p>如果将辐射通量想象成箭头数，那么辐射强度的几何想象就是某一方向上一个很小的立体角内的箭头数比上立体角的角度．</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/radiometry_and_photometry/radiation_intensity.png">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图2 - 辐射强度示意图</div>
+</center>
+
+<p>考虑一个各向同性点光源，它在所有方向上的辐射强度都为 $2\mathrm{W}/\mathrm{sr}$，即一个立体角发射两个箭头．因为一个球面总的球面度为 $4\pi$，所以这个点光源一共发出了 $2\times 4\pi=8\pi$ 个箭头，它的辐射通量为 $8\pi\mathrm{W}$．</p>
+<p>一般地，若各向同性点光源的辐射强度为 $I_0$，那么它的辐射通量为</p>
+<script type="math/tex; mode=display">
+\Phi_0=\int_\hat{S} I_{0}d\Omega=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}I_0 \sin\theta\: d\theta\:d\phi= 4\pi I_0.</script><h2 id="辐照度"><a href="#辐照度" class="headerlink" title="辐照度"></a>辐照度</h2><p><strong> 辐照度</strong>（irradiance）<script type="math/tex">E_{\mathrm{e}}</script> 是电磁辐射入射曲面时单位面积上接收的辐射通量</p>
+<script type="math/tex; mode=display">
+E_{\mathrm{e}}=\frac{\partial \Phi_{\mathrm{e}}}{\partial A},</script><p>单位为 $\mathrm{W}/\mathrm{m}^2$．</p>
+<p>承接前面的几何想象，曲面上某点处的辐照度可以被描述为一个很小的区域内发出（或接收）的箭头数比上区域的面积．</p>
+<h2 id="辐射率"><a href="#辐射率" class="headerlink" title="辐射率"></a>辐射率</h2><p>曲面的上某点在某一方向上的 <strong> 辐射率</strong>（radiance）$L_{\mathrm{e}, \Omega}$，是它在单位立体角内由单位投影面积发射、反射、透过或接收的辐射通量，公式为</p>
+<script type="math/tex; mode=display">
+L_{\mathrm{e}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{e}}}{\partial \Omega \partial A \cos \theta},</script><p>其中 $\Omega$ 表示立体角，$A \cos \theta$ 表示在某方向上的投影面积，$\theta$ 则表示曲面法向量与该方向的夹角．辐射率的单位是 $\mathrm{W}/(\mathrm{sr}\cdot \mathrm{m}^2)$．</p>
+<p>记曲面上点 $\mathbf{p}$ 在 $\boldsymbol\omega$ 方向上的的辐射率是 $L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})$，则该点处的辐照度为</p>
+<script type="math/tex; mode=display">
+E_{\mathrm{e}}(\mathbf{p})=\int_S L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})\cos\theta\:d\Omega.</script><p>若曲面是一个不透光的反射平面，那么上式可化为在一个单位半球面上的第一类曲面积分，并进一步化为重积分进行计算</p>
+<script type="math/tex; mode=display">
+E_{\mathrm{e}}(\mathbf{p})=\int_{H^2} L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})\cos\theta\:d\Omega=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}L_{\mathrm{e}, \Omega}(\mathbf{p},\boldsymbol{\omega})\cos\theta\sin\theta\:d\theta\:d\phi.</script><p>要形象表述曲面上某点处的沿某一方向的辐射率，可以想象曲面上包围该点的一个很小的区域，在该方向的一个小圆锥内接收箭头．辐射率就等于区域接收的箭头数先除以小圆锥的立体角，再除以区域被直射的面积．</p>
+<h1 id="光度学"><a href="#光度学" class="headerlink" title="光度学"></a>光度学</h1><p>将辐射度量学的物理量按波长加权，即可得到对应的光度学物理量．</p>
+<h2 id="光通量"><a href="#光通量" class="headerlink" title="光通量"></a>光通量</h2><p><strong>光通量</strong>（luminous flux）$\Phi_{\mathrm{v}}$ 定义为</p>
+<script type="math/tex; mode=display">
+\Phi_{\mathrm{v}} =K \cdot \int_{0}^{\infty} \Phi_{\mathrm{e},\lambda} \cdot V(\lambda) \mathrm{d} \lambda,</script><p>其中光敏度 $K= 683.002\:\mathrm{lm}/\mathrm{W}$．光通量的单位是流明（lumen) $\mathrm{lm}$．</p>
+<p>$V(\lambda)$ 是<strong> 光度函数</strong>（luminosity function），也称作相对视见函数，无量纲，描述了人眼对不同波长可见光亮度的感知敏感度．下图中黑色实线是CIE 1931标准下的明视光度函数，黑色虚线代表的其他版本的明视光度函数，绿色实线则代表暗视光度函数．</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/radiometry_and_photometry/Luminosity.svg">
+    <br>
+    <div style="color:orange;
+    display: inline-block;
+    color: #999;
+    font-size:14px;
+    padding: 10px;">图3 - 光度函数</div>
+</center>
+
+<p>注意到 $V(\lambda)$ 是经过归一化处理的．当 $\lambda=555\mathrm{nm}$ 时，$V(\lambda)$ 取得最大值 $1$．</p>
+<h2 id="发光强度"><a href="#发光强度" class="headerlink" title="发光强度"></a>发光强度</h2><p><strong>发光强度</strong>（Luminous intensity）$I_{\mathrm{v}, \Omega}$ 定义为</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{v}, \Omega}=\frac{\partial \Phi_{\mathrm{v}}}{\partial \Omega},</script><p>单位是坎德拉（candela）$\mathrm{cd}$．$1$ 坎德拉是发出 $540\times10^{12} \mathrm{Hz}$ 频率的单色辐射源在给定方向上的发光强度，该方向上的辐射强度为 $\frac{1}{683} \mathrm{W}/\mathrm{sr}$．</p>
+<p>我们可以通过光度函数来检查坎德拉的定义是否合理．$540\times10^{12} \mathrm{Hz}$ 的频率对应 $555.016 \mathrm{nm}$ 的波长，而 $V(555.016\mathrm{nm})=0.999997$．因此，定义中光源的发光强度应为</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{v}, \Omega}=K V(\lambda) I_{\mathrm{e}, \Omega} =683.002\:\mathrm{lm}/\mathrm{W}\times0.999997\times \frac{1}{683}\mathrm{W}/\mathrm{sr}=1\mathrm{lm}/\mathrm{sr}.</script><p>结果正好为 $1$ 坎德拉．</p>
+<h2 id="照度"><a href="#照度" class="headerlink" title="照度"></a>照度</h2><p><strong>照度</strong>（illuminance）$E_{\mathrm{v}}$ 是每单位面积所接收到的光通量，单位为勒克斯（lux) $\mathrm{lx}$．照度公式为</p>
+<script type="math/tex; mode=display">
+E_{\mathrm{v}}=\frac{\partial \Phi_{\mathrm{v}}}{\partial A}.</script><h2 id="亮度"><a href="#亮度" class="headerlink" title="亮度"></a>亮度</h2><p><strong>亮度</strong>（luminance）$L_{\mathrm{v}, \Omega}$ 是表示人眼对发光体或被照射物体表面的发光或反射光强度实际感受的物理量，定义为</p>
+<script type="math/tex; mode=display">
+L_{\mathrm{v}, \Omega}=\frac{\partial^{2} \Phi_{\mathrm{v}}}{\partial \Omega \partial A \cos \theta},</script><p>国际单位为 $\mathrm{cd}/\mathrm{m}^2$．亮度还有一个非国际单位尼特（nit) $\mathrm{nt}$，$1\mathrm{nt}=1\mathrm{cd}/\mathrm{m}^2$．</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/">辐射度量学</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/%E5%85%89%E5%BA%A6%E5%AD%A6/">光度学</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">Copyright Notice: All articles in this blog are licensed under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0</a> unless declaring additionally.</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/en/2020/10/12/Color%20Science/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Color Science</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/en/2020/01/12/Tensor%20-%20Calculation/">
+                        <span class="hidden-mobile">Tensor - Calculation</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "vjkw64ePz7yaH6jhWSQCKRQx-gzGzoHsz",
+          app_key: "FnH9uRrc0O6C9Rc00UjmDqgl",
+          placeholder: "Leave some comments here ~",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "en",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/en/js/debouncer.js" ></script>
+<script  src="/en/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/en/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+  
+<script src="/en/js/to_cn.js"></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "辐射度量学与光度学&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/en/js/local-search.js" ></script>
+  <script>
+    var path = "/en/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

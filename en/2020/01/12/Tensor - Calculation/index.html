@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/icon.png">
+  <link rel="icon" type="image/png" href="/en/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Hooy">
+  <meta name="keywords" content="">
+  <title>Tensor - Calculation - Topos Cat</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/en/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/en/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/en/js/utils.js" ></script>
+  <script  src="/en/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/en/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/demo/">
+                <i class="iconfont icon-exp-fill"></i>
+                Demo
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Link
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/en/img/tensor_calculating/tensor_calculating_banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-01-12 22:27" pubdate>
+        January 12, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k Words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       Minute
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> Views
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Tensor - Calculation</h1>
+            
+              <p class="note note-info">
+                
+                  Last Update：April 20, 2021 am
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>除非特殊说明，以下只考虑选取了标准正交基的欧式空间 $\mathbb{R}^n$ 及其对偶空间．张量采用黑体，标量则是标准罗马字体．</p>
+<p>$\mathbb{R}^m$ 的元素为列向量 $\mathbf{a}^i=[a^1,a^2,\cdots,a^m]^T$，<script type="math/tex">(\mathbb{R}^n)^*</script> 的元素为行向量 $ \mathbf{b}_j=[b_1,b_2,\cdots,b_n]$．$\mathbb{R}^m$ 的标准正交基表示为列向量 $ \boldsymbol{ \delta } ^1,\cdots \boldsymbol{ \delta } ^m $，其中 $ \boldsymbol{ \delta } ^i$ 的第 $i$ 个分量等于 $ 1 $，其余分量等于 $ 0 $ ．$(\mathbb{R}^n)^*$ 的标准正交基表示为行向量 $ \boldsymbol{ \delta }_1,\cdots, \boldsymbol{ \delta }_n $，其中 $ \boldsymbol{ \delta }_j$ 的第 $j$ 个分量等于 $ 1 $，其余分量等于 $ 0 $．</p>
+<h1 id="张量积"><a href="#张量积" class="headerlink" title="张量积"></a>张量积</h1><p>定义 $ (\mathbb{R}^n)^*\otimes \mathbb{R}^m $ 是以 $ \boldsymbol{ \delta }_j \otimes \boldsymbol{ \delta } ^i $ 为基的自由向量空间．容易验证，</p>
+<script type="math/tex; mode=display">
+\begin{align}
+    \otimes : (\mathbb{R}^n)^*\times \mathbb{R}^m &\longrightarrow (\mathbb{R}^n)^*\otimes \mathbb{R}^m \\ 
+    \mathbf{b} _j \times \mathbf{a} ^i&\longmapsto \sum_{i}\sum_{j} b_j a^i \boldsymbol{ \delta } _j \otimes \boldsymbol{ \delta } ^i
+\end{align}</script><p>是双线性映射．即</p>
+<script type="math/tex; mode=display">
+\begin{align} 
+    (\lambda\mathbf{b}_j+ \mathbf{c}_j )\otimes \mathbf{a}^i&= \lambda\mathbf{b}_j\otimes \mathbf{a}^i +\mathbf{c}_j \otimes \mathbf{a}^i ,\quad&\forall \lambda\in\mathbb{R}, \mathbf{a}^i \in\mathbb{R}^m,\mathbf{b}_j , \mathbf{c}_j\in (\mathbb{R}^n)^* ,\\ 
+    \mathbf{b} _j \otimes (\lambda\mathbf{a} ^i + \mathbf{d} ^i ) &= \lambda \mathbf{b}_j\otimes \mathbf{a}^i + \mathbf{b}_j \otimes \mathbf{d}^i ,\quad&\forall \lambda\in\mathbb{R}, \mathbf{a}^i , \mathbf{d}^i \in\mathbb{R}^m,\mathbf{b}_j \in (\mathbb{R}^n)^* .
+\end{align}</script><p>根据同构 $\mathcal{L}(\mathbb{R}^n, \mathbb{R}^m )\cong \mathrm{M}_{m\times n}( \mathbb{R} )$，线性映射 $f:\mathbb{R}^n\to\mathbb{R}^m\in\mathcal{L}(\mathbb{R}^n, \mathbb{R}^m ) $ 可由矩阵表示</p>
+<script type="math/tex; mode=display">
+\mathbf{A}^i {}_j=
+\begin{bmatrix}  
+    A^1 {}_1 & A^1 {} _2& \cdots & A^1 {}_n \\
+    A^2 {}_1 & A^2 {}_2& \cdots & A^2 {}_n \\
+    \vdots& \vdots& & \vdots \\
+    A^m {}_1 & A^m {}_2& \cdots & A^m {}_n       
+\end{bmatrix}.</script><p>可以验证，映射</p>
+<script type="math/tex; mode=display">
+\begin{align}
+    \varphi: \mathrm{M}_{m\times n}( \mathbb{R} ) &\longrightarrow (\mathbb{R}^n)^*\otimes \mathbb{R}^m\\
+    \mathbf{A}^i {}_j&\longmapsto \sum_{i}\sum_{j}A^i {}_j \boldsymbol{ \delta } _j \otimes \boldsymbol{ \delta } ^i 
+\end{align}</script><p>是线性同构．因此，我们有如下同构关系，</p>
+<script type="math/tex; mode=display">
+\mathrm{M}_{m\times n}( \mathbb{R} ) \cong \mathcal{L}(\mathbb{R}^n, \mathbb{R}^m ) \cong (\mathbb{R}^n)^*\otimes \mathbb{R}^m,</script><p>并且可以将 $ (\mathbb{R}^n)^*\otimes \mathbb{R}^m $ 中的元素记成矩阵．一个简单的例子是</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1&2 
+\end{bmatrix}
+\otimes 
+\begin{bmatrix} 
+    3\\
+    4 
+\end{bmatrix} 
+= 
+\begin{bmatrix}  
+    3\times1&3 \times 2 \\
+    4\times1&4 \times 2 
+\end{bmatrix} .</script><h1 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h1><p>设 $V=\mathbb{R}^n$．在微分几何中，常考虑的是一个向量空间 $V$ 及其对偶空间 $V^*$ 之间的张量积．张量积</p>
+<mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -3.85ex" xmlns="http://www.w3.org/2000/svg" width="34.54ex" height="8.931ex" role="img" focusable="false" viewBox="0 -2245.8 15266.7 3947.5" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path><path id="MJX-1-TEX-I-1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-1-TEX-I-1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path><path id="MJX-1-TEX-N-3A" d="M78 370Q78 394 95 412T138 430Q162 430 180 414T199 371Q199 346 182 328T139 310T96 327T78 370ZM78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path id="MJX-1-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-1-TEX-N-2297" d="M56 250Q56 394 156 488T384 583Q530 583 626 485T722 250Q722 110 625 14T390 -83Q249 -83 153 14T56 250ZM582 471Q531 510 496 523Q446 542 381 542Q324 542 272 519T196 471L389 278L485 375L582 471ZM167 442Q95 362 95 250Q95 137 167 58L359 250L167 442ZM610 58Q682 138 682 250Q682 363 610 442L418 250L610 58ZM196 29Q209 16 230 2T295 -27T388 -42Q409 -42 429 -40T465 -33T496 -23T522 -11T544 1T561 13T574 22T582 29L388 222L196 29Z"></path><path id="MJX-1-TEX-N-22EF" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250ZM525 250Q525 274 542 292T585 310Q609 310 627 294T646 251Q646 226 629 208T586 190T543 207T525 250ZM972 250Q972 274 989 292T1032 310Q1056 310 1074 294T1093 251Q1093 226 1076 208T1033 190T990 207T972 250Z"></path><path id="MJX-1-TEX-S4-E150" d="M-18 -213L-24 -207V-172L-16 -158Q75 2 260 84Q334 113 415 119Q418 119 427 119T440 120Q454 120 457 117T460 98V60V25Q460 7 457 4T441 0Q308 0 193 -55T25 -205Q21 -211 18 -212T-1 -213H-18Z"></path><path id="MJX-1-TEX-S4-E151" d="M-10 60Q-10 104 -10 111T-5 118Q-1 120 10 120Q96 120 190 84Q375 2 466 -158L474 -172V-207L468 -213H451H447Q437 -213 434 -213T428 -209T423 -202T414 -187T396 -163Q331 -82 224 -41T9 0Q-4 0 -7 3T-10 25V60Z"></path><path id="MJX-1-TEX-S4-E153" d="M-10 60V95Q-10 113 -7 116T9 120Q151 120 250 171T396 284Q404 293 412 305T424 324T431 331Q433 333 451 333H468L474 327V292L466 278Q375 118 190 36Q95 0 8 0Q-5 0 -7 3T-10 24V60Z"></path><path id="MJX-1-TEX-S4-E152" d="M-24 327L-18 333H-1Q11 333 15 333T22 329T27 322T35 308T54 284Q115 203 225 162T441 120Q454 120 457 117T460 95V60V28Q460 8 457 4T442 0Q355 0 260 36Q75 118 -16 278L-24 292V327Z"></path><path id="MJX-1-TEX-S4-E154" d="M-10 0V120H410V0H-10Z"></path><path id="MJX-1-TEX-N-2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="math"><g data-mml-node="msubsup"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-I-1D449"></use></g><g data-mml-node="mi" transform="translate(828.3, 413) scale(0.707)"><use xlink:href="#MJX-1-TEX-I-1D45F"></use></g><g data-mml-node="mi" transform="translate(583, -247) scale(0.707)"><use xlink:href="#MJX-1-TEX-I-1D460"></use></g></g><g data-mml-node="mo" transform="translate(1475, 0)"><use xlink:href="#MJX-1-TEX-N-3A"></use><use xlink:href="#MJX-1-TEX-N-3D" transform="translate(278, 0)"></use></g><g data-mml-node="mover" transform="translate(2808.8, 0)"><g data-mml-node="TeXAtom" data-mjx-texclass="OP"><g data-mml-node="mover"><g data-mml-node="mrow"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-I-1D449"></use></g><g data-mml-node="mo" transform="translate(991.2, 0)"><use xlink:href="#MJX-1-TEX-N-2297"></use></g><g data-mml-node="mo" transform="translate(1991.4, 0)"><use xlink:href="#MJX-1-TEX-N-22EF"></use></g><g data-mml-node="mo" transform="translate(3385.7, 0)"><use xlink:href="#MJX-1-TEX-N-2297"></use></g><g data-mml-node="mi" transform="translate(4385.9, 0)"><use xlink:href="#MJX-1-TEX-I-1D449"></use></g></g><g data-mml-node="mo" transform="translate(0, 943)"><use xlink:href="#MJX-1-TEX-S4-E150"></use><use xlink:href="#MJX-1-TEX-S4-E151" transform="translate(4704.9, 0)"></use><g data-c="E155" transform="translate(2127.4, 0)"><use xlink:href="#MJX-1-TEX-S4-E153"></use><use xlink:href="#MJX-1-TEX-S4-E152" transform="translate(450, 0)"></use></g><svg width="1877.4" height="720" x="350" y="-300" viewBox="469.4 -300 1877.4 720"><use xlink:href="#MJX-1-TEX-S4-E154" transform="scale(7.04, 1)"></use></svg><svg width="1877.4" height="720" x="2927.4" y="-300" viewBox="469.4 -300 1877.4 720"><use xlink:href="#MJX-1-TEX-S4-E154" transform="scale(7.04, 1)"></use></svg></g></g></g><g data-mml-node="TeXAtom" transform="translate(2205.9, 1615.4) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-I-1D45F"></use></g><g data-mml-node="mtext" transform="translate(451, 0)"><text data-variant="normal" transform="matrix(1 0 0 -1 0 0)" font-size="773.5px" font-family="serif">个</text></g></g></g><g data-mml-node="mo" transform="translate(8185.9, 0)"><use xlink:href="#MJX-1-TEX-N-2297"></use></g><g data-mml-node="munder" transform="translate(9186.1, 0)"><g data-mml-node="TeXAtom" data-mjx-texclass="OP"><g data-mml-node="munder"><g data-mml-node="mrow"><g data-mml-node="msup"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-I-1D449"></use></g><g data-mml-node="mo" transform="translate(828.3, 413) scale(0.707)"><use xlink:href="#MJX-1-TEX-N-2217"></use></g></g><g data-mml-node="mo" transform="translate(1454.1, 0)"><use xlink:href="#MJX-1-TEX-N-2297"></use></g><g data-mml-node="mo" transform="translate(2454.3, 0)"><use xlink:href="#MJX-1-TEX-N-22EF"></use></g><g data-mml-node="mo" transform="translate(3848.5, 0)"><use xlink:href="#MJX-1-TEX-N-2297"></use></g><g data-mml-node="msup" transform="translate(4848.7, 0)"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-I-1D449"></use></g><g data-mml-node="mo" transform="translate(828.3, 413) scale(0.707)"><use xlink:href="#MJX-1-TEX-N-2217"></use></g></g></g><g data-mml-node="mo" transform="translate(0, -463)"><use xlink:href="#MJX-1-TEX-S4-E152"></use><use xlink:href="#MJX-1-TEX-S4-E153" transform="translate(5630.6, 0)"></use><g data-c="E156" transform="translate(2590.3, 0)"><use xlink:href="#MJX-1-TEX-S4-E151"></use><use xlink:href="#MJX-1-TEX-S4-E150" transform="translate(450, 0)"></use></g><svg width="2340.3" height="720" x="350" y="-300" viewBox="585.1 -300 2340.3 720"><use xlink:href="#MJX-1-TEX-S4-E154" transform="scale(8.776, 1)"></use></svg><svg width="2340.3" height="720" x="3390.3" y="-300" viewBox="585.1 -300 2340.3 720"><use xlink:href="#MJX-1-TEX-S4-E154" transform="scale(8.776, 1)"></use></svg></g></g></g><g data-mml-node="TeXAtom" transform="translate(2662.3, -1460.3) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use xlink:href="#MJX-1-TEX-I-1D460"></use></g><g data-mml-node="mtext" transform="translate(469, 0)"><text data-variant="normal" transform="matrix(1 0 0 -1 0 0)" font-size="773.5px" font-family="serif">个</text></g></g></g></g></g></svg></mjx-container>
+<p>的元素</p>
+<script type="math/tex; mode=display">
+\mathbf{A}^{i_1,\cdots,i_{r}} {}_{ j_1,\cdots,j_{s} } =\sum\limits_{i_1,\cdots,i_{r},\\ j_1,\cdots,j_{s} } A^{ i_1 \cdots i_{r}} {}_{ j_1 \cdots j_{s} } \boldsymbol{ \delta } ^{i_1} \otimes \cdots \otimes \boldsymbol{ \delta } ^{i_{r}} \otimes \boldsymbol{ \delta } _{j_1} \otimes \cdots \otimes \boldsymbol{ \delta } _{j_{s}}</script><p>称为 $(r,s)$ 型混合张量，或简称为 $(r,s)$ 张量．记</p>
+<script type="math/tex; mode=display">
+\boldsymbol{ \delta } ^ {i_1,\cdots,i_{r}} {}_{ j_1,\cdots,j_{s} }:= \boldsymbol{ \delta } ^{i_1} \otimes \cdots \otimes \boldsymbol{ \delta } ^{i_{r}} \otimes \boldsymbol{ \delta } _{j_1} \otimes \cdots \otimes \boldsymbol{ \delta } _{j_{s}} ,</script><p>则有</p>
+<script type="math/tex; mode=display">
+\mathbf{A}^{i_1,\cdots,i_{r}} {}_{ j_1,\cdots,j_{s} } =\sum\limits_{i_1,\cdots,i_{r},\\ j_1,\cdots,j_{s} } A^{ i_1 \cdots i_{r}} {}_{ j_1 \cdots j_{s} } \boldsymbol{ \delta } ^ {i_1\cdots i_{r}} {}_{ j_1\cdots j_{s} }</script><p>若引入指标缩略记号 <script type="math/tex">\alpha= (i_1,\cdots,i_{r})</script>，<script type="math/tex">\beta= (j_1,\cdots,j_{s})</script>，上式可进一步简化为</p>
+<script type="math/tex; mode=display">
+\mathbf{A}^{ \alpha } {}_{ \beta } =\sum\limits_{ \alpha , \beta } A^{ \alpha } {}_{ \beta } \boldsymbol{ \delta } ^ { \alpha } {}_{ \beta }．</script><h1 id="张量的运算"><a href="#张量的运算" class="headerlink" title="张量的运算"></a>张量的运算</h1><p>张量有乘法和缩并两种运算．$(r_1,s_1)$ 张量与 $(r_2,s_2)$张量的乘法就是张量积</p>
+<script type="math/tex; mode=display">
+\begin{align}
+    \otimes : V_{s_1}^{r_1} \times V_{s_2}^{r_2} &\longrightarrow V_{s_1+s_2}^{r_1+r_2} \\
+    \mathbf{A}^{ \alpha_1 } {}_{ \beta_1} \times \mathbf{B}^{ \alpha_2} {}_{ \beta_2} &\longmapsto \sum\limits_{ \alpha_1 , \beta_1, \alpha_2 , \beta_2} A^{ \alpha_1}{}_{ \beta_1 } B^{ \alpha_2} {}_{ \beta_2 }\boldsymbol{\delta }^{ \alpha_1 }{}_{ \beta_1} {}^{\alpha_ 2 } {}_{\beta_ 2 }
+\end{align}\ .</script><p>定义迹为如下映射，</p>
+<script type="math/tex; mode=display">
+\begin{align}
+    \mathrm{Tr}: V^*\otimes V &\longrightarrow \mathbb{R}\\
+    \sum_{i,j} A^i {}_j \boldsymbol{ \delta } _j \otimes \boldsymbol{ \delta } ^i &\longmapsto \sum_{i}A^i {}_i 
+\end{align}\ ,</script><p>容易验证它是一个线性映射．由此可定义缩并运算．设 $ 1\le p\le r$，$ 1\le q\le s$，$(r,s)$ 张量的缩并运算定义为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+    \mathrm{Tr_{pq}}: V_{s}^{r} &\longrightarrow V_{s-1}^{r-1} \\ \mathbf{A}^{i_1,\cdots,i_{r}} {}_{ j_1,\cdots,j_{s} }&\longmapsto \sum\limits_{i_1, \cdots, \widehat{i_p}, \cdots,i_{r},\\
+    j_1, \cdots ,\widehat{j_q}, \cdots,j_{s} } \mathrm{Tr} \left( \sum_{i_p,j_q} A^{ i_1 \cdots i_p \cdots i_{r}} {}_{ j_1 \cdots j_q \cdots j_{s} } \boldsymbol{ \delta } ^{ i_p }{}_{ j_q } \right) \boldsymbol{ \delta } ^ {i_1\cdots \widehat{i_p}\cdots i_{r}} {}_{ j_1 \cdots \widehat{j_q} \cdots j_{s} } 
+\end{align},</script><p>其中带 ${}^\widehat{\hspace{0.8em}}$ 的指标已被删除．</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/en/categories/Mathematics/">Mathematics</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/en/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/Algebra/">Algebra</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/Linear-Algebra/">Linear Algebra</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">Copyright Notice: All articles in this blog are licensed under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0</a> unless declaring additionally.</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/en/2020/10/10/Radiometry%20and%20Photometry/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">辐射度量学与光度学</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/en/2019/08/25/Understand%20Linear%20Transformation%20Intuitively/">
+                        <span class="hidden-mobile">线性变换的直观理解</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "vjkw64ePz7yaH6jhWSQCKRQx-gzGzoHsz",
+          app_key: "FnH9uRrc0O6C9Rc00UjmDqgl",
+          placeholder: "Leave some comments here ~",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "en",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/en/js/debouncer.js" ></script>
+<script  src="/en/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/en/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+  
+<script src="/en/js/to_cn.js"></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Tensor - Calculation&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/en/js/local-search.js" ></script>
+  <script>
+    var path = "/en/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
