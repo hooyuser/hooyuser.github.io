@@ -1,4 +1,4 @@
-var btn = document.createElement('button');
+var btn = document.createElement('a');
 let language = {};
 language.now = location.pathname.match(/^\/en/) ? 'en' : 'cn';
 if ('en' === language.now) {
