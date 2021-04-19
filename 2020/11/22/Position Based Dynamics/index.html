@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Hooy">
   <meta name="keywords" content="">
-  <title>基于物理的渲染 - 表面反射 - Topos Cat</title>
+  <title>基于位置的动力学 - Topos Cat</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/cn/img/PBR_surface_reflection.png') no-repeat center center;
+         style="background: url('/cn/img/PBD/PBD_banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -193,8 +193,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-13 02:00" pubdate>
-        2020年10月13日 凌晨
+      <time datetime="2020-11-22 18:15" pubdate>
+        2020年11月22日 晚上
       </time>
     </span>
   
@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.6k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      27
        分钟
     </span>
   
@@ -253,79 +253,137 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">基于物理的渲染 - 表面反射</h1>
+            <h1 style="display: none">基于位置的动力学</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月12日 下午
+                  本文最后更新于：2021年4月7日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="双向反射分布函数"><a href="#双向反射分布函数" class="headerlink" title="双向反射分布函数"></a>双向反射分布函数</h1><p>考虑一张反射平面，在点 $\mathbf{p}$ 处来自入射光的辐照度可以表示成</p>
+              <h1 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h1><p>物体的动力学可由 $N$ 个顶点和 $M$ 个关于顶点位置的约束进行描述．第 $i$ 个顶点的质量、位置、速度分别记作 <script type="math/tex">m_i,\mathbf{x}_i,\mathbf{v}_i</script>．第 $j$ 个约束可能为等式或不等式，记作</p>
 <script type="math/tex; mode=display">
-E_i(\mathbf{p})=\int_{H^2} L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i,</script><p>其中 $d\Omega_i=\sin\theta_i\: d\theta_i\:d\phi_i$．上式的直观理解是：将遍布半球的入射光分割成来自很多个小圆锥的入射光，其中 $\boldsymbol{\omega}_i$ 方向上的小圆锥贡献的辐照度为 $L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i$．将所有小圆锥贡献的辐照度加起来，就得到了来自入射光的总的辐照度 $E_i(\mathbf{p})$.</p>
-<p>上式有时也写作微分形式</p>
+C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})=0\quad \text{或}\quad C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})\ge0.</script><p>我们用符号 $\succ$ 来表示 $=$ 或 $\ge$，并且令 <script type="math/tex">\mathbf{x}=(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})</script>，则第 $j$ 个约束可简记为 <script type="math/tex">C_{j}(\mathbf{x})\succ 0</script>．</p>
+<p>基于位置的动力学（Position Based Dynamics）简称为PBD．该算法会先计算出每个顶点的初始预测位置 <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script>，然后尝试移动 <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script> 使其满足所有约束</p>
 <script type="math/tex; mode=display">
-dE_i(\mathbf{p},\boldsymbol{\omega}_i)=L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>如果我们要考虑点 $\mathbf{p}$ 处沿 <script type="math/tex">\boldsymbol{\omega}_o</script> 方向出射光的辐照率 <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script>，上述分割求和的思想依然可以沿用．假设 <script type="math/tex">\boldsymbol{\omega}_i</script> 方向上的小圆锥每增加 $1$ 个单位的辐照度，就能为 <script type="math/tex">\boldsymbol{\omega}_o</script> 方向的出射光多贡献 <script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)</script> 单位的辐照率，那么 <script type="math/tex">\boldsymbol{\omega}_i</script> 方向上的小圆锥对  <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script> 的贡献就是</p>
-<script type="math/tex; mode=display">
-f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>将所有小圆锥的贡献累加起来，就得到 $L_o(\mathbf{p},\boldsymbol{\omega}_o)$ 的表达式</p>
-<script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>上式也可写作对应的微分形式</p>
-<script type="math/tex; mode=display">
-dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i),</script><p>或</p>
-<script type="math/tex; mode=display">
-f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=\frac{dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)}{dE_i(\mathbf{p},\boldsymbol{\omega}_i)}.</script><p>以上导出的函数 $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$，被称作<strong> 双向反射分布函数</strong>（bidirectional reflectance distribution function），简称为BRDF．上面推导出的方程</p>
-<script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>被称作<strong> 反射方程</strong>．</p>
-<h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><p>基于物理的BRDF应该具有以下三条性质：</p>
-<ol>
-<li>非负性：$f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\ge 0$；</li>
-<li>Helmholtz互异性（Helmholtz reciprocity）：<script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}_o\right)</script>；</li>
-<li>能量守恒：<script type="math/tex; mode=display">
-\forall\boldsymbol{\omega}_i,\quad\int_{H^2} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\cos\theta_o\:d\Omega_o\le 1.</script></li>
-</ol>
-<h1 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h1><p>处理积分</p>
-<script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>的常见方式有三种：</p>
-<ol>
-<li><p>单位半球上的第一类曲面积分，用球坐标进行参数化</p>
-<script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i(\theta_i,\phi_i)\right)L_{i}(\mathbf{p},\boldsymbol{\omega}_i(\theta_i,\phi_i))\cos\theta_i\sin\theta_i\:d\theta_i\:d\phi_i.</script></li>
-<li><p>转化为发光曲面 $A$ 上的积分</p>
-<script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}},</script></li>
-</ol>
-<p>其中 $\theta^\prime$ 是 $A$ 上某点处的法向量与 $-\boldsymbol{\omega}_i$ 之间的夹角．</p>
-<h1 id="实例：UE4-采用的-BRDF"><a href="#实例：UE4-采用的-BRDF" class="headerlink" title="实例：UE4 采用的 BRDF"></a>实例：UE4 采用的 BRDF</h1><p>UE4 引擎使用了如下 BRDF</p>
-<script type="math/tex; mode=display">
-f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>其中</p>
-<script type="math/tex; mode=display">
-\begin{array}{l}
-f_{\text {lambert}}=\dfrac{\text{base_color}}{\pi} \\
-f_{s}=\dfrac{F\left(\mathbf{h}, \mathbf{v}\right) G(\mathbf{l}, \mathbf{v}) D(\mathbf{h})}{4(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})} \\
-k_{s}=F\left(\mathbf{h}, \mathbf{v}\right) \\
-k_{d}=\left(1-k_{s}\right)(1-\text {metalness}).
-\end{array}</script><p>上式中，$\mathbf{n}$ 为单位法向量，$\mathbf{l}$ 为单位入射向量，$\mathbf{v}$ 为单位反射向量，$\mathbf{h}=(\mathbf{l}+\mathbf{v})/\Vert\mathbf{l}+\mathbf{v}\Vert$ 为微平面单位法向量．下面描述函数 $F,D,G$ 的具体形式．</p>
-<h2 id="法线分布函数-D"><a href="#法线分布函数-D" class="headerlink" title="法线分布函数 $D$"></a>法线分布函数 $D$</h2><p>GGX（Trowbridge-Reitz）分布</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\alpha&=\text {roughness}^{2}\\
-D(\mathbf{h})&=\dfrac{\alpha^{2}}{\pi\left((\mathbf{n} \cdot \mathbf{h})^{2}\left(\alpha^{2}-1\right)+1\right)^{2}}
-\end{align}</script><h2 id="几何函数-G"><a href="#几何函数-G" class="headerlink" title="几何函数 $G$"></a>几何函数 $G$</h2><p>GGX-Smith Correlated Joint 近似公式</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\alpha&=\text {roughness}^{2} \\
-\Lambda(\mathbf{v})&=(\mathbf{n} \cdot \mathbf{l})((\mathbf{n} \cdot \mathbf{v})(1-\alpha)+\alpha) \\
-\Lambda(\mathbf{l})&=(\mathbf{n} \cdot \mathbf{v})((\mathbf{n} \cdot \mathbf{l})(1-\alpha)+\alpha) \\
-G(\mathbf{l}, \mathbf{v})&=\frac{2(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})}{\Lambda(\mathbf{v})+\Lambda(\mathbf{l})}
-\end{align}</script><h2 id="菲涅尔项-F"><a href="#菲涅尔项-F" class="headerlink" title="菲涅尔项 $F$"></a>菲涅尔项 $F$</h2><p>Fresnel-Schlick 近似公式</p>
-<script type="math/tex; mode=display">
-\begin{align}
-F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \mathbf{v}))^{5} \\
-F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{metalness})
-\end{align}</script><p>其中 $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ 为线性插值函数．</p>
+C_j\succ 0(j=1,2,\cdots,M).</script><p>PBD的具体算法可由以下伪代码表示．</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/PBD/PBD_algorithm.png" width="90%">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图1 - PBD 伪代码</div>
+</center>
 
+<h1 id="求解器"><a href="#求解器" class="headerlink" title="求解器"></a>求解器</h1><p>在PBD伪代码中，第8至第10行是求解器的迭代求解．这里的函数</p>
+<script type="math/tex; mode=display">
+\mathrm{ projectConstraints }\left(C_{1}, \cdots, C_{M + M_{\mathrm{Coll }}}, \mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script><p>是方程/不等式组</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{array}{l}
+        C_{1}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\  
+        C_{2}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\
+        \quad\ldots\\
+        C_{M + M_{\mathrm{Coll }}}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\
+    \end{array}
+\right.</script><p>的一个非线性Gauss-Seidel求解器．求解器 <script type="math/tex">\mathrm{ projectConstraints}</script> 会对约束 <script type="math/tex">C_{1},C_{2},\cdots,C_{M + M_{\mathrm{Coll }}}</script> 依次进行一阶线性化求解．每次求解完 <script type="math/tex">C_{j}</script>，求解器会当即更新 <script type="math/tex">\mathbf{p}_{1},\mathbf{p}_{2},\cdots,\mathbf{p}_{N}</script> 的值，使之影响对 <script type="math/tex">C_{j+1}</script> 的求解．下面我们将具体介绍 <script type="math/tex">C_{j}</script> 的求解方法．</p>
+<p>如果约束是一个等式，我们希望找到一个 <script type="math/tex">\Delta \mathbf{p}</script> 使得 <script type="math/tex">C_{j}(\mathbf{p}+\Delta \mathbf{p})=0</script>，其中 <script type="math/tex">\mathbf{p}=\left(\mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script>．对其进行一阶线性化可得</p>
+<script type="math/tex; mode=display">
+C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathbf{p}) \cdot \Delta \mathbf{p} = 0</script><p>上述方程的一般会有无穷个解．如果我们将解 <script type="math/tex">\Delta \mathbf{p}=\left(\Delta\mathbf{p}_{1},\Delta\mathbf{p}_{2},\cdots,\Delta\mathbf{p}_{N}\right)</script> 限制在</p>
+<script type="math/tex; mode=display">
+\left(w_1\nabla_\mathbf{p_1} C_{j}(\mathbf{p}),w_2\nabla_\mathbf{p_2} C_{j}(\mathbf{p}),\cdots,w_N\nabla_\mathbf{p_N} C_{j}(\mathbf{p})\right)</script><p>的方向上，即令 </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Delta \mathbf{p}_i=\lambda w_i\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N,
+\end{equation}</script><p>我们就可以求出一个特解</p>
+<script type="math/tex; mode=display">
+\Delta \mathbf{p}_i=-\frac{w_iC_j\left(\mathbf{p}\right)}{\sum_{k=1}^N w_{k}\left|\nabla_{\mathbf{p}_{j}} C_j\left(\mathbf{p}\right)\right|^{2}}\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N.</script><p>$C_{j}$ 的求解方法，就是用 <script type="math/tex">\mathbf{p}+\Delta \mathbf{p}</script> 来更新原来的 <script type="math/tex">\mathbf{p}</script>．因此，<script type="math/tex">\mathrm{projectConstraints}</script> 函数可用伪代码表示成</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/PBD/algorithm_project_constraints.svg" width="620">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图2 - $\mathrm{projectConstraints}$ 求解器伪代码</div>
+</center>
+
+<h1 id="特定约束"><a href="#特定约束" class="headerlink" title="特定约束"></a>特定约束</h1><h2 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h2><p>拉伸约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d,</script><p>其中 $d$ 代表初始长度。计算梯度，可得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \nabla_{\mathbf{p}_1} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_1} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
+    &=\nabla_{\mathbf{p}_1} \left(\left(\mathbf{p}_{1x}-\mathbf{p}_{2x}\right)^2+\left(\mathbf{p}_{1y}-\mathbf{p}_{2y}\right)^2+\left(\mathbf{p}_{1z}-\mathbf{p}_{2z}\right)^2\right)^{\frac{1}{2}}\\
+    &=\frac{1}{2\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}2(\mathbf{p}_1-\mathbf{p}_2)\\
+    &=\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert},
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+    \nabla_{\mathbf{p}_2} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_2} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
+    &=\nabla_{\mathbf{p}_2} \left(\left(\mathbf{p}_{1x}-\mathbf{p}_{2x}\right)^2+\left(\mathbf{p}_{1y}-\mathbf{p}_{2y}\right)^2+\left(\mathbf{p}_{1z}-\mathbf{p}_{2z}\right)^2\right)^{\frac{1}{2}}\\
+    &=\frac{1}{2\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}2(\mathbf{p}_2-\mathbf{p}_1)\\
+    &=\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}.
+\end{aligned}</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\lambda&=\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2},\\
+\Delta \mathbf{p}_1&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_1\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_1}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_2-\mathbf{p}_1),\\
+\Delta \mathbf{p}_2&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_2\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_2}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_1-\mathbf{p}_2).
+\end{aligned}</script><h2 id="SDF碰撞"><a href="#SDF碰撞" class="headerlink" title="SDF碰撞"></a>SDF碰撞</h2><p>SDF碰撞约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_i) = \mathrm{SDF}(\mathbf{p}_i).</script><p>矫正量</p>
+<script type="math/tex; mode=display">
+\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= -\frac{\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="例子：球面SDF碰撞"><a href="#例子：球面SDF碰撞" class="headerlink" title="例子：球面SDF碰撞"></a>例子：球面SDF碰撞</h3><p>给定半径为 $r$ 的球面，它的SDF碰撞约束为</p>
+<script type="math/tex; mode=display">
+C(\mathbf{p}_i) = \left\Vert\mathbf{p}_i\right\Vert-r.</script><p>矫正量</p>
+<script type="math/tex; mode=display">
+\Delta\mathbf{p}_i = -\frac{\left\Vert\mathbf{p}_i\right\Vert-r}{\left\Vert\mathbf{p}_i\right\Vert^2/\left\Vert\mathbf{p}_i\right\Vert^2}\frac{\mathbf{p}_i}{\left\Vert\mathbf{p}_i\right\Vert}=\left(\frac{r}{\left\Vert\mathbf{p}_i\right\Vert}-1\right)\mathbf{p}_i.</script><h3 id="数值微分的计算"><a href="#数值微分的计算" class="headerlink" title="数值微分的计算"></a>数值微分的计算</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \mathbf{k}_0&=(1,-1,-1)\\
+    \mathbf{k}_1&=(-1,-1,1)\\
+    \mathbf{k}_2&=(-1,1,-1)\\
+    \mathbf{k}_3&=(1,1,1)\\.
+\end{aligned}</script><p>考虑求和</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+m &=\sum_{i=0}^3 \mathbf{k}_{i}\frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)}{\sqrt{3}h} \\
+&=\sum_{i=0}^3 \mathbf{k}_{i} \frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)-f(\mathbf{p})}{\sqrt{3}h}\\
+&\approx\sum_{i=0}^3\mathbf{k}_{i} \nabla_{\widehat{\mathbf{k}}_{i}}f(\mathbf{p})\\
+&=\sum_{i=0}^3
+\begin{pmatrix}
+k_{ix}\\
+k_{iy}\\
+k_{iz}\\
+\end{pmatrix}
+\left(\widehat{k}_{ix},\widehat{k}_{iy},\widehat{k}_{iz}\right)
+\begin{pmatrix}
+\nabla_{x}f(\mathbf{p})\\
+\nabla_{y}f(\mathbf{p})\\
+\nabla_{z}f(\mathbf{p})
+\end{pmatrix}\\
+&=\frac{1}{\sqrt{3}}\sum_{i=0}^3
+\begin{pmatrix}
+k_{ix}^2&k_{ix}k_{iy}&k_{ix}k_{iz}\\
+k_{ix}k_{iy}&k_{iy}^2&k_{iy}k_{iz}\\
+k_{ix}k_{iz}&k_{iy}k_{iz}&k_{iz}
+\end{pmatrix}
+\begin{pmatrix}
+\nabla_{x}f(\mathbf{p})\\
+\nabla_{y}f(\mathbf{p})\\
+\nabla_{z}f(\mathbf{p})\\
+\end{pmatrix}\\
+&=\frac{4}{\sqrt{3}}\nabla f(\mathbf{p})
+\end{aligned}.</script><p>由此可以得到</p>
+<script type="math/tex; mode=display">
+\nabla f(\mathbf{p})\approx\sum_{i=0}^3 \mathbf{k}_{i}\frac{f\left(\mathbf{p}+h \mathbf{k}_{i}\right)}{4h}</script>
             </div>
             <hr>
             <div>
@@ -344,7 +402,9 @@ F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{met
                     
                       <a class="hover-with-bg" href="/cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
                     
-                      <a class="hover-with-bg" href="/cn/tags/PBR/">PBR</a>
+                      <a class="hover-with-bg" href="/cn/tags/%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F/">物理模拟</a>
+                    
+                      <a class="hover-with-bg" href="/cn/tags/PBD/">PBD</a>
                     
                   </div>
                 
@@ -357,9 +417,9 @@ F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{met
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cn/2020/10/13/%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/">
+                      <a href="/cn/2020/12/04/Differentiable%20Manifold/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">路径追踪渲染算法</span>
+                        <span class="hidden-mobile">微分流形</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +427,8 @@ F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{met
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cn/2020/10/12/%E8%89%B2%E5%BD%A9%E7%A7%91%E5%AD%A6/">
-                        <span class="hidden-mobile">色彩科学</span>
+                      <a href="/cn/2020/10/13/Path%20Tracing%20Rendering%20Algorithm/">
+                        <span class="hidden-mobile">路径追踪渲染算法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -552,7 +612,7 @@ F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{met
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "基于物理的渲染 - 表面反射&nbsp;",
+        "基于位置的动力学&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
