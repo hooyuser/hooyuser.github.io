@@ -1,4 +1,4 @@
-$(window).load(function () {
+$(window).on('load', function(){
     let language = {};
     language.now = location.pathname.match(/^\/en/) ? 'en' : 'cn';
     if ('en' === language.now) {
