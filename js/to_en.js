@@ -1,4 +1,5 @@
 $(window).on('load', function(){
+    var btn = document.createElement('button');
     let language = {};
     language.now = location.pathname.match(/^\/en/) ? 'en' : 'cn';
     if ('en' === language.now) {
@@ -8,9 +9,10 @@ $(window).on('load', function(){
         language.label = 'English';
         language.href = location.pathname.replace(/^\/cn/, '/en');
     }
-    $("#navbarSupportedContent")[0].childNodes[1].append(`<li class="nav-item">
+    btn.innerHTML = `<li class="nav-item">
     <a class="nav-link" href="${language.href}">
     ${language.label}
     </a>
-    </li>`);
+    </li>`
+    $("#navbarSupportedContent")[0].childNodes[1].append(btn);
 });
