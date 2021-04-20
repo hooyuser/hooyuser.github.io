@@ -257,13 +257,13 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 20, 2021 am
+                  Last Update：April 20, 2021 pm
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p>体积渲染不仅要考虑光线与物体表面的交互，还要考虑与空间中大量微粒的交互。本文介绍了体积渲染的一般理论，导出了积分方程形式的光线传输方程，最后给出了实时体积渲染的实例。</p>
-<h1 id="体积介质"><a href="#体积介质" class="headerlink" title="体积介质"></a>体积介质</h1><p>体积介质（media）由体积内部的大量微粒构成．光在介质中传播时，可能会出现 3 种情况：透过（transmission）、吸收（absorption）、散射（scattering）．</p>
+              <p>Volume rendering should consider not only the interaction between light and object surface, but also the interaction with a large number of particles in space. In this article, the general theory of volume rendering is introduced, and the ray propagation equation in the form of integral equation is derived. Finally, an example of real-time volume rendering is given.</p>
+<h1 id="·-Volume-Media"><a href="#·-Volume-Media" class="headerlink" title="· Volume Media"></a>· Volume Media</h1><p>The volume medium is composed of a large number of particles in the volume. When light propagates in the medium, there may be three situations: transmission, absorption and scattering.</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
@@ -276,25 +276,25 @@
     padding: 10px;">图1 - 光线与微粒的作用</div>
 </center>
 
-<p>同时，介质本身还可能存在发射（emission）的现象．</p>
-<h2 id="吸收"><a href="#吸收" class="headerlink" title="吸收"></a>吸收</h2><p>吸收是由介质的 <strong>吸收截面</strong>（absorption cross section）所描述的，通常记作 $\sigma_a$．假设沿 $\boldsymbol{\omega}$ 方向的光线与点 $\bf p$ 处的介质发生作用，$\sigma_a(\mathbf{p},\boldsymbol{\omega})$ 表示光线在点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向行进单位长度后，被吸收的辐照率占原先辐照率的比值，也可以理解为光被吸收的概率．如果不考虑光在介质中的散射，即光始终沿直线传播，那么我们可以得到关于辐照率的如下公式</p>
+<p>At the same time, there may exist emission in the medium.</p>
+<h2 id="·-Absorption"><a href="#·-Absorption" class="headerlink" title="· Absorption"></a>· Absorption</h2><p>Absorption is described by the <strong>absorption cross section</strong> of the medium, usually denoted as $\sigma_a$. 假设沿 $\boldsymbol{\omega}$ 方向的光线与点 $\bf p$ 处的介质发生作用, $\sigma_a(\mathbf{p},\boldsymbol{\omega})$ 表示光线在点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向行进单位长度后, 被吸收的辐照率占原先辐照率的比值, 也可以理解为光被吸收的概率. 如果不考虑光在介质中的散射, 即光始终沿直线传播, 那么我们可以得到关于辐照率的如下公式</p>
 <script type="math/tex; mode=display">
-d L_{o}(\mathbf{p},\boldsymbol{\omega})=-\sigma_{a}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) d t.</script><h2 id="外散射"><a href="#外散射" class="headerlink" title="外散射"></a>外散射</h2><p>如果沿 $\boldsymbol{\omega}$ 方向行进的光线，在点 $\bf p$ 处被散射到了其他方向，那么我们称此时的散射为 <strong>外散射</strong>（out-scattering）．<strong>散射系数</strong>（scattering coefficient）<script type="math/tex">\sigma_s(\mathbf{p},\boldsymbol{\omega})</script> 表示光在点 $\bf p$ 处沿 <script type="math/tex">\boldsymbol{\omega}</script> 方向行进单位长度后，被外散射的辐照率占原先辐照率的比值．外散射现象与吸收现象类似，都会导致点 $\bf p$ 处沿 <script type="math/tex">\boldsymbol{\omega}</script> 方向出射的辐照率 <script type="math/tex">L_{o}(\mathbf{p},\boldsymbol{\omega})</script> 减小．外散射导致的辐照率变化率可由下式描述</p>
+d L_{o}(\mathbf{p},\boldsymbol{\omega})=-\sigma_{a}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) d t.</script><h2 id="·-Out-scattering"><a href="#·-Out-scattering" class="headerlink" title="· Out-scattering"></a>· Out-scattering</h2><p>如果沿 $\boldsymbol{\omega}$ 方向行进的光线, 在点 $\bf p$ 处被散射到了其他方向, 那么我们称此时的散射为 <strong>外散射</strong>（out-scattering）. <strong>散射系数</strong>（scattering coefficient）<script type="math/tex">\sigma_s(\mathbf{p},\boldsymbol{\omega})</script> 表示光在点 $\bf p$ 处沿 <script type="math/tex">\boldsymbol{\omega}</script> 方向行进单位长度后, 被外散射的辐照率占原先辐照率的比值. 外散射现象与吸收现象类似, 都会导致点 $\bf p$ 处沿 <script type="math/tex">\boldsymbol{\omega}</script> 方向出射的辐照率 <script type="math/tex">L_{o}(\mathbf{p},\boldsymbol{\omega})</script> 减小. 外散射导致的辐照率变化率可由下式描述</p>
 <script type="math/tex; mode=display">
-\frac{d L_{o}(\mathbf{p},\boldsymbol{\omega})}{d t}=-\sigma_{s}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) .</script><p>吸收和外散射的合效应称为 <strong>衰减</strong>（attenuation）或者 <strong>灭减</strong>（extinction）．<strong>衰减系数</strong> $\sigma_{t}$ 定义为</p>
+\frac{d L_{o}(\mathbf{p},\boldsymbol{\omega})}{d t}=-\sigma_{s}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) .</script><p>吸收和外散射的合效应称为 <strong>衰减</strong>（attenuation）或者 <strong>灭减</strong>（extinction）. <strong>衰减系数</strong> $\sigma_{t}$ 定义为</p>
 <script type="math/tex; mode=display">
 \sigma_{\mathrm{t}}(\mathbf{p},\boldsymbol{\omega})=\sigma_{a}(\mathbf{p},\boldsymbol{\omega})+\sigma_{s}(\mathbf{p},\boldsymbol{\omega}).</script><p>衰减效应可由下式描述</p>
 <script type="math/tex; mode=display">
-\frac{d L_{o}(\mathbf{p},\boldsymbol{\omega})}{d t}=-\sigma_{\mathrm{t}}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}).</script><p>有两个与衰减系数相关的量也很常见．一个是 <strong>反射率</strong>（albedo）$\rho$，由下式定义</p>
+\frac{d L_{o}(\mathbf{p},\boldsymbol{\omega})}{d t}=-\sigma_{\mathrm{t}}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}).</script><p>有两个与衰减系数相关的量也很常见. 一个是 <strong>反射率</strong>（albedo）$\rho$, 由下式定义</p>
 <script type="math/tex; mode=display">
-\rho=\frac{\sigma_{s}}{\sigma_{\mathrm{t}}}=\frac{\sigma_{s}}{\sigma_a+\sigma_{s}}.</script><p>表示外散射效应占衰减效应的比重．另一个是 <strong>平均自由程</strong>（mean free path）$1/\sigma_t$，表示一个光子沿直线行进而不被吸收或散射的平均距离．</p>
-<p>如果只考虑衰减效应，则有 <script type="math/tex">L_{o}(\mathbf{p},\boldsymbol{\omega})=L_{i}(\mathbf{p},-\boldsymbol{\omega})</script>，从而有</p>
+\rho=\frac{\sigma_{s}}{\sigma_{\mathrm{t}}}=\frac{\sigma_{s}}{\sigma_a+\sigma_{s}}.</script><p>表示外散射效应占衰减效应的比重. 另一个是 <strong>平均自由程</strong>（mean free path）$1/\sigma_t$, 表示一个光子沿直线行进而不被吸收或散射的平均距离. </p>
+<p>如果只考虑衰减效应, 则有 <script type="math/tex">L_{o}(\mathbf{p},\boldsymbol{\omega})=L_{i}(\mathbf{p},-\boldsymbol{\omega})</script>, 从而有</p>
 <script type="math/tex; mode=display">
-d \ln L_{o}(\mathbf{p},\boldsymbol{\omega})=-\sigma_{\mathrm{t}}(\mathbf{p},\boldsymbol{\omega})dt.</script><p>设 $\mathbf{p}’=\mathbf{p}+h\boldsymbol{\omega}$，从 $\mathbf{p}$ 到 $\mathbf{p}’$ 点积分可得</p>
+d \ln L_{o}(\mathbf{p},\boldsymbol{\omega})=-\sigma_{\mathrm{t}}(\mathbf{p},\boldsymbol{\omega})dt.</script><p>设 $\mathbf{p}’=\mathbf{p}+h\boldsymbol{\omega}$, 从 $\mathbf{p}$ 到 $\mathbf{p}’$ 点积分可得</p>
 <script type="math/tex; mode=display">
 \ln L_{o}(\mathbf{p}',\boldsymbol{\omega})-\ln L_{o}(\mathbf{p},\boldsymbol{\omega})=-\int_{0}^{h} \sigma_{\mathrm{t}}(\mathrm{p}+t \boldsymbol{\omega}, \boldsymbol{\omega}) dt,</script><p>即</p>
 <script type="math/tex; mode=display">
-T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)=\frac{L_{o}(\mathbf{p}',\boldsymbol{\omega})}{L_{o}(\mathbf{p},\boldsymbol{\omega})}=\mathrm{e}^{-\int_{0}^{h} \sigma_{\mathrm{t}}(\mathrm{p}+t \boldsymbol{\omega}, \boldsymbol{\omega}) dt}.</script><p>上式 <script type="math/tex">T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)</script> 被称作 <strong>光束透射比</strong>（beam transmittance），表示光束中未被吸收或散射的光线所占的比例．<script type="math/tex">T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)</script> 有一些常用的性质．一个是</p>
+T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)=\frac{L_{o}(\mathbf{p}',\boldsymbol{\omega})}{L_{o}(\mathbf{p},\boldsymbol{\omega})}=\mathrm{e}^{-\int_{0}^{h} \sigma_{\mathrm{t}}(\mathrm{p}+t \boldsymbol{\omega}, \boldsymbol{\omega}) dt}.</script><p>上式 <script type="math/tex">T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)</script> 被称作 <strong>光束透射比</strong>（beam transmittance）, 表示光束中未被吸收或散射的光线所占的比例. <script type="math/tex">T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)</script> 有一些常用的性质. 一个是</p>
 <script type="math/tex; mode=display">
 T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}\right)=1,</script><p>另一个是</p>
 <script type="math/tex; mode=display">
@@ -308,29 +308,29 @@ T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime\prime}\right)=T_{r}\left(\m
     &=\mathrm{e}^{\int_{h}^{0} \sigma_{\mathrm{t}}(\mathrm{p}+u\boldsymbol{\omega}, \boldsymbol{\omega}) du}\\
     &=\mathrm{e}^{-\int_{0}^{h} \sigma_{\mathrm{t}}(\mathrm{p}+u\boldsymbol{\omega}, \boldsymbol{\omega}) du}\\
     &=T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}'\right).
-\end{aligned}</script><p>特别地，如果 $\sigma_{\mathrm{t}}$ 是常数，我们有</p>
+\end{aligned}</script><p>特别地, 如果 $\sigma_{\mathrm{t}}$ 是常数, 我们有</p>
 <script type="math/tex; mode=display">
-T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}h}=\mathrm{e}^{-\sigma_{\mathrm{t}}\Vert\mathbf{p} -\mathbf{p}^{\prime}\Vert}.</script><p>上式被称作 Beer-Lambert 定律．</p>
-<h2 id="发射"><a href="#发射" class="headerlink" title="发射"></a>发射</h2><p>点 $\mathbf{p}$ 处的介质沿 $\boldsymbol{\omega}$ 方向单位长度内产生的辐照率为 $L_{\mathrm{e}}(\mathrm{p}, \omega)$，公式写作</p>
+T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}h}=\mathrm{e}^{-\sigma_{\mathrm{t}}\Vert\mathbf{p} -\mathbf{p}^{\prime}\Vert}.</script><p>上式被称作 Beer-Lambert 定律. </p>
+<h2 id="·-Emission"><a href="#·-Emission" class="headerlink" title="· Emission"></a>· Emission</h2><p>点 $\mathbf{p}$ 处的介质沿 $\boldsymbol{\omega}$ 方向单位长度内产生的辐照率为 $L_{\mathrm{e}}(\mathrm{p}, \omega)$, 公式写作</p>
 <script type="math/tex; mode=display">
-\mathrm{d} L_{o}(\mathrm{p}, \omega)=L_{\mathrm{e}}(\mathrm{p}, \omega) \mathrm{d} t.</script><h2 id="内散射"><a href="#内散射" class="headerlink" title="内散射"></a>内散射</h2><p>如果在点 $\bf p$ 处，来自其他方向的光线被散射到了 $\boldsymbol{\omega}$ 方向，则称这种散射为 <strong>内散射</strong>（in-scattering）．</p>
-<p>我们用 <strong>相函数</strong>（phase function）$p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)$ 来描述散射辐照率在各个方向上的分布，其中 $\mathbf{p}$ 是点的位置，$\boldsymbol{\omega}_i$ 是入射光方向，$\boldsymbol{\omega}_o$ 是散射光方向．根据定义，相函数必须满足：</p>
+\mathrm{d} L_{o}(\mathrm{p}, \omega)=L_{\mathrm{e}}(\mathrm{p}, \omega) \mathrm{d} t.</script><h2 id="·-In-scattering"><a href="#·-In-scattering" class="headerlink" title="· In-scattering"></a>· In-scattering</h2><p>如果在点 $\bf p$ 处, 来自其他方向的光线被散射到了 $\boldsymbol{\omega}$ 方向, 则称这种散射为 <strong>内散射</strong>（in-scattering）. </p>
+<p>我们用 <strong>相函数</strong>（phase function）$p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)$ 来描述散射辐照率在各个方向上的分布, 其中 $\mathbf{p}$ 是点的位置, $\boldsymbol{\omega}_i$ 是入射光方向, $\boldsymbol{\omega}_o$ 是散射光方向. 根据定义, 相函数必须满足：</p>
 <script type="math/tex; mode=display">
-\int_{S^2}p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)d\boldsymbol{\omega}_o=1.</script><p>内散射效应使点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向出射的辐照率增加．如果考虑介质发射产生的辐照率，那么内散射和发射导致的单位长度辐照率增加的总量可以用</p>
+\int_{S^2}p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)d\boldsymbol{\omega}_o=1.</script><p>内散射效应使点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向出射的辐照率增加. 如果考虑介质发射产生的辐照率, 那么内散射和发射导致的单位长度辐照率增加的总量可以用</p>
 <script type="math/tex; mode=display">
-L_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega})=L_{\mathrm{e}}(\mathbf{p},\boldsymbol{\omega})+ \int_{\mathrm{S}^{2}} p\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}\right) \sigma_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega}_i)L_{i}\left(\mathbf{p},\boldsymbol{\omega}_i\right) d\boldsymbol{\omega}_i</script><p>来表示．$L_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega})$ 通常称为 <strong>源项</strong>（source term）．</p>
-<h1 id="传输方程"><a href="#传输方程" class="headerlink" title="传输方程"></a>传输方程</h1><h2 id="微分-积分方程形式"><a href="#微分-积分方程形式" class="headerlink" title="微分-积分方程形式"></a>微分-积分方程形式</h2><p>设 $\mathbf{p}(t)=\mathbf{p}_0+t\boldsymbol{\omega}$，点 $\mathbf{p}(t)$ 处 $\boldsymbol{\omega}$ 方向辐照率的变化率由衰减效应和源项决定．根据这个关系得到的方程</p>
+L_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega})=L_{\mathrm{e}}(\mathbf{p},\boldsymbol{\omega})+ \int_{\mathrm{S}^{2}} p\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}\right) \sigma_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega}_i)L_{i}\left(\mathbf{p},\boldsymbol{\omega}_i\right) d\boldsymbol{\omega}_i</script><p>来表示. $L_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega})$ 通常称为 <strong>源项</strong>（source term）. </p>
+<h1 id="·-The-Equation-of-Transfer"><a href="#·-The-Equation-of-Transfer" class="headerlink" title="· The Equation of Transfer"></a>· The Equation of Transfer</h1><h2 id="·-Differential-integral-Equation-Form"><a href="#·-Differential-integral-Equation-Form" class="headerlink" title="· Differential-integral Equation Form"></a>· Differential-integral Equation Form</h2><p>设 $\mathbf{p}(t)=\mathbf{p}_0+t\boldsymbol{\omega}$, 点 $\mathbf{p}(t)$ 处 $\boldsymbol{\omega}$ 方向辐照率的变化率由衰减效应和源项决定. 根据这个关系得到的方程</p>
 <script type="math/tex; mode=display">
 \frac{d L_{o}(\mathbf{p}(t),\boldsymbol{\omega})}{d t}=-\sigma_{t}(\mathbf{p}(t),\boldsymbol{\omega}) L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})+ L_{\mathrm{s}}(\mathbf{p}(t),\boldsymbol{\omega}),</script><p>即</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
    &\frac{d L_{o}(\mathbf{p}(t),\boldsymbol{\omega})}{d t}\\
    =\ &-\sigma_{t}(\mathbf{p}(t),\boldsymbol{\omega}) L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})+L_{\mathrm{e}}(\mathbf{p}(t),\boldsymbol{\omega})+ \int_{\mathrm{S}^{2}} p\left(\mathbf{p}(t), \boldsymbol{\omega}_i, \boldsymbol{\omega}\right) \sigma_{\mathrm{s}}(\mathbf{p}(t),\boldsymbol{\omega}_i)L_{i}\left(\mathbf{p}(t),\boldsymbol{\omega}_i\right) d\boldsymbol{\omega}_i,
-\end{aligned}</script><p>被称作 <strong>传输方程</strong>（the equation of transfer）．</p>
-<h2 id="积分方程形式"><a href="#积分方程形式" class="headerlink" title="积分方程形式"></a>积分方程形式</h2><p>为了便于求解，可以通过给定边界条件</p>
+\end{aligned}</script><p>被称作 <strong>传输方程</strong>（the equation of transfer）. </p>
+<h2 id="·-Integral-Equation-Form"><a href="#·-Integral-Equation-Form" class="headerlink" title="· Integral Equation Form"></a>· Integral Equation Form</h2><p>为了便于求解, 可以通过给定边界条件</p>
 <script type="math/tex; mode=display">
-L_{o}\left(\mathbf{p}(0),\boldsymbol{\omega}\right)=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right),</script><p>将传输方程改写为关于 $L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})$ 的积分方程．</p>
-<p>注意到 <script type="math/tex">L_{o}(\mathbf{p}(t),\boldsymbol{\omega})=L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})</script>，移项得</p>
+L_{o}\left(\mathbf{p}(0),\boldsymbol{\omega}\right)=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right),</script><p>将传输方程改写为关于 $L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})$ 的积分方程. </p>
+<p>注意到 <script type="math/tex">L_{o}(\mathbf{p}(t),\boldsymbol{\omega})=L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})</script>, 移项得</p>
 <script type="math/tex; mode=display">
 \frac{d L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})}{d t}+\sigma_{t}(\mathbf{p}(t),\boldsymbol{\omega}) L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})= L_{\mathrm{s}}(\mathbf{p}(t),\boldsymbol{\omega}),</script><p>方程两边同乘</p>
 <script type="math/tex; mode=display">
@@ -347,15 +347,15 @@ d\left(L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})e^{\int_{0}^{t} \sigma_{\mathrm{
 <script type="math/tex; mode=display">
 L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})e^{\int_{0}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}-L_{i}(\mathbf{p}_0,-\boldsymbol{\omega})=\int_{0}^tL_{\mathrm{s}}(\mathbf{p}(s),\boldsymbol{\omega})e^{\int_{0}^{s} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}ds.</script><p>注意到</p>
 <script type="math/tex; mode=display">
-T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)=\mathrm{e}^{-\int_{0}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}</script><p>方程两边同乘 <script type="math/tex">T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)</script>，移项化简得</p>
+T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)=\mathrm{e}^{-\int_{0}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}</script><p>方程两边同乘 <script type="math/tex">T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)</script>, 移项化简得</p>
 <script type="math/tex; mode=display">
-L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)L_{o}(\mathbf{p}_0,\boldsymbol{\omega})+\int_{0}^tL_{\mathrm{s}}(\mathbf{p}(s),\boldsymbol{\omega})\mathrm{e}^{-\int_{s}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}ds.</script><p>令 $t’=t-s$，即 $s=t-t’$，换元得到</p>
+L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)L_{o}(\mathbf{p}_0,\boldsymbol{\omega})+\int_{0}^tL_{\mathrm{s}}(\mathbf{p}(s),\boldsymbol{\omega})\mathrm{e}^{-\int_{s}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}ds.</script><p>令 $t’=t-s$, 即 $s=t-t’$, 换元得到</p>
 <script type="math/tex; mode=display">
-L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)L_{o}(\mathbf{p}_0,\boldsymbol{\omega})-\int_{t}^0L_{\mathrm{s}}(\mathbf{p}(t-t'),\boldsymbol{\omega})\mathrm{e}^{-\int_{t-t'}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}dt'.</script><p>因为 $\mathbf{p}(t-t’)=\mathbf{p}_0+t\boldsymbol{\omega}-t’\boldsymbol{\omega}=\mathbf{p}(t)-t’\boldsymbol{\omega}$，进一步化简得</p>
+L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)L_{o}(\mathbf{p}_0,\boldsymbol{\omega})-\int_{t}^0L_{\mathrm{s}}(\mathbf{p}(t-t'),\boldsymbol{\omega})\mathrm{e}^{-\int_{t-t'}^{t} \sigma_{\mathrm{t}}(\mathbf{p}(u), \boldsymbol{\omega}) du}dt'.</script><p>因为 $\mathbf{p}(t-t’)=\mathbf{p}_0+t\boldsymbol{\omega}-t’\boldsymbol{\omega}=\mathbf{p}(t)-t’\boldsymbol{\omega}$, 进一步化简得</p>
 <script type="math/tex; mode=display">
 L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}(t)\right)L_{o}(\mathbf{p}_0,\boldsymbol{\omega})+\int_{0}^tT_{r}\left( \mathbf{p}(t)-t'\boldsymbol{\omega}\rightarrow \mathbf{p}\right) L_{s}\left(\mathbf{p}(t)-t'\boldsymbol{\omega},\boldsymbol{\omega}\right)dt'.</script><p>方程</p>
 <script type="math/tex; mode=display">
-L_{i}(\mathbf{p}, -\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}\right) L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)+\int_{0}^{t} T_{r}\left( \mathbf{p}-t'\boldsymbol{\omega}\rightarrow \mathbf{p}\right) L_{s}\left(\mathbf{p}-t'\boldsymbol{\omega},\boldsymbol{\omega}\right) \mathrm{d} t'</script><p>被称作传输方程的积分方程形式．令 $\mathbf{p}^\prime=\mathbf{p}-t’\boldsymbol{\omega}$，则传输方程也可写作</p>
+L_{i}(\mathbf{p}, -\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}\right) L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)+\int_{0}^{t} T_{r}\left( \mathbf{p}-t'\boldsymbol{\omega}\rightarrow \mathbf{p}\right) L_{s}\left(\mathbf{p}-t'\boldsymbol{\omega},\boldsymbol{\omega}\right) \mathrm{d} t'</script><p>被称作传输方程的积分方程形式. 令 $\mathbf{p}^\prime=\mathbf{p}-t’\boldsymbol{\omega}$, 则传输方程也可写作</p>
 <script type="math/tex; mode=display">
 L_{i}(\mathbf{p}, -\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}\right) L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)+\int_{0}^{t} T_{r}\left(\mathbf{p}^\prime\rightarrow \mathbf{p}\right) L_{s}\left(\mathbf{p}^\prime,\boldsymbol{\omega}\right) \mathrm{d} t'</script><center>
     <img style="border-radius: 0.3125em;
@@ -369,22 +369,22 @@ L_{i}(\mathbf{p}, -\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \m
     padding: 10px;">图2 - 传输方程积分示意图</div>
 </center>
 
-<h1 id="实时体积渲染"><a href="#实时体积渲染" class="headerlink" title="实时体积渲染"></a>实时体积渲染</h1><h2 id="相函数"><a href="#相函数" class="headerlink" title="相函数"></a>相函数</h2><p>假设相函数 $p\left(\mathbf{p}^\prime, \boldsymbol{\omega}_i, \boldsymbol{\omega}\right)$ 只与 $\boldsymbol{\omega}_i, \boldsymbol{\omega}$ 之间的夹角 $\theta$ 有关，即</p>
+<h1 id="·-Real-time-Volume-Rendering"><a href="#·-Real-time-Volume-Rendering" class="headerlink" title="· Real-time Volume Rendering"></a>· Real-time Volume Rendering</h1><h2 id="·-Phase-Function"><a href="#·-Phase-Function" class="headerlink" title="· Phase Function"></a>· Phase Function</h2><p>假设相函数 $p\left(\mathbf{p}^\prime, \boldsymbol{\omega}_i, \boldsymbol{\omega}\right)$ 只与 $\boldsymbol{\omega}_i, \boldsymbol{\omega}$ 之间的夹角 $\theta$ 有关, 即</p>
 <script type="math/tex; mode=display">
 p\left(\mathbf{p}^\prime, \boldsymbol{\omega}_i, \boldsymbol{\omega}\right)=p\left(\theta\right).</script><p>最简单的相函数为</p>
 <script type="math/tex; mode=display">
-p\left(\theta\right)=\frac{1}{4\pi}.</script><p>基于物理的相函数取决于粒子的相对大小 $s_p$，</p>
+p\left(\theta\right)=\frac{1}{4\pi}.</script><p>基于物理的相函数取决于粒子的相对大小 $s_p$, </p>
 <script type="math/tex; mode=display">
-s_{p}=\frac{2 \pi r}{\lambda},</script><p>其中 $r$ 是粒子半径，$\lambda$ 是光的波长：</p>
+s_{p}=\frac{2 \pi r}{\lambda},</script><p>其中 $r$ 是粒子半径, $\lambda$ 是光的波长：</p>
 <ul>
-<li><p>当 $s_p\ll 1$时，存在 Rayleigh 散射；</p>
+<li><p>当 $s_p\ll 1$时, 存在 Rayleigh 散射；</p>
 </li>
-<li><p>当 $s_p\approx 1$时，存在 Mie 散射；</p>
+<li><p>当 $s_p\approx 1$时, 存在 Mie 散射；</p>
 </li>
-<li><p>当 $s_p\gg 1$ 时，存在几何散射．</p>
+<li><p>当 $s_p\gg 1$ 时, 存在几何散射. </p>
 </li>
 </ul>
-<h3 id="Rayleigh-散射"><a href="#Rayleigh-散射" class="headerlink" title="Rayleigh 散射"></a>Rayleigh 散射</h3><p>Rayleigh 散射的相函数为</p>
+<h3 id="·-Rayleigh-Scattering"><a href="#·-Rayleigh-Scattering" class="headerlink" title="· Rayleigh Scattering"></a>· Rayleigh Scattering</h3><p>Rayleigh 散射的相函数为</p>
 <script type="math/tex; mode=display">
 p(\theta)=\frac{3}{16 \pi}\left(1+\cos ^{2} \theta\right).</script><center>
     <img style="border-radius: 0.3125em;
@@ -400,12 +400,12 @@ p(\theta)=\frac{3}{16 \pi}\left(1+\cos ^{2} \theta\right).</script><center>
 
 <p>Rayleigh 散射的散射系数与波长的四次方成反比</p>
 <script type="math/tex; mode=display">
-\sigma_{s}(\lambda) \propto \frac{1}{\lambda^{4}}.</script><h3 id="Mie-散射"><a href="#Mie-散射" class="headerlink" title="Mie 散射"></a>Mie 散射</h3><p>Mie 散射的相函数</p>
+\sigma_{s}(\lambda) \propto \frac{1}{\lambda^{4}}.</script><h3 id="·-Mie-Scattering"><a href="#·-Mie-Scattering" class="headerlink" title="· Mie Scattering"></a>· Mie Scattering</h3><p>Mie 散射的相函数</p>
 <script type="math/tex; mode=display">
-p_{h g}(\theta, g)=\frac{1-g^{2}}{4 \pi\left(1+g^{2}-2 g \cos \theta\right)^{1.5}}.</script><p>称作 Henyey-Greenstein（HG）相函数，其中参数 $g\in[-1,1]$．$g&gt;0$ 时，发生前向散射；$g&lt;0$ 时，发生后向散射；$g=0$ 时，发生各向同性散射．</p>
+p_{h g}(\theta, g)=\frac{1-g^{2}}{4 \pi\left(1+g^{2}-2 g \cos \theta\right)^{1.5}}.</script><p>称作 Henyey-Greenstein（HG）相函数, 其中参数 $g\in[-1,1]$. $g&gt;0$ 时, 发生前向散射；$g&lt;0$ 时, 发生后向散射；$g=0$ 时, 发生各向同性散射. </p>
 <p>Schlick 相函数</p>
 <script type="math/tex; mode=display">
-p(\theta, k)=\frac{1-k^{2}}{4 \pi(1+k \cos \theta)^{2}}, \quad \text { where } \quad k \approx 1.55 g-0.55 g^{3}</script><p>是 HG 相函数的近似，它的计算更快．</p>
+p(\theta, k)=\frac{1-k^{2}}{4 \pi(1+k \cos \theta)^{2}}, \quad \text { where } \quad k \approx 1.55 g-0.55 g^{3}</script><p>是 HG 相函数的近似, 它的计算更快. </p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
@@ -415,10 +415,10 @@ p(\theta, k)=\frac{1-k^{2}}{4 \pi(1+k \cos \theta)^{2}}, \quad \text { where } \
     font-size:14px;
     display: inline-block;
     color: #999;
-    padding: 10px;">图4 - HG 相函数（蓝色）与 Schlick 相函数（红色）极坐标图像．$g$ 取值分别为 0，0.3，0.6</div>
+    padding: 10px;">图4 - HG 相函数（蓝色）与 Schlick 相函数（红色）极坐标图像. $g$ 取值分别为 0, 0.3, 0.6</div>
 </center>
 
-<h2 id="源项估计"><a href="#源项估计" class="headerlink" title="源项估计"></a>源项估计</h2><p>假设介质不存在发射现象，散射系数只与位置有关，即</p>
+<h2 id="·-Source-Term-Estimation"><a href="#·-Source-Term-Estimation" class="headerlink" title="· Source Term Estimation"></a>· Source Term Estimation</h2><p>假设介质不存在发射现象, 散射系数只与位置有关, 即</p>
 <script type="math/tex; mode=display">
 \sigma_{\mathrm{s}}(\mathbf{p}^\prime,\boldsymbol{\omega}_i)=\sigma_{\mathrm{s}}(\mathbf{p}^\prime).</script><p>源项</p>
 <script type="math/tex; mode=display">
@@ -426,23 +426,23 @@ L_{\mathrm{s}}(\mathbf{p}^\prime,\boldsymbol{\omega})=\sigma_{\mathrm{s}}(\mathb
 <script type="math/tex; mode=display">
 \widehat{L}_{s}\left(\mathbf{p}^\prime,\boldsymbol{\omega}\right)=\pi\sigma_{\mathrm{s}}(\mathbf{p}^\prime)\sum_{i=1}^{N_i} p\left( \theta\right)v\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right) c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right),</script><p>上式的</p>
 <script type="math/tex; mode=display">
-v\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\operatorname{shadowMap}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right) \cdot \operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script><p>称作可视性函数（visibility function），其中 <script type="math/tex">\operatorname{shadowMap}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script> 表示阴影贴图，</p>
+v\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\operatorname{shadowMap}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right) \cdot \operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script><p>称作可视性函数（visibility function）, 其中 <script type="math/tex">\operatorname{shadowMap}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script> 表示阴影贴图, </p>
 <script type="math/tex; mode=display">
-\operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\widehat{T}_r\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script><p>表示体积阴影．如果 $\sigma_t(\mathbf{p})$ 是常数 $\sigma_t$，体积阴影的表达式为</p>
+\operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\widehat{T}_r\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script><p>表示体积阴影. 如果 $\sigma_t(\mathbf{p})$ 是常数 $\sigma_t$, 体积阴影的表达式为</p>
 <script type="math/tex; mode=display">
-\operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}N_j\Delta t},</script><p>其中 <script type="math/tex">N_j\Delta t</script> 是从 <script type="math/tex">\mathbf{p}^\prime</script> 向 <script type="math/tex">\mathbf{p}_{\text {light}_{i}}</script> 进行光线步进得到的光线在体积中行进的距离．</p>
-<p>源项估计式中的 <script type="math/tex">c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)</script> 是第 $i$ 个灯光的辐照率，通常取作</p>
+\operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}N_j\Delta t},</script><p>其中 <script type="math/tex">N_j\Delta t</script> 是从 <script type="math/tex">\mathbf{p}^\prime</script> 向 <script type="math/tex">\mathbf{p}_{\text {light}_{i}}</script> 进行光线步进得到的光线在体积中行进的距离. </p>
+<p>源项估计式中的 <script type="math/tex">c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)</script> 是第 $i$ 个灯光的辐照率, 通常取作</p>
 <script type="math/tex; mode=display">
 c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)=c_{\text {light}_{i,0}}\left(\frac{r_{0}}{ \left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|}\right)^{2},</script><p>或</p>
 <script type="math/tex; mode=display">
-c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)=c_{\text {light}_{i,0}}\left(\frac{r_{0}}{\max \left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|, r_{\min }\right)}\right)^{2},</script><p>其中 <script type="math/tex">c_{\text {light}_{i,0}}</script> 表示 <script type="math/tex">\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|=r_0</script> 时第 $i$ 个灯光的辐照率．</p>
-<h2 id="总辐照率估计"><a href="#总辐照率估计" class="headerlink" title="总辐照率估计"></a>总辐照率估计</h2><p>假设衰减系数 $\sigma_\mathrm{t}$ 只与位置有关，即</p>
+c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)=c_{\text {light}_{i,0}}\left(\frac{r_{0}}{\max \left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|, r_{\min }\right)}\right)^{2},</script><p>其中 <script type="math/tex">c_{\text {light}_{i,0}}</script> 表示 <script type="math/tex">\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|=r_0</script> 时第 $i$ 个灯光的辐照率. </p>
+<h2 id="·-Total-Radiance-Estimation"><a href="#·-Total-Radiance-Estimation" class="headerlink" title="· Total Radiance Estimation"></a>· Total Radiance Estimation</h2><p>假设衰减系数 $\sigma_\mathrm{t}$ 只与位置有关, 即</p>
 <script type="math/tex; mode=display">
-\sigma_{\mathrm{t}}(\mathbf{p}^\prime,\boldsymbol{\omega}_i)=\sigma_{\mathrm{t}}(\mathbf{p}^\prime).</script><p>当 $\mathbf{p}_1$ 和 $\mathbf{p}_2$ 距离 $\Delta t$ 较小时，我们可以用</p>
+\sigma_{\mathrm{t}}(\mathbf{p}^\prime,\boldsymbol{\omega}_i)=\sigma_{\mathrm{t}}(\mathbf{p}^\prime).</script><p>当 $\mathbf{p}_1$ 和 $\mathbf{p}_2$ 距离 $\Delta t$ 较小时, 我们可以用</p>
 <script type="math/tex; mode=display">
 \widehat{T}_{r}\left(\mathbf{p}_1\rightarrow \mathbf{p}_2\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}(\mathbf{p}_1) \Delta t}</script><p>作为</p>
 <script type="math/tex; mode=display">
-T_{r}\left(\mathbf{p}_1\rightarrow \mathbf{p}_2\right)=\mathrm{e}^{-\int_{0}^{\Delta t} \sigma_{\mathrm{t}}(\mathbf{p}_1-u\boldsymbol{\omega}) du}</script><p>的估计．于是，</p>
+T_{r}\left(\mathbf{p}_1\rightarrow \mathbf{p}_2\right)=\mathrm{e}^{-\int_{0}^{\Delta t} \sigma_{\mathrm{t}}(\mathbf{p}_1-u\boldsymbol{\omega}) du}</script><p>的估计. 于是, </p>
 <script type="math/tex; mode=display">
 L_{i}(\mathbf{p}, -\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \mathbf{p}\right) L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)+\int_{0}^{t} T_{r}\left(\mathbf{p}^\prime\rightarrow \mathbf{p}\right) L_{s}\left(\mathbf{p}^\prime,\boldsymbol{\omega}\right) \mathrm{d} t'</script><p>的估计式可以写作</p>
 <script type="math/tex; mode=display">
@@ -450,12 +450,12 @@ L_{i}(\mathbf{p}, -\boldsymbol{\omega})=T_{r}\left( \mathbf{p}_{0}\rightarrow \m
    \widehat{L}_{i}(\mathbf{p}, -\boldsymbol{\omega})&=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)\mathrm{e}^{-S_{N_k}\Delta t}+\sum_{k=1}^{N_k}\widehat{L}_{s}\left(\mathbf{p}^\prime_k,\boldsymbol{\omega}\right)  \mathrm{e}^{-S_k \Delta t} \Delta t,
 \end{aligned}</script><p>其中</p>
 <script type="math/tex; mode=display">
-S_J=\sum\limits_{k=1}^{J}\sigma_{\mathrm{t}}(\mathbf{p}^\prime_k),\quad \mathbf{p}^\prime_k=\mathbf{p}-(k-1)\Delta t \boldsymbol{\omega} .</script><p>如果 $\sigma_t(\mathbf{p})$ 是常数 $\sigma_t$，我们有更精确的估计</p>
+S_J=\sum\limits_{k=1}^{J}\sigma_{\mathrm{t}}(\mathbf{p}^\prime_k),\quad \mathbf{p}^\prime_k=\mathbf{p}-(k-1)\Delta t \boldsymbol{\omega} .</script><p>如果 $\sigma_t(\mathbf{p})$ 是常数 $\sigma_t$, 我们有更精确的估计</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
    \widehat{L}_{i}(\mathbf{p}, -\boldsymbol{\omega})&=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)\mathrm{e}^{-S_{N_k}\Delta t}+\sum_{k=1}^{N_k}\widehat{L}_{s}\left(\mathbf{p}^\prime_k,\boldsymbol{\omega}\right)  \int_{(k-1)\Delta t}^{k\Delta t}\mathrm{e}^{-\sigma_{\mathrm{t}}t'}dt'\\
    &=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)\mathrm{e}^{-S_{N_k}\Delta t}+\frac{1}{\sigma_{\mathrm{t}}}\sum_{k=1}^{N_k}\widehat{L}_{s}\left(\mathbf{p}^\prime_k,\boldsymbol{\omega}\right)  \mathrm{e}^{-\sigma_{\mathrm{t}}(k-1)\Delta t}(1-\mathrm{e}^{-\sigma_{\mathrm{t}}\Delta t}).
-\end{aligned}</script><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>取定常数衰减系数 $\sigma_{\mathrm{t}}$ 和各向同性相函数，辐照率的计算公式为</p>
+\end{aligned}</script><h2 id="·-Instance"><a href="#·-Instance" class="headerlink" title="· Instance"></a>· Instance</h2><p>取定常数衰减系数 $\sigma_{\mathrm{t}}$ 和各向同性相函数, 辐照率的计算公式为</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
    &\widehat{L}_{i}(\mathbf{p}, -\boldsymbol{\omega})\\
