@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k Words
+      1.1k Words
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      21
        Minutes
     </span>
   
@@ -257,75 +257,79 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 21, 2021 am
+                  Last Update：April 22, 2021 am
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="·-Bidirectional-Reflectance-Distribution-Function"><a href="#·-Bidirectional-Reflectance-Distribution-Function" class="headerlink" title="· Bidirectional Reflectance Distribution Function"></a>· Bidirectional Reflectance Distribution Function</h1><p>Given a reflection plane, the irradiance from the incident light at the point $\mathbf{p}$ can be written as</p>
 <script type="math/tex; mode=display">
-E_i(\mathbf{p})=\int_{H^2} L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i,</script><p>where $d\Omega_i=\sin\theta_i\: d\theta_i\:d\phi_i$．The intuitive understanding of the above formula is that the incident light all over the hemisphere is divided into the incident light from many small cones,  in which the irradiance contributed by the small cones in the direction $\boldsymbol{\omega}_i$ is $L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i$. The total irradiance $E_i(\mathbf{p})$ from the incident light can be obtained by adding up the irradiance contributed by all the small cones.</p>
+E_i(\mathbf{p})=\int_{H^2} L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i,</script><p>where $d\Omega_i=\sin\theta_i\: d\theta_i\:d\phi_i$. The intuitive understanding of the above formula is that the incident light all over the hemisphere is divided into the incident light from many small cones,  in which the irradiance contributed by the small cones in the direction $\boldsymbol{\omega}_i$ is $L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i$. The total irradiance $E_i(\mathbf{p})$ from the incident light can be obtained by adding up the irradiance contributed by all the small cones.</p>
 <p>The above formula is sometimes written in differential form</p>
 <script type="math/tex; mode=display">
-dE_i(\mathbf{p},\boldsymbol{\omega}_i)=L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>如果我们要考虑点 $\mathbf{p}$ 处沿 <script type="math/tex">\boldsymbol{\omega}_o</script> 方向出射光的辐照率 <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script>，上述分割求和的思想依然可以沿用．假设 <script type="math/tex">\boldsymbol{\omega}_i</script> 方向上的小圆锥每增加 $1$ 个单位的辐照度，就能为 <script type="math/tex">\boldsymbol{\omega}_o</script> 方向的出射光多贡献 <script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)</script> 单位的辐照率，那么 <script type="math/tex">\boldsymbol{\omega}_i</script> 方向上的小圆锥对  <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script> 的贡献就是</p>
+dE_i(\mathbf{p},\boldsymbol{\omega}_i)=L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>If we want to consider the irradiance rate <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script> of the light emitted along the direction <script type="math/tex">\boldsymbol{\omega}_o</script> at the point $\mathbf{p}$, the above idea of dividing and summing still works. Suppose that for every unit of irradiance added by a small cone in the direction <script type="math/tex">\boldsymbol{\omega}_i</script>, it can contribute more <script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)</script> units of irradiance rate to the outgoing light in the direction <script type="math/tex">\boldsymbol{\omega}_o</script>, then the contribution of the small cone in the direction <script type="math/tex">\boldsymbol{\omega}_i</script> to <script type="math/tex">L_o(\mathbf{p},\boldsymbol{\omega}_o)</script> is</p>
 <script type="math/tex; mode=display">
-f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>将所有小圆锥的贡献累加起来，就得到 $L_o(\mathbf{p},\boldsymbol{\omega}_o)$ 的表达式</p>
+f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>Adding up the contributions of all the small cones gives the expression of $L_o(\mathbf{p},\boldsymbol{\omega}_o)$ as follows</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>上式也可写作对应的微分形式</p>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>The above formula can also be written in the corresponding differential form</p>
 <script type="math/tex; mode=display">
-dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i),</script><p>或</p>
+dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)dE_i(\mathbf{p},\boldsymbol{\omega}_i),</script><p>or equivalently</p>
 <script type="math/tex; mode=display">
-f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=\frac{dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)}{dE_i(\mathbf{p},\boldsymbol{\omega}_i)}.</script><p>以上导出的函数 $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$，被称作<strong> 双向反射分布函数</strong>（bidirectional reflectance distribution function），简称为BRDF．上面推导出的方程</p>
+f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=\frac{dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)}{dE_i(\mathbf{p},\boldsymbol{\omega}_i)}.</script><p>The function $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$ derived above is called <strong>bidirectional reflectance distribution function</strong>, or BRDF for short. The equation derived above</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>被称作<strong> 反射方程</strong>．</p>
-<h1 id="·-Properties"><a href="#·-Properties" class="headerlink" title="· Properties"></a>· Properties</h1><p>基于物理的BRDF应该具有以下三条性质：</p>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>is called <strong>reflection equation</strong>.</p>
+<h1 id="·-Properties"><a href="#·-Properties" class="headerlink" title="· Properties"></a>· Properties</h1><p>Physics based BRDF should have the following three properties:</p>
 <ol>
-<li>非负性：$f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\ge 0$；</li>
-<li>Helmholtz互异性（Helmholtz reciprocity）：<script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}_o\right)</script>；</li>
-<li>能量守恒：<script type="math/tex; mode=display">
+<li>Nonnegativity: $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\ge 0$;</li>
+<li>Helmholtz reciprocity: <script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}_o\right)</script>;</li>
+<li>Conservation of energy:<script type="math/tex; mode=display">
 \forall\boldsymbol{\omega}_i,\quad\int_{H^2} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\cos\theta_o\:d\Omega_o\le 1.</script></li>
 </ol>
-<h1 id="·-Calculation"><a href="#·-Calculation" class="headerlink" title="· Calculation"></a>· Calculation</h1><p>处理积分</p>
+<h1 id="·-Calculation"><a href="#·-Calculation" class="headerlink" title="· Calculation"></a>· Calculation</h1><p>There are three common ways to deal with integral</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>的常见方式有三种：</p>
-<ol>
-<li><p>单位半球上的第一类曲面积分，用球坐标进行参数化</p>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><ol>
+<li><p>The first kind of surface integral on the unit hemisphere, which can be parameterized by spherical coordinates</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i(\theta_i,\phi_i)\right)L_{i}(\mathbf{p},\boldsymbol{\omega}_i(\theta_i,\phi_i))\cos\theta_i\sin\theta_i\:d\theta_i\:d\phi_i.</script></li>
-<li><p>转化为发光曲面 $A$ 上的积分</p>
+<li><p>Convert to the integral on luminous surface $A$</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}},</script></li>
 </ol>
-<p>其中 $\theta^\prime$ 是 $A$ 上某点处的法向量与 $-\boldsymbol{\omega}_i$ 之间的夹角．</p>
-<h1 id="·-Instance：the-BRDF-applied-by-UE4"><a href="#·-Instance：the-BRDF-applied-by-UE4" class="headerlink" title="· Instance：the BRDF applied by UE4"></a>· Instance：the BRDF applied by UE4</h1><p>UE4 引擎使用了如下 BRDF</p>
+<p>where $\theta^\prime$ is the angle between the normal vector at some point on surface $A$ and $-\boldsymbol{\omega}_i$.</p>
+<h1 id="·-Instance-the-BRDF-applied-by-UE4"><a href="#·-Instance-the-BRDF-applied-by-UE4" class="headerlink" title="· Instance: the BRDF applied by UE4"></a>· Instance: the BRDF applied by UE4</h1><p>UE4 engine uses the following BRDF</p>
 <script type="math/tex; mode=display">
-f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>其中</p>
+f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>where</p>
 <script type="math/tex; mode=display">
 \begin{array}{l}
 f_{\text {lambert}}=\dfrac{\text{base_color}}{\pi} \\
 f_{s}=\dfrac{F\left(\mathbf{h}, \mathbf{v}\right) G(\mathbf{l}, \mathbf{v}) D(\mathbf{h})}{4(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})} \\
 k_{s}=F\left(\mathbf{h}, \mathbf{v}\right) \\
 k_{d}=\left(1-k_{s}\right)(1-\text {metalness}).
-\end{array}</script><p>上式中，$\mathbf{n}$ 为单位法向量，$\mathbf{l}$ 为单位入射向量，$\mathbf{v}$ 为单位反射向量，$\mathbf{h}=(\mathbf{l}+\mathbf{v})/\Vert\mathbf{l}+\mathbf{v}\Vert$ 为微平面单位法向量．下面描述函数 $F,D,G$ 的具体形式．</p>
-<h2 id="·-Normal-Distribution-Function-D"><a href="#·-Normal-Distribution-Function-D" class="headerlink" title="· Normal Distribution Function $D$"></a>· Normal Distribution Function $D$</h2><p>GGX（Trowbridge-Reitz）分布</p>
+\end{array}</script><p>In the above formula, $\mathbf{n}$ is the unit normal vector, $\mathbf{l}$ is the unit incident vector, $\mathbf{v}$ is the unit reflection vector, $\mathbf{h}=(\mathbf{l}+\mathbf{v})/\Vert\mathbf{l}+\mathbf{v}\Vert$ is the microplane unit normal vector. Next, we will describe the specific forms of functions $F,D,G$.</p>
+<h2 id="·-Normal-Distribution-Function-D"><a href="#·-Normal-Distribution-Function-D" class="headerlink" title="· Normal Distribution Function $D$"></a>· Normal Distribution Function $D$</h2><p>GGX (Trowbridge-Reitz) Distribution</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \alpha&=\text {roughness}^{2}\\
 D(\mathbf{h})&=\dfrac{\alpha^{2}}{\pi\left((\mathbf{n} \cdot \mathbf{h})^{2}\left(\alpha^{2}-1\right)+1\right)^{2}}
-\end{align}</script><h2 id="·-Geometry-Function-G"><a href="#·-Geometry-Function-G" class="headerlink" title="· Geometry Function $G$"></a>· Geometry Function $G$</h2><p>GGX-Smith Correlated Joint 近似公式</p>
+\end{align}</script><h2 id="·-Geometry-Function-G"><a href="#·-Geometry-Function-G" class="headerlink" title="· Geometry Function $G$"></a>· Geometry Function $G$</h2><p>GGX-Smith correlated joint approximate formula</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \alpha&=\text {roughness}^{2} \\
 \Lambda(\mathbf{v})&=(\mathbf{n} \cdot \mathbf{l})((\mathbf{n} \cdot \mathbf{v})(1-\alpha)+\alpha) \\
 \Lambda(\mathbf{l})&=(\mathbf{n} \cdot \mathbf{v})((\mathbf{n} \cdot \mathbf{l})(1-\alpha)+\alpha) \\
 G(\mathbf{l}, \mathbf{v})&=\frac{2(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})}{\Lambda(\mathbf{v})+\Lambda(\mathbf{l})}
-\end{align}</script><h2 id="·-Fresnel-Term-F"><a href="#·-Fresnel-Term-F" class="headerlink" title="· Fresnel Term $F$"></a>· Fresnel Term $F$</h2><p>Fresnel-Schlick 近似公式</p>
+\end{align}</script><h2 id="·-Fresnel-Term-F"><a href="#·-Fresnel-Term-F" class="headerlink" title="· Fresnel Term $F$"></a>· Fresnel Term $F$</h2><p>Fresnel-Schlick approximate formula</p>
 <script type="math/tex; mode=display">
 \begin{align}
 F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \mathbf{v}))^{5} \\
 F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{metalness})
-\end{align}</script><p>其中 $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ 为线性插值函数．</p>
-
+\end{align}</script><p>where $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ is the linear interpolation function.</p>
+<style>
+  .markdown-body {
+    font-family: Times New Roman, Georgia, serif;
+    font-size: 18px;
+  }
+</style>
             </div>
             <hr>
             <div>
