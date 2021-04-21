@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k Words
+      1.5k Words
     </span>
   
 
@@ -257,17 +257,17 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 20, 2021 am
+                  Last Update：April 21, 2021 pm
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h1><p>物体的动力学可由 $N$ 个顶点和 $M$ 个关于顶点位置的约束进行描述．第 $i$ 个顶点的质量、位置、速度分别记作 <script type="math/tex">m_i,\mathbf{x}_i,\mathbf{v}_i</script>．第 $j$ 个约束可能为等式或不等式，记作</p>
+              <h1 id="·-Algorithm"><a href="#·-Algorithm" class="headerlink" title="· Algorithm"></a>· Algorithm</h1><p>The dynamics of an object can be described by $n$ vertices and $M$ constraints on vertex position. The mass, position and velocity of the $i$-th vertex are denoted as <script type="math/tex">m_i,\mathbf{x}_i,\mathbf{v}_i</script> respectively. The $j$-th constraint may be an equality or inequality, written as</p>
 <script type="math/tex; mode=display">
-C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})=0\quad \text{或}\quad C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})\ge0.</script><p>我们用符号 $\succ$ 来表示 $=$ 或 $\ge$，并且令 <script type="math/tex">\mathbf{x}=(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})</script>，则第 $j$ 个约束可简记为 <script type="math/tex">C_{j}(\mathbf{x})\succ 0</script>．</p>
-<p>基于位置的动力学（Position Based Dynamics）简称为PBD．该算法会先计算出每个顶点的初始预测位置 <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script>，然后尝试移动 <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script> 使其满足所有约束</p>
+C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})=0\quad \text{或}\quad C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})\ge0.</script><p>We use the symbol $\succ$ to denote $=$ or $\ge$ and let <script type="math/tex">\mathbf{x}=(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})</script>. Then the $j$-th constraint is denoted as <script type="math/tex">C_{j}(\mathbf{x})\succ 0</script>.</p>
+<p>Position based dynamics can be abbreviated as PBD. The algorithm first calculates the initial predicted position of each vertex <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script>, and then try to move <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script> to satisfy all the constraints</p>
 <script type="math/tex; mode=display">
-C_j\succ 0(j=1,2,\cdots,M).</script><p>PBD的具体算法可由以下伪代码表示．</p>
+C_j\succ 0(j=1,2,\cdots,M).</script><p>The specific algorithm of PBD can be represented by the following pseudo code.</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
@@ -277,10 +277,10 @@ C_j\succ 0(j=1,2,\cdots,M).</script><p>PBD的具体算法可由以下伪代码�
     font-size:14px;
     display: inline-block;
     color: #999;
-    padding: 10px;">图1 - PBD 伪代码</div>
+    padding: 10px;">Figure 1 - Pseudo code for PBD</div>
 </center>
 
-<h1 id="求解器"><a href="#求解器" class="headerlink" title="求解器"></a>求解器</h1><p>在PBD伪代码中，第8至第10行是求解器的迭代求解．这里的函数</p>
+<h1 id="·-Solver"><a href="#·-Solver" class="headerlink" title="· Solver"></a>· Solver</h1><p>在PBD伪代码中, 第8至第10行是求解器的迭代求解. 这里的函数</p>
 <script type="math/tex; mode=display">
 \mathrm{ projectConstraints }\left(C_{1}, \cdots, C_{M + M_{\mathrm{Coll }}}, \mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script><p>是方程/不等式组</p>
 <script type="math/tex; mode=display">
@@ -291,18 +291,18 @@ C_j\succ 0(j=1,2,\cdots,M).</script><p>PBD的具体算法可由以下伪代码�
         \quad\ldots\\
         C_{M + M_{\mathrm{Coll }}}\left(\mathbf{p}_{1}, \cdots, \mathbf{p}_{N}\right)\succ 0, \\
     \end{array}
-\right.</script><p>的一个非线性Gauss-Seidel求解器．求解器 <script type="math/tex">\mathrm{ projectConstraints}</script> 会对约束 <script type="math/tex">C_{1},C_{2},\cdots,C_{M + M_{\mathrm{Coll }}}</script> 依次进行一阶线性化求解．每次求解完 <script type="math/tex">C_{j}</script>，求解器会当即更新 <script type="math/tex">\mathbf{p}_{1},\mathbf{p}_{2},\cdots,\mathbf{p}_{N}</script> 的值，使之影响对 <script type="math/tex">C_{j+1}</script> 的求解．下面我们将具体介绍 <script type="math/tex">C_{j}</script> 的求解方法．</p>
-<p>如果约束是一个等式，我们希望找到一个 <script type="math/tex">\Delta \mathbf{p}</script> 使得 <script type="math/tex">C_{j}(\mathbf{p}+\Delta \mathbf{p})=0</script>，其中 <script type="math/tex">\mathbf{p}=\left(\mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script>．对其进行一阶线性化可得</p>
+\right.</script><p>的一个非线性Gauss-Seidel求解器. 求解器 <script type="math/tex">\mathrm{ projectConstraints}</script> 会对约束 <script type="math/tex">C_{1},C_{2},\cdots,C_{M + M_{\mathrm{Coll }}}</script> 依次进行一阶线性化求解. 每次求解完 <script type="math/tex">C_{j}</script>, 求解器会当即更新 <script type="math/tex">\mathbf{p}_{1},\mathbf{p}_{2},\cdots,\mathbf{p}_{N}</script> 的值, 使之影响对 <script type="math/tex">C_{j+1}</script> 的求解. 下面我们将具体介绍 <script type="math/tex">C_{j}</script> 的求解方法. </p>
+<p>如果约束是一个等式, 我们希望找到一个 <script type="math/tex">\Delta \mathbf{p}</script> 使得 <script type="math/tex">C_{j}(\mathbf{p}+\Delta \mathbf{p})=0</script>, 其中 <script type="math/tex">\mathbf{p}=\left(\mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script>. 对其进行一阶线性化可得</p>
 <script type="math/tex; mode=display">
-C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathbf{p}) \cdot \Delta \mathbf{p} = 0</script><p>上述方程的一般会有无穷个解．如果我们将解 <script type="math/tex">\Delta \mathbf{p}=\left(\Delta\mathbf{p}_{1},\Delta\mathbf{p}_{2},\cdots,\Delta\mathbf{p}_{N}\right)</script> 限制在</p>
+C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathbf{p}) \cdot \Delta \mathbf{p} = 0</script><p>上述方程的一般会有无穷个解. 如果我们将解 <script type="math/tex">\Delta \mathbf{p}=\left(\Delta\mathbf{p}_{1},\Delta\mathbf{p}_{2},\cdots,\Delta\mathbf{p}_{N}\right)</script> 限制在</p>
 <script type="math/tex; mode=display">
-\left(w_1\nabla_\mathbf{p_1} C_{j}(\mathbf{p}),w_2\nabla_\mathbf{p_2} C_{j}(\mathbf{p}),\cdots,w_N\nabla_\mathbf{p_N} C_{j}(\mathbf{p})\right)</script><p>的方向上，即令 </p>
+\left(w_1\nabla_\mathbf{p_1} C_{j}(\mathbf{p}),w_2\nabla_\mathbf{p_2} C_{j}(\mathbf{p}),\cdots,w_N\nabla_\mathbf{p_N} C_{j}(\mathbf{p})\right)</script><p>的方向上, 即令 </p>
 <script type="math/tex; mode=display">
 \begin{equation}
 \Delta \mathbf{p}_i=\lambda w_i\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N,
 \end{equation}</script><p>我们就可以求出一个特解</p>
 <script type="math/tex; mode=display">
-\Delta \mathbf{p}_i=-\frac{w_iC_j\left(\mathbf{p}\right)}{\sum_{k=1}^N w_{k}\left|\nabla_{\mathbf{p}_{j}} C_j\left(\mathbf{p}\right)\right|^{2}}\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N.</script><p>$C_{j}$ 的求解方法，就是用 <script type="math/tex">\mathbf{p}+\Delta \mathbf{p}</script> 来更新原来的 <script type="math/tex">\mathbf{p}</script>．因此，<script type="math/tex">\mathrm{projectConstraints}</script> 函数可用伪代码表示成</p>
+\Delta \mathbf{p}_i=-\frac{w_iC_j\left(\mathbf{p}\right)}{\sum_{k=1}^N w_{k}\left|\nabla_{\mathbf{p}_{j}} C_j\left(\mathbf{p}\right)\right|^{2}}\nabla_{\mathbf{p}_i} C_{j}(\mathbf{p}),\quad i=1,2,\cdots,N.</script><p>$C_{j}$ 的求解方法, 就是用 <script type="math/tex">\mathbf{p}+\Delta \mathbf{p}</script> 来更新原来的 <script type="math/tex">\mathbf{p}</script>. 因此, <script type="math/tex">\mathrm{projectConstraints}</script> 函数可用伪代码表示成</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
@@ -315,9 +315,9 @@ C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathb
     padding: 10px;">图2 - $\mathrm{projectConstraints}$ 求解器伪代码</div>
 </center>
 
-<h1 id="特定约束"><a href="#特定约束" class="headerlink" title="特定约束"></a>特定约束</h1><h2 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h2><p>拉伸约束为</p>
+<h1 id="·-Specific-constraints"><a href="#·-Specific-constraints" class="headerlink" title="· Specific constraints"></a>· Specific constraints</h1><h2 id="·-Stretch"><a href="#·-Stretch" class="headerlink" title="· Stretch"></a>· Stretch</h2><p>拉伸约束为</p>
 <script type="math/tex; mode=display">
-C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d,</script><p>其中 $d$ 代表初始长度。计算梯度，可得</p>
+C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d,</script><p>其中 $d$ 代表初始长度。计算梯度, 可得</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     \nabla_{\mathbf{p}_1} C(\mathbf{p}_1,\mathbf{p}_2)&=\nabla_{\mathbf{p}_1} \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert\\
@@ -336,15 +336,15 @@ C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert -
 \lambda&=\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2},\\
 \Delta \mathbf{p}_1&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_1\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_1}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_2-\mathbf{p}_1),\\
 \Delta \mathbf{p}_2&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_2\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_2}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_1-\mathbf{p}_2).
-\end{aligned}</script><h2 id="SDF碰撞"><a href="#SDF碰撞" class="headerlink" title="SDF碰撞"></a>SDF碰撞</h2><p>SDF碰撞约束为</p>
+\end{aligned}</script><h2 id="·-SDF-Collision"><a href="#·-SDF-Collision" class="headerlink" title="· SDF Collision"></a>· SDF Collision</h2><p>SDF碰撞约束为</p>
 <script type="math/tex; mode=display">
 C(\mathbf{p}_i) = \mathrm{SDF}(\mathbf{p}_i).</script><p>矫正量</p>
 <script type="math/tex; mode=display">
-\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= -\frac{\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="例子：球面SDF碰撞"><a href="#例子：球面SDF碰撞" class="headerlink" title="例子：球面SDF碰撞"></a>例子：球面SDF碰撞</h3><p>给定半径为 $r$ 的球面，它的SDF碰撞约束为</p>
+\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= -\frac{\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="·-Example：SDF-collision-for-sphere"><a href="#·-Example：SDF-collision-for-sphere" class="headerlink" title="· Example：SDF collision for sphere"></a>· Example：SDF collision for sphere</h3><p>给定半径为 $r$ 的球面, 它的SDF碰撞约束为</p>
 <script type="math/tex; mode=display">
 C(\mathbf{p}_i) = \left\Vert\mathbf{p}_i\right\Vert-r.</script><p>矫正量</p>
 <script type="math/tex; mode=display">
-\Delta\mathbf{p}_i = -\frac{\left\Vert\mathbf{p}_i\right\Vert-r}{\left\Vert\mathbf{p}_i\right\Vert^2/\left\Vert\mathbf{p}_i\right\Vert^2}\frac{\mathbf{p}_i}{\left\Vert\mathbf{p}_i\right\Vert}=\left(\frac{r}{\left\Vert\mathbf{p}_i\right\Vert}-1\right)\mathbf{p}_i.</script><h3 id="数值微分的计算"><a href="#数值微分的计算" class="headerlink" title="数值微分的计算"></a>数值微分的计算</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
+\Delta\mathbf{p}_i = -\frac{\left\Vert\mathbf{p}_i\right\Vert-r}{\left\Vert\mathbf{p}_i\right\Vert^2/\left\Vert\mathbf{p}_i\right\Vert^2}\frac{\mathbf{p}_i}{\left\Vert\mathbf{p}_i\right\Vert}=\left(\frac{r}{\left\Vert\mathbf{p}_i\right\Vert}-1\right)\mathbf{p}_i.</script><h3 id="The-calculation-of-numerical-integral"><a href="#The-calculation-of-numerical-integral" class="headerlink" title="The calculation of numerical integral"></a>The calculation of numerical integral</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     \mathbf{k}_0&=(1,-1,-1)\\
