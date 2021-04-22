@@ -257,38 +257,38 @@
         <canvas id="triangle" width="900" height="600"></canvas>
     </div>
     <div class="item-4">
-        <b class="subTitle">Settings</b>
+        <b class="subTitle">设置</b>
         <div class="item">
-            <div id="slider_cutting"> Cutting Plane</div>
+            <div id="slider_cutting">截面</div>
             <label for="cuttingPlaneSlider"></label>
             <input type="range" id="cuttingPlaneSlider" min="-0.6" max="0.6" step="0.01" value="0.3"/>
             &ensp;
             <label for="cuttingPlaneText"></label>
             <input type="text" id="cuttingPlaneText" value="0.3">
             <br/>
-            <input type="checkbox" id="animate"><label for="animate"> Animate</label>
+            <input type="checkbox" id="animate"><label for="animate">动画</label>
             <br/>
-            <input type="checkbox" id="stat" checked="checked"><label for="stat"> Show Statistics</label>
+            <input type="checkbox" id="stat" checked="checked"><label for="stat">统计数据</label>
             <br/><br/>
         </div>
-        <b class="subTitle">Pass</b>
+        <b class="subTitle">通道</b>
         <div class="item">
-            <input type="checkbox" id="diffuse" checked="checked"><label for="diffuse"> Diffuse</label>
+            <input type="checkbox" id="diffuse" checked="checked"><label for="diffuse">漫反射</label>
             <br/>
-            <input type="checkbox" id="specular" checked="checked"><label for="specular"> Specular</label>
+            <input type="checkbox" id="specular" checked="checked"><label for="specular">高光</label>
             <br/>
-            <input type="checkbox" id="shadow" checked="checked"><label for="shadow"> Shadow</label>
+            <input type="checkbox" id="shadow" checked="checked"><label for="shadow">阴影</label>
             <br/><br/>
         </div>
-        <b class="subTitle">Material</b>
+        <b class="subTitle">材质</b>
         <div class="item">
             <div id="baseColor">
-                <div id="baseColorText">Base Color</div> &ensp;&ensp;<label for="colorPicker"></label>
+                <div id="baseColorText">基本色</div> &ensp;&ensp;<label for="colorPicker"></label>
                 <input type="color" id="colorPicker" value="#FFFF48"/>
             </div>
             <br/>
             <div id="slider_container">
-                <div class="slider-text-1"> Roughness</div>
+                <div class="slider-text-1">糙度</div>
                 <div>
                     <label for="sRoughness"></label>
                     <input type="range" id="sRoughness" min="0.0" max="1.0" step="0.01" value="0.3"/>
@@ -297,7 +297,7 @@
                     <label for="vRoughness"></label>
                     <input type="text" id="vRoughness" value="0.3" class="slider_value">
                 </div>
-                <div class="slider-text-2"> Metalness</div>
+                <div class="slider-text-2">金属度</div>
                 <div>
                     <label for="sMetalness"></label>
                     <input type="range" id="sMetalness" min="0.0" max="1.0" step="0.01" value="0"/>
@@ -306,7 +306,7 @@
                     <label for="vMetalness"></label>
                     <input type="text" id="vMetalness" value="0" class="slider_value">
                 </div>
-                <div class="slider-text-3"> Specular</div>
+                <div class="slider-text-3">高光</div>
                 <div>
                     <label for="sSpecular"></label>
                     <input type="range" id="sSpecular" min="0.0" max="1.0" step="0.01" value="0.5"/>
