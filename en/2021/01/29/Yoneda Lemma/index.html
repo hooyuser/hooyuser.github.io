@@ -268,7 +268,7 @@
 \mathrm{Nat}(F,G):=\mathrm{Hom}_{[\mathsf{C}_1,\mathsf{C}_2]}(F,G).</script><p>Given a category $\mathsf{C}$, the <strong>presheaf category</strong> on  $\mathsf{C}$ is</p>
 <script type="math/tex; mode=display">
 \mathsf{C}^{\wedge}:=[\mathsf{C}^{\mathrm{op}},\mathsf{Set}].</script><p>An objects in the presheaf category is called a presheaf. It is actually a functor from $\mathsf{C}^{\mathrm{op}}$ to $\mathsf{Set}$.</p>
-<h1 id="·-mathrm-Hom-Functor"><a href="#·-mathrm-Hom-Functor" class="headerlink" title="· $\mathrm{Hom}$ Functor"></a>· $\mathrm{Hom}$ Functor</h1><h2 id="·-mathrm-Hom-mathsf-C-Functor"><a href="#·-mathrm-Hom-mathsf-C-Functor" class="headerlink" title="· $\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor"></a>· $\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor</h2><p>设 $\mathsf{C}$ 是一个范畴, 它到集合范畴 $\mathsf{Set}$ 的二元函子</p>
+<h1 id="·-mathrm-Hom-Functor"><a href="#·-mathrm-Hom-Functor" class="headerlink" title="· $\mathrm{Hom}$ Functor"></a>· $\mathrm{Hom}$ Functor</h1><h2 id="·-mathrm-Hom-mathsf-C-Functor"><a href="#·-mathrm-Hom-mathsf-C-Functor" class="headerlink" title="· $\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor"></a>· $\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor</h2><p>Let $\mathsf{C}$ be a category. 它到集合范畴 $\mathsf{Set}$ 的二元函子</p>
 <script type="math/tex; mode=display">
 \mathrm{Hom}_{\mathsf{C}}(-,-): \mathsf{C}^{\mathrm{op}} \times \mathsf{C} \rightarrow \mathsf{Set}.</script><p>定义如下: 其对象映射为</p>
 <script type="math/tex; mode=display">
@@ -280,7 +280,7 @@
 \begin{aligned}
     \mathrm{Hom}_{\mathsf{C}}(-,-):\mathrm{Hom}_{\mathsf{C}}((X_1,Y_1),(X_2,Y_2))&\longrightarrow \mathrm{Hom}_{\mathsf{Set}}(\mathrm{Hom}_{\mathsf{C}}(X_1,Y_1),\mathrm{Hom}_{\mathsf{C}}(X_2,Y_2))\\
     (f^{\mathrm{op}}:X_1\to X_2,\,g:Y_1\to Y_2)& \longmapsto g_*f^*:(\phi:X_1\to Y_1 \longmapsto g\phi f:X_2\to Y_2),
-\end{aligned}</script><p>用图表可以表示为</p>
+\end{aligned}</script><p>It can be represented by the following diagram</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
