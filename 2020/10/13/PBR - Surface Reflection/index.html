@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.5k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      24
        分钟
     </span>
   
@@ -257,7 +257,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月12日 下午
+                  本文最后更新于：2021年5月4日 下午
                 
               </p>
             
@@ -291,7 +291,7 @@ L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, 
 <ol>
 <li><p>单位半球上的第一类曲面积分，用球坐标进行参数化</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i(\theta_i,\phi_i)\right)L_{i}(\mathbf{p},\boldsymbol{\omega}_i(\theta_i,\phi_i))\cos\theta_i\sin\theta_i\:d\theta_i\:d\phi_i.</script></li>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\:d\varphi_i\int_{0}^{\frac{\pi}{2}}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i(\theta_i,\varphi_i)\right)L_{i}(\mathbf{p},\boldsymbol{\omega}_i(\theta_i,\varphi_i))\cos\theta_i\sin\theta_i\:d\theta_i.</script></li>
 <li><p>转化为发光曲面 $A$ 上的积分</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}},</script></li>
@@ -303,28 +303,39 @@ f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script
 <script type="math/tex; mode=display">
 \begin{array}{l}
 f_{\text {lambert}}=\dfrac{\text{base_color}}{\pi} \\
-f_{s}=\dfrac{F\left(\mathbf{h}, \mathbf{v}\right) G(\mathbf{l}, \mathbf{v}) D(\mathbf{h})}{4(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})} \\
-k_{s}=F\left(\mathbf{h}, \mathbf{v}\right) \\
+f_{s}=\dfrac{F\left(\mathbf{h}, \boldsymbol{\omega}_o\right) G(\boldsymbol{\omega}_i, \boldsymbol{\omega}_o) D(\mathbf{h})}{4(\mathbf{n} \cdot \boldsymbol{\omega}_o)(\mathbf{n} \cdot \boldsymbol{\omega}_i)} \\
+k_{s}=F\left(\mathbf{h}, \boldsymbol{\omega}_o\right) \\
 k_{d}=\left(1-k_{s}\right)(1-\text {metalness}).
-\end{array}</script><p>上式中，$\mathbf{n}$ 为单位法向量，$\mathbf{l}$ 为单位入射向量，$\mathbf{v}$ 为单位反射向量，$\mathbf{h}=(\mathbf{l}+\mathbf{v})/\Vert\mathbf{l}+\mathbf{v}\Vert$ 为微平面单位法向量．下面描述函数 $F,D,G$ 的具体形式．</p>
+\end{array}</script><p>上式中，$\mathbf{n}$ 为单位法向量，$\boldsymbol{\omega}_i$ 为单位入射向量，$\boldsymbol{\omega}_o$ 为单位反射向量，$\mathbf{h}=(\boldsymbol{\omega}_i+\boldsymbol{\omega}_o)/\Vert\boldsymbol{\omega}_i+\boldsymbol{\omega}_o\Vert$ 为微平面单位法向量．下面描述函数 $F,D,G$ 的具体形式．</p>
 <h2 id="法线分布函数-D"><a href="#法线分布函数-D" class="headerlink" title="法线分布函数 $D$"></a>法线分布函数 $D$</h2><p>GGX（Trowbridge-Reitz）分布</p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{aligned}
 \alpha&=\text {roughness}^{2}\\
-D(\mathbf{h})&=\dfrac{\alpha^{2}}{\pi\left((\mathbf{n} \cdot \mathbf{h})^{2}\left(\alpha^{2}-1\right)+1\right)^{2}}
-\end{align}</script><h2 id="几何函数-G"><a href="#几何函数-G" class="headerlink" title="几何函数 $G$"></a>几何函数 $G$</h2><p>GGX-Smith Correlated Joint 近似公式</p>
+D(\mathbf{h})&=\dfrac{\alpha^{2}}{\pi\left((\mathbf{n} \cdot \mathbf{h})^{2}\left(\alpha^{2}-1\right)+1\right)^{2}}.
+\end{aligned}</script><p>一般地，设 $\mathbf{n} \cdot \mathbf{h}=\cos\theta_{\mathbf{h}}$，法线分布 $D(\mathbf{h})$ 应满足</p>
 <script type="math/tex; mode=display">
-\begin{align}
+\int_{H^2_{\mathbf{n}}}D(\mathbf{h})\cos\theta_{\mathbf{h}} \:d\Omega_{\mathbf{h}}=1,</script><p>其中 $H^2_{\mathbf{n}}$ 表示底部大圆与 $\mathbf{n}$ 垂直的上半球面．可以验证 GGX 法线分布函数满足该关系</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int_{\mathcal{H}^{2}} \cos \theta_{\mathbf{h}}  D\left(\mathbf{h}\right) \mathrm{d} \mathbf{h} &=\int_{0}^{2 \pi} \mathrm{d} \varphi_{\mathbf{h}} \int_{0}^{\frac{\pi}{2}} \frac{\alpha^{2} \cos \theta_{\mathbf{h}}  \sin \theta_{\mathbf{h}} }{\pi\left(\left(\alpha^{2}-1\right) \cos ^{2} \theta_{\mathbf{h}} +1\right)^{2}} d\theta_{\mathbf{h}}\\
+&=2\pi\int_{0}^{\frac{\pi}{2}} \frac{ \alpha^{2} \cos \theta_{\mathbf{h}} \sin \theta_{\mathbf{h}} }{\pi\left(\left(\alpha^{2}-1\right) \cos ^{2} \theta_{\mathbf{h}} +1\right)^{2}} d\theta_{\mathbf{h}} \\
+&=-\alpha^{2} \int_{0}^{\frac{\pi}{2}} \frac{1}{\left(\left(\alpha^{2}-1\right) \cos ^{2} \theta_{\mathbf{h}} +1\right)^{2}} d\cos ^{2} \theta_{\mathbf{h}} \\
+&=\alpha^{2} \int_{0}^{1} \frac{1}{\left(\left(\alpha^{2}-1\right) t+1\right)^{2}} dt \\
+&=\left.\frac{\alpha^{2}}{1-\alpha^{2}} \frac{1}{\left(\alpha^{2}-1\right) t+1}\right|_{0} ^{1} \\
+&=1.
+\end{aligned}</script><h2 id="几何函数-G"><a href="#几何函数-G" class="headerlink" title="几何函数 $G$"></a>几何函数 $G$</h2><p>GGX-Smith Correlated Joint 近似公式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
 \alpha&=\text {roughness}^{2} \\
-\Lambda(\mathbf{v})&=(\mathbf{n} \cdot \mathbf{l})((\mathbf{n} \cdot \mathbf{v})(1-\alpha)+\alpha) \\
-\Lambda(\mathbf{l})&=(\mathbf{n} \cdot \mathbf{v})((\mathbf{n} \cdot \mathbf{l})(1-\alpha)+\alpha) \\
-G(\mathbf{l}, \mathbf{v})&=\frac{2(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})}{\Lambda(\mathbf{v})+\Lambda(\mathbf{l})}
-\end{align}</script><h2 id="菲涅尔项-F"><a href="#菲涅尔项-F" class="headerlink" title="菲涅尔项 $F$"></a>菲涅尔项 $F$</h2><p>Fresnel-Schlick 近似公式</p>
+\Lambda(\boldsymbol{\omega}_o)&=(\mathbf{n} \cdot \boldsymbol{\omega}_i)((\mathbf{n} \cdot \boldsymbol{\omega}_o)(1-\alpha)+\alpha) \\
+\Lambda(\boldsymbol{\omega}_i)&=(\mathbf{n} \cdot \boldsymbol{\omega}_o)((\mathbf{n} \cdot \boldsymbol{\omega}_i)(1-\alpha)+\alpha) \\
+G(\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)&=\frac{2(\mathbf{n} \cdot \boldsymbol{\omega}_o)(\mathbf{n} \cdot \boldsymbol{\omega}_i)}{\Lambda(\boldsymbol{\omega}_o)+\Lambda(\boldsymbol{\omega}_i)}
+\end{aligned}</script><h2 id="菲涅尔项-F"><a href="#菲涅尔项-F" class="headerlink" title="菲涅尔项 $F$"></a>菲涅尔项 $F$</h2><p>Fresnel-Schlick 近似公式</p>
 <script type="math/tex; mode=display">
-\begin{align}
-F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \mathbf{v}))^{5} \\
+\begin{aligned}
+F\left(\mathbf{h}, \boldsymbol{\omega}_o\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \boldsymbol{\omega}_o))^{5} \\
 F_{0}&=\operatorname{lerp}(0.16\:\text{specular}^2, \text{base_color}, \text{metalness})
-\end{align}</script><p>其中 $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ 为线性插值函数．</p>
+\end{aligned}</script><p>其中 $\operatorname{lerp}(a,b,t)=(1-t)a+tb$ 为线性插值函数．</p>
 
             </div>
             <hr>
