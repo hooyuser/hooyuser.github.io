@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.7k 字
+      7.4k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      110
+      105
        分钟
     </span>
   
@@ -486,7 +486,7 @@ J_pf:=
 \begin{pmatrix}
    \left.\frac{\partial(\tilde{y}_i \circ f\circ\mathbf{x})}{\partial x_j}\right|_{\mathbf{x}^{-1}(p)}
 \end{pmatrix}_{m\times n}</script><p>正是函数 $\mathbf{y}^{-1}\circ f\circ\mathbf{x}$ 在 $\mathbf{x}^{-1}(p)$ 处的 Jacobi 矩阵．</p>
-<h2 id="余切向量与余切空间"><a href="#余切向量与余切空间" class="headerlink" title="余切向量与余切空间"></a>余切向量与余切空间</h2><p>流形在点 $p$ 处的余切空间就是切空间 $T_pM$ 的对偶空间 <script type="math/tex">(T_pM)^*</script>，简记为 <script type="math/tex">T_p^*M</script>．余切空间中的向量称为余切向量。</p>
+<h2 id="余切向量与余切空间"><a href="#余切向量与余切空间" class="headerlink" title="余切向量与余切空间"></a>余切向量与余切空间</h2><p>流形在点 $p$ 处的余切空间就是切空间 $T_pM$ 的对偶空间 <script type="math/tex">(T_pM)^*</script>，简记为 <script type="math/tex">T_p^*M</script>．余切空间中的向量称为余切向量．</p>
 <p>因为 <script type="math/tex">T_pM\subset \left(C^\infty_p\right)^*$，所以 $T_p^*M\subset \left(C^\infty_p\right)^{**}</script>. 定义自然对（natural pairing）$\langle\cdot,\cdot\rangle$，它是如下双线性函数</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -497,52 +497,20 @@ J_pf:=
 \begin{aligned}
 \langle\cdot,f\rangle:T_pM&\longrightarrow\mathbb{R}\\
 v_\gamma&\longmapsto\langle v_\gamma,f\rangle,
-\end{aligned}</script><p>我们有 $\langle\cdot,f\rangle\in T_p^*M$. 考虑线性映射 </p>
+\end{aligned}</script><p>我们有 $\langle\cdot,f\rangle\in T_p^*M$．考虑线性映射 </p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 h:C^\infty_p&\longrightarrow T_p^*M\\
 f&\longmapsto\langle\cdot,f\rangle,
-\end{aligned}</script><p>根据 Riesz 表示定理，我们可以证明 <script type="math/tex">h(C^\infty_p)=T_p^*M</script>. 这里，我们手动验证一下这个事实。给定坐标卡 $(U,\mathbf{x})$，我们有自然基底 <script type="math/tex">v_{\varepsilon_1},v_{\varepsilon_2},\cdots,v_{\varepsilon_n}</script>. </p>
+\end{aligned}</script><p>根据 Riesz 表示定理，我们可以证明 <script type="math/tex">h(C^\infty_p)=T_p^*M</script>．这里，我们手动验证一下这个事实。给定坐标卡 $(U,\mathbf{x})$，我们有自然基底 <script type="math/tex">v_{\varepsilon_1},v_{\varepsilon_2},\cdots,v_{\varepsilon_n}</script>．</p>
 <p>若</p>
 <script type="math/tex; mode=display">
 \lambda_1\langle\cdot,\tilde{x}_1\rangle+\lambda_2\langle\cdot,\tilde{x}_2\rangle+\cdots+\lambda_n\langle\cdot,\tilde{x}_n\rangle=0,</script><p>注意到</p>
 <script type="math/tex; mode=display">
-\langle v_{\varepsilon_j},\tilde{x}_i\rangle=\left.\frac{d(\tilde{x}_i\circ\varepsilon_j)}{dt}\right|_0=\delta_{ij},</script><p>让上式依次作用在自然基底的基向量 $v_{\varepsilon_j}(j=1,2\cdots,n)$ 上可得 $\lambda_j=0$. 这就证明了 $\dim\left(h(C^\infty_p)\right)\ge n$. 又因为</p>
+\langle v_{\varepsilon_j},\tilde{x}_i\rangle=\left.\frac{d(\tilde{x}_i\circ\varepsilon_j)}{dt}\right|_0=\delta_{ij},</script><p>让上式依次作用在自然基底的基向量 $v_{\varepsilon_j}(j=1,2\cdots,n)$ 上可得 $\lambda_j=0$．这就证明了 $\dim\left(h(C^\infty_p)\right)\ge n$．又因为</p>
 <script type="math/tex; mode=display">
-\dim\left(h(C^\infty_p)\right)\le \dim\left(T_p^*M\right)=n.</script><p>假设我们在点 $p$ 处选取了坐标卡 $(U,\mathbf{x})$，对应的自然基底 <script type="math/tex">v_{\varepsilon_1},v_{\varepsilon_2},\cdots,v_{\varepsilon_n}</script> 是切空间 $T_pM$ 的一个基．下面的内容是线性代数中的标准构造。</p>
-<p>构造映射</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    v_{\varepsilon_j}^*:T_pM&\longrightarrow \mathbb{R}\\
-    \sum_{i=1}^n \lambda_iv_{\varepsilon_i}&\longmapsto \sum_{i=1}^n \lambda_iv_{\varepsilon_i}(\tilde{x}_j)
-\end{aligned}</script><p>我们有 <script type="math/tex">v_{\varepsilon_j}^*\in T_p^*M</script> 以及</p>
-<script type="math/tex; mode=display">
-v_{\varepsilon_j}^*(v_{\varepsilon_i})=\begin{cases}
-0,& i\ne j,\\
-1,& i=j.
-\end{cases}</script><p>这说明 <script type="math/tex">v_{\varepsilon_1}^*,v_{\varepsilon_2}^*,\cdots,v_{\varepsilon_n}^*</script> 是 <script type="math/tex">(T_pM)^*</script> 中关于 <script type="math/tex">v_{\varepsilon_1},v_{\varepsilon_2},\cdots,v_{\varepsilon_n}</script> 的对偶基。构造映射</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    v_{\varepsilon_j}^{**}:T_p^*M&\longrightarrow \mathbb{R}\\
-    \sum_{i=1}^n \lambda_iv^*_{\varepsilon_i}&\longmapsto \sum_{i=1}^n \lambda_iv^*_{\varepsilon_i}(v_{\varepsilon_j})
-\end{aligned}</script><p>我们有 <script type="math/tex">v^{**}_{\varepsilon_j}\in T_p^*M</script> 以及</p>
-<script type="math/tex; mode=display">
-v_{\varepsilon_j}^{**}(v^{*}_{\varepsilon_i})=\begin{cases}
-0,& i\ne j,\\
-1,& i=j.
-\end{cases}</script><p>这说明 <script type="math/tex">v_{\varepsilon_1}^{**},v_{\varepsilon_2}^{**},\cdots,v_{\varepsilon_n}^{**}</script> 是 <script type="math/tex">(T_pM)^{**}</script> 中关于 <script type="math/tex">v^*_{\varepsilon_1},v^*_{\varepsilon_2},\cdots,v^*_{\varepsilon_n}</script> 的对偶基。映射</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    **:T_pM&\longrightarrow (T_pM)^{**}\\
-    \sum_{i=1}^n \lambda_iv_{\varepsilon_i}&\longmapsto\left(\sum_{i=1}^n \lambda_iv_{\varepsilon_i}\right)^{**}:=\sum_{i=1}^n \lambda_iv_{\varepsilon_i}^{**}
-\end{aligned}</script><p>是典范同构，并且</p>
-<script type="math/tex; mode=display">
-\forall v_\gamma\in T_pM, w\in T_p^*M,\;v_\gamma^{**}(w)=w(v_\gamma).</script><p>定义 </p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\langle\cdot,\cdot\rangle:T_pM\times T_p^*M&\longrightarrow\mathbb{R}\\
-(v_\gamma,w)&\longmapsto\langle v_\gamma,w\rangle:=w(v_\gamma)
-\end{aligned}</script>
+\dim\left(h(C^\infty_p)\right)\le \dim\left(T_p^*M\right)=n,</script><p>我们最终证明了 $h(C^\infty_p)=T_p^*M$．</p>
+
             </div>
             <hr>
             <div>
