@@ -502,12 +502,12 @@ v_\gamma&\longmapsto\langle v_\gamma,f\rangle,
 \begin{aligned}
 h:C^\infty_p&\longrightarrow T_p^*M\\
 f&\longmapsto\langle\cdot,f\rangle,
-\end{aligned}</script><p>根据 Riesz 表示定理，我们可以证明 <script type="math/tex">h(C^\infty_p)=T_p^*M</script>．这里，我们手动验证一下这个事实。给定坐标卡 $(U,\mathbf{x})$，我们有自然基底 <script type="math/tex">v_{\varepsilon_1},v_{\varepsilon_2},\cdots,v_{\varepsilon_n}</script>．</p>
+\end{aligned}</script><p>根据 Riesz 表示定理，我们可以证明 <script type="math/tex">h(C^\infty_p)=T_p^*M</script>．这里，我们手动验证一下这个事实．给定坐标卡 $(U,\mathbf{x})$，我们有自然基底 <script type="math/tex">v_{\varepsilon_1},v_{\varepsilon_2},\cdots,v_{\varepsilon_n}</script>．</p>
 <p>若</p>
 <script type="math/tex; mode=display">
-\lambda_1\langle\cdot,\tilde{x}_1\rangle+\lambda_2\langle\cdot,\tilde{x}_2\rangle+\cdots+\lambda_n\langle\cdot,\tilde{x}_n\rangle=0,</script><p>注意到</p>
+\lambda_1\langle\cdot,\tilde{x}_1\rangle+\lambda_2\langle\cdot,\tilde{x}_2\rangle+\cdots+\lambda_n\langle\cdot,\tilde{x}_n\rangle=0\tag{1},</script><p>注意到</p>
 <script type="math/tex; mode=display">
-\langle v_{\varepsilon_j},\tilde{x}_i\rangle=\left.\frac{d(\tilde{x}_i\circ\varepsilon_j)}{dt}\right|_0=\delta_{ij},</script><p>让上式依次作用在自然基底的基向量 $v_{\varepsilon_j}(j=1,2\cdots,n)$ 上可得 $\lambda_j=0$．这就证明了 $\dim\left(h(C^\infty_p)\right)\ge n$．又因为</p>
+\langle v_{\varepsilon_i},\tilde{x}_j\rangle=\left.\frac{d(\tilde{x}_j\circ\varepsilon_i)}{dt}\right|_0=\delta_{ij},</script><p>让 $(1)$ 式依次作用在自然基底的基向量 $v_{\varepsilon_i}(i=1,2\cdots,n)$ 上可得 $\lambda_i=0$．这就证明了 $\dim\left(h(C^\infty_p)\right)\ge n$．又因为</p>
 <script type="math/tex; mode=display">
 \dim\left(h(C^\infty_p)\right)\le \dim\left(T_p^*M\right)=n,</script><p>我们最终证明了 $h(C^\infty_p)=T_p^*M$．</p>
 
