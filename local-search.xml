@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>张量 - 理论篇</title>
+    <link href="/cn/2021/07/22/Tensor%20-%20Theory/"/>
+    <url>/cn/2021/07/22/Tensor%20-%20Theory/</url>
+    
+    <content type="html"><![CDATA[<h1 id="万有性质"><a href="#万有性质" class="headerlink" title="万有性质"></a>万有性质</h1><p>万有性质</p><center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"     src="/img/tensor_theory/commutative_diagram_1.svg" width="50%">    <br></center>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+      <tag>代数</tag>
+      
+      <tag>线性代数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>预计算辐射率传递</title>
     <link href="/cn/2021/04/30/Precomputed%20Radiance%20Transfer/"/>
     <url>/cn/2021/04/30/Precomputed%20Radiance%20Transfer/</url>

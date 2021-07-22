@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Hooy">
   <meta name="keywords" content="">
-  <title>预计算辐射率传递 - Topos Cat</title>
+  <title>张量 - 理论篇 - Topos Cat</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/cn/img/precomputed_radiance_transfer/precomputed_radiance_transfer_banner.png') no-repeat center center;
+         style="background: url('/cn/img/differentiable_manifold/differentiable_manifold_banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -193,8 +193,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-30 02:08" pubdate>
-        2021年4月30日 凌晨
+      <time datetime="2021-07-22 20:43" pubdate>
+        2021年7月22日 晚上
       </time>
     </span>
   
@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      88 字
+      8 字
     </span>
   
 
@@ -253,21 +253,22 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">预计算辐射率传递</h1>
+            <h1 style="display: none">张量 - 理论篇</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月9日 晚上
+                  本文最后更新于：2021年7月22日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="漫反射物体"><a href="#漫反射物体" class="headerlink" title="漫反射物体"></a>漫反射物体</h1><p>对于表面只存在漫反射的物体，反射方程可以写作</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    L_o(\boldsymbol{\omega}_o)=\frac{\mathrm{base\_color}}{\pi} \int_{H^2}L_i(\boldsymbol{\omega}_i)V(\boldsymbol{\omega}_i)\mathbf{n}\cdot\boldsymbol{\omega}_i \:d\Omega_i,
-\end{aligned}</script><p>其中 $V(\boldsymbol{\omega}_i)$ 为可见性函数。为简化起见，我们假设 $L_i(\boldsymbol{\omega}_i)$ 是环境光照。</p>
-
+              <h1 id="万有性质"><a href="#万有性质" class="headerlink" title="万有性质"></a>万有性质</h1><p>万有性质</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/img/tensor_theory/commutative_diagram_1.svg" width="50%">
+    <br>
+</center>
             </div>
             <hr>
             <div>
@@ -276,7 +277,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                      <a class="hover-with-bg" href="/cn/categories/%E6%95%B0%E5%AD%A6/">数学</a>
                     
                   </div>
                 
@@ -284,11 +285,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                      <a class="hover-with-bg" href="/cn/tags/%E6%95%B0%E5%AD%A6/">数学</a>
                     
-                      <a class="hover-with-bg" href="/cn/tags/PBR/">PBR</a>
+                      <a class="hover-with-bg" href="/cn/tags/%E4%BB%A3%E6%95%B0/">代数</a>
                     
-                      <a class="hover-with-bg" href="/cn/tags/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93/">实时渲染</a>
+                      <a class="hover-with-bg" href="/cn/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
                     
                   </div>
                 
@@ -301,18 +302,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cn/2021/07/22/Tensor%20-%20Theory/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">张量 - 理论篇</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cn/2021/04/27/Image-Based%20Lighting/">
-                        <span class="hidden-mobile">基于图像的光照</span>
+                      <a href="/cn/2021/04/30/Precomputed%20Radiance%20Transfer/">
+                        <span class="hidden-mobile">预计算辐射率传递</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -496,7 +491,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "预计算辐射率传递&nbsp;",
+        "张量 - 理论篇&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
