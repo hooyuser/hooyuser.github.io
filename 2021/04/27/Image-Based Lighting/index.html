@@ -257,12 +257,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月9日 晚上
+                  本文最后更新于：2021年7月26日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>基于图像的环境光照，是指用一张图片来存储来自每个方向的环境光的辐照率，并利用这张图片进行着色计算．这张图片被称作环境纹理．</p>
+              <h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>基于图像的环境光照，是指用一张图片来存储来自每个方向的环境光的辐射率，并利用这张图片进行着色计算．这张图片被称作环境纹理．</p>
 <p>原始的反射方程为</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>这里我们不考虑环境光以外的其他光照，并假设环境光对于任意着色点 $\mathbf{p}$ 都是相同的，因此环境纹理可以记作 $L_i(\boldsymbol{\omega}_i)$．相应地，反射方程可以写作</p>
