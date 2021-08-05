@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.2k Words
+      4.1k Words
     </span>
   
 
@@ -257,24 +257,24 @@
             
               <p class="note note-info">
                 
-                  Last Update：May 9, 2021 pm
+                  Last Update：August 5, 2021 pm
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>基于图像的环境光照，是指用一张图片来存储来自每个方向的环境光的辐照率，并利用这张图片进行着色计算．这张图片被称作环境纹理．</p>
-<p>原始的反射方程为</p>
+              <h1 id="Image-Based-Real-time-Environment-Lighting"><a href="#Image-Based-Real-time-Environment-Lighting" class="headerlink" title="Image Based Real-time Environment Lighting"></a>Image Based Real-time Environment Lighting</h1><p>Image-based lighting refers to storing the radiance of environment light from each direction with a texture, which is then used for shading calculation. This texture is called environment texture.</p>
+<p>The original reflection equation is</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>这里我们不考虑环境光以外的其他光照，并假设环境光对于任意着色点 $\mathbf{p}$ 都是相同的，因此环境纹理可以记作 $L_i(\boldsymbol{\omega}_i)$．相应地，反射方程可以写作</p>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>Here we do not consider lighting other than environment light. And we assume that the environment light is the same for any shading point $\mathbf{p}$. Thus the environment texture can be denoted as $L_i(\boldsymbol{\omega}_i)$．Accordingly, the reflection equation can be written as</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>在本文中，我们所需的点 $\mathbf{p}$ 处的几何信息只有法向量 $\mathbf{n}$，故上式可写作</p>
+L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>In this article, the geometric information at the point $\mathbf{p}$ that we need is only the normal vector $\mathbf{n}$. So the above formula can be rewritten as</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{n},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{n},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><h2 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h2><h3 id="简化-Fresnel-项"><a href="#简化-Fresnel-项" class="headerlink" title="简化 Fresnel 项"></a>简化 Fresnel 项</h3><p>如果只考虑漫反射，反射方程为</p>
+L_o(\mathbf{n},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{n},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><h2 id="Diffuse-Reflection"><a href="#Diffuse-Reflection" class="headerlink" title="Diffuse Reflection"></a>Diffuse Reflection</h2><h3 id="Simplified-Fresnel-Term"><a href="#Simplified-Fresnel-Term" class="headerlink" title="Simplified Fresnel Term"></a>Simplified Fresnel Term</h3><p>If we only consider the diffuse reflection, the reflection equation is</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     L_o(\mathbf{n},\boldsymbol{\omega}_o)&=\int_{H^2}k_{d} f_{\text {lambert}}L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i\\
     &=\frac{\mathrm{base\_color}(1-\text {metalness})}{\pi} \int_{H^2}\left(1-F\left(\mathbf{h}, \boldsymbol{\omega}_o\right)\right)L_i(\boldsymbol{\omega}_i)\mathbf{n}\cdot\boldsymbol{\omega}_i \:d\Omega_i,
-\end{aligned}</script><p>其中</p>
+\end{aligned}</script><p>where</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 F\left(\mathbf{h}, \boldsymbol{\omega}_o\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \boldsymbol{\omega}_o))^{5}, \\
@@ -468,7 +468,7 @@ B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \bold
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/en/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                      <a class="hover-with-bg" href="/en/categories/Computer-Graphics/">Computer Graphics</a>
                     
                   </div>
                 
@@ -476,7 +476,7 @@ B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \bold
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/en/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2/">计算机图形</a>
+                      <a class="hover-with-bg" href="/en/tags/Computer-Graphics/">Computer Graphics</a>
                     
                       <a class="hover-with-bg" href="/en/tags/PBR/">PBR</a>
                     
