@@ -1304,6 +1304,7 @@ post-content strong {
 }
 .tocbot-is-collapsible {
   overflow: hidden;
+  padding-left: 18px;
   transition: all 300ms ease-in-out;
 }
 @media (max-width: 1024px) {
