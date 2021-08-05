@@ -1287,7 +1287,7 @@ post-content strong {
   display: none;
 }
 .tocbot-list ol {
-  list-style: none;
+  list-style-type: disc;
   padding-left: 1rem;
 }
 .tocbot-list a {
