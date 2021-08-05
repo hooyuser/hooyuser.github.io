@@ -1102,7 +1102,7 @@ input[type=checkbox]:checked:after {
   font-weight: bold;
   line-height: 1.2;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
 }
 .index-btm {
