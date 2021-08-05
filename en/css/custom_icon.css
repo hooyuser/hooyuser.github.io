@@ -14,5 +14,6 @@
 
 .icon-shiyan:before {
     content: "\e643";
-    font-size: 1rem !important;
+    font-size: 1.07rem !important;
+    vertical-align: -1.2px;
 }
