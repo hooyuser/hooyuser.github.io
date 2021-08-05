@@ -267,14 +267,14 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="§-Image-Based-Real-time-Environment-Lighting"><a href="#§-Image-Based-Real-time-Environment-Lighting" class="headerlink" title="§ Image Based Real-time Environment Lighting"></a>§ Image Based Real-time Environment Lighting</h1><p>Image-based lighting refers to storing the radiance of environment light from each direction with a texture, which is then used for shading calculation. This texture is called environment texture.</p>
+              <h1 id="Image-Based-Real-time-Environment-Lighting"><a href="#Image-Based-Real-time-Environment-Lighting" class="headerlink" title="Image Based Real-time Environment Lighting"></a>Image Based Real-time Environment Lighting</h1><p>Image-based lighting refers to storing the radiance of environment light from each direction with a texture, which is then used for shading calculation. This texture is called environment texture.</p>
 <p>The original reflection equation is</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>Here we do not consider lighting other than environment light. And we assume that the environment light is the same for any shading point $\mathbf{p}$. Thus the environment texture can be denoted as $L_i(\boldsymbol{\omega}_i)$．Accordingly, the reflection equation can be written as</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>In this article, the geometric information at the point $\mathbf{p}$ that we need is only the normal vector $\mathbf{n}$. So the above formula can be rewritten as</p>
 <script type="math/tex; mode=display">
-L_o(\mathbf{n},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{n},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><h2 id="§-Diffuse-Reflection"><a href="#§-Diffuse-Reflection" class="headerlink" title="§ Diffuse Reflection"></a>§ Diffuse Reflection</h2><h3 id="§-Simplified-Fresnel-Term"><a href="#§-Simplified-Fresnel-Term" class="headerlink" title="§ Simplified Fresnel Term"></a>§ Simplified Fresnel Term</h3><p>If we only consider the diffuse reflection, the reflection equation is</p>
+L_o(\mathbf{n},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{n},\boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><h2 id="Diffuse-Reflection"><a href="#Diffuse-Reflection" class="headerlink" title="Diffuse Reflection"></a>Diffuse Reflection</h2><h3 id="Simplified-Fresnel-Term"><a href="#Simplified-Fresnel-Term" class="headerlink" title="Simplified Fresnel Term"></a>Simplified Fresnel Term</h3><p>If we only consider the diffuse reflection, the reflection equation is</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     L_o(\mathbf{n},\boldsymbol{\omega}_o)&=\int_{H^2}k_{d} f_{\text {lambert}}L_i(\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i\\
