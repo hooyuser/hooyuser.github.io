@@ -262,18 +262,18 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 22, 2021 am
+                  Last Update：August 6, 2021 am
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <p>Yoneda lemma is a philosophical theorem in category theory. Dan piponi called it “the most difficult ordinary thing in mathematics”, while Emily Riehl said it “can be said to be the most important result in category theory”. On <a target="_blank" rel="noopener" href="https://ncatlab.org/nlab/show/HomePage">nLab</a>, it is considered “basic, but deep and central”. In this paper, we try to describe and prove Yoneda lemma in a clear, motivational and graphic way. At the same time, we introduce its important corollaries: Yoneda embedding and representable functor.</p>
-<h1 id="·-Presheaf-Category"><a href="#·-Presheaf-Category" class="headerlink" title="· Presheaf Category"></a>· Presheaf Category</h1><p>Given two categories $\mathsf{C}_1,\mathsf{C}_2$, we can define a functor category $\mathrm{Fct}(\mathsf{C}_1,\mathsf{C}_2)$. The objects of it consist of functors from $\mathsf{C}_1$ to $\mathsf{C}_2$ and the morphisms are natural tranformations among these functors. The functor category $\mathrm{Fct}(\mathsf{C}_1,\mathsf{C}_2)$ can also be denoted by $[\mathsf{C}_1,\mathsf{C}_2]$. Let $F,G\in[\mathsf{C}_1,\mathsf{C}_2]$. We can denote the set of morphisms between $F,G$ as</p>
+<h1 id="Presheaf-Category"><a href="#Presheaf-Category" class="headerlink" title="Presheaf Category"></a>Presheaf Category</h1><p>Given two categories $\mathsf{C}_1,\mathsf{C}_2$, we can define a functor category $\mathrm{Fct}(\mathsf{C}_1,\mathsf{C}_2)$. The objects of it consist of functors from $\mathsf{C}_1$ to $\mathsf{C}_2$ and the morphisms are natural tranformations among these functors. The functor category $\mathrm{Fct}(\mathsf{C}_1,\mathsf{C}_2)$ can also be denoted by $[\mathsf{C}_1,\mathsf{C}_2]$. Let $F,G\in[\mathsf{C}_1,\mathsf{C}_2]$. We can denote the set of morphisms between $F,G$ as</p>
 <script type="math/tex; mode=display">
 \mathrm{Nat}(F,G):=\mathrm{Hom}_{[\mathsf{C}_1,\mathsf{C}_2]}(F,G).</script><p>Given a category $\mathsf{C}$, the <strong>presheaf category</strong> on  $\mathsf{C}$ is</p>
 <script type="math/tex; mode=display">
 \mathsf{C}^{\wedge}:=[\mathsf{C}^{\mathrm{op}},\mathsf{Set}].</script><p>An objects in the presheaf category is called a presheaf. It is actually a functor from $\mathsf{C}^{\mathrm{op}}$ to $\mathsf{Set}$.</p>
-<h1 id="·-mathrm-Hom-Functor"><a href="#·-mathrm-Hom-Functor" class="headerlink" title="· $\mathrm{Hom}$ Functor"></a>· $\mathrm{Hom}$ Functor</h1><h2 id="·-mathrm-Hom-mathsf-C-Functor"><a href="#·-mathrm-Hom-mathsf-C-Functor" class="headerlink" title="· $\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor"></a>· $\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor</h2><p>Let $\mathsf{C}$ be a category. 它到集合范畴 $\mathsf{Set}$ 的二元函子</p>
+<h1 id="mathrm-Hom-Functor"><a href="#mathrm-Hom-Functor" class="headerlink" title="$\mathrm{Hom}$ Functor"></a>$\mathrm{Hom}$ Functor</h1><h2 id="mathrm-Hom-mathsf-C-Functor"><a href="#mathrm-Hom-mathsf-C-Functor" class="headerlink" title="$\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor"></a>$\mathrm{Hom}_{\mathsf{C}}(-,-)$ Functor</h2><p>Let $\mathsf{C}$ be a category. 它到集合范畴 $\mathsf{Set}$ 的二元函子</p>
 <script type="math/tex; mode=display">
 \mathrm{Hom}_{\mathsf{C}}(-,-): \mathsf{C}^{\mathrm{op}} \times \mathsf{C} \rightarrow \mathsf{Set}.</script><p>定义如下: 其对象映射为</p>
 <script type="math/tex; mode=display">
@@ -293,7 +293,7 @@
     <br>
 </center>
 
-<h2 id="·-mathrm-Hom-mathsf-C-X-Functor"><a href="#·-mathrm-Hom-mathsf-C-X-Functor" class="headerlink" title="· $\mathrm{Hom}_{\mathsf{C}}(X,-)$ Functor"></a>· $\mathrm{Hom}_{\mathsf{C}}(X,-)$ Functor</h2><p>对于 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,-)</script> 函子, 将第一个分量固定为 $X\in \mathrm{Ob}(\mathsf{C})$, 就得到 $\mathrm{Hom}_{\mathsf{C}}(X,-)$ 函子</p>
+<h2 id="mathrm-Hom-mathsf-C-X-Functor"><a href="#mathrm-Hom-mathsf-C-X-Functor" class="headerlink" title="$\mathrm{Hom}_{\mathsf{C}}(X,-)$ Functor"></a>$\mathrm{Hom}_{\mathsf{C}}(X,-)$ Functor</h2><p>对于 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,-)</script> 函子, 将第一个分量固定为 $X\in \mathrm{Ob}(\mathsf{C})$, 就得到 $\mathrm{Hom}_{\mathsf{C}}(X,-)$ 函子</p>
 <script type="math/tex; mode=display">
 \mathrm{Hom}_{\mathsf{C}}(X,-): \mathsf{C} \rightarrow \mathsf{Set}.</script><p>其对象映射为</p>
 <script type="math/tex; mode=display">
@@ -315,7 +315,7 @@
 </center>
 
 <p>映射 $g_*$ 常被称作推出. </p>
-<h2 id="·-mathrm-Hom-mathsf-C-Y-Functor"><a href="#·-mathrm-Hom-mathsf-C-Y-Functor" class="headerlink" title="· $\mathrm{Hom}_{\mathsf{C}}(-,Y)$ Functor"></a>· $\mathrm{Hom}_{\mathsf{C}}(-,Y)$ Functor</h2><p>对于 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,-)</script> 函子, 将第二个分量固定为 $Y\in \mathrm{Ob}(\mathsf{C})$, 就得到 $\mathrm{Hom}_{\mathsf{C}}(-,Y)$ 函子</p>
+<h2 id="mathrm-Hom-mathsf-C-Y-Functor"><a href="#mathrm-Hom-mathsf-C-Y-Functor" class="headerlink" title="$\mathrm{Hom}_{\mathsf{C}}(-,Y)$ Functor"></a>$\mathrm{Hom}_{\mathsf{C}}(-,Y)$ Functor</h2><p>对于 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,-)</script> 函子, 将第二个分量固定为 $Y\in \mathrm{Ob}(\mathsf{C})$, 就得到 $\mathrm{Hom}_{\mathsf{C}}(-,Y)$ 函子</p>
 <script type="math/tex; mode=display">
 \mathrm{Hom}_{\mathsf{C}}(-,Y): \mathsf{C}^{\mathrm{op}}  \rightarrow \mathsf{Set}.</script><p>其对象映射为</p>
 <script type="math/tex; mode=display">
@@ -337,7 +337,7 @@
 </center>
 
 <p>映射 $f^*$ 常被称作拉回. </p>
-<h2 id="·-mathrm-Hom-mathsf-C-cdot-Functor"><a href="#·-mathrm-Hom-mathsf-C-cdot-Functor" class="headerlink" title="· $\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)$ Functor"></a>· $\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)$ Functor</h2><p>可以看出, <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)</script> 函子是 $\mathsf{C}$ 上的一个预层, 即 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)\in [\mathsf{C}^{\mathrm{op}},\mathsf{Set}]</script>. 而且每给定一个 $\mathsf{C}$ 中的对象 $Y$, 就能得到一个对应的预层 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)\in [\mathsf{C}^{\mathrm{op}},\mathsf{Set}]</script>. 事实上, 这种映射关系可以拓展为 $\mathsf{C}$ 到预层范畴 $[\mathsf{C}^{\mathrm{op}},\mathsf{Set}]$ 的一个函子 </p>
+<h2 id="mathrm-Hom-mathsf-C-cdot-Functor"><a href="#mathrm-Hom-mathsf-C-cdot-Functor" class="headerlink" title="$\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)$ Functor"></a>$\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)$ Functor</h2><p>可以看出, <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)</script> 函子是 $\mathsf{C}$ 上的一个预层, 即 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)\in [\mathsf{C}^{\mathrm{op}},\mathsf{Set}]</script>. 而且每给定一个 $\mathsf{C}$ 中的对象 $Y$, 就能得到一个对应的预层 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)\in [\mathsf{C}^{\mathrm{op}},\mathsf{Set}]</script>. 事实上, 这种映射关系可以拓展为 $\mathsf{C}$ 到预层范畴 $[\mathsf{C}^{\mathrm{op}},\mathsf{Set}]$ 的一个函子 </p>
 <script type="math/tex; mode=display">
 \mathrm{Hom}_{\mathsf{C}}(\cdot\,,-):\mathsf{C}\longrightarrow [\mathsf{C}^{\mathrm{op}},\mathsf{Set}].</script><p>其对象映射为</p>
 <script type="math/tex; mode=display">
@@ -371,13 +371,13 @@
     <br>
 </center>
 
-<h1 id="·-Yoneda-Lemma"><a href="#·-Yoneda-Lemma" class="headerlink" title="· Yoneda Lemma"></a>· Yoneda Lemma</h1><h2 id="·-Yoneda-Lemma-the-Proof-of-Isomorphism"><a href="#·-Yoneda-Lemma-the-Proof-of-Isomorphism" class="headerlink" title="· Yoneda Lemma: the Proof of Isomorphism"></a>· Yoneda Lemma: the Proof of Isomorphism</h2><h3 id="·-Proposition"><a href="#·-Proposition" class="headerlink" title="· Proposition"></a>· Proposition</h3><p>设 <script type="math/tex">\mathsf{C}</script> 是一个范畴, $Y$ 是 <script type="math/tex">\mathsf{C}</script> 中一个对象, <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)</script> 就是 <script type="math/tex">\mathsf{C}</script> 上的一个预层. 又设 <script type="math/tex">F\in \mathsf{C}^\wedge</script> 也是 <script type="math/tex">\mathsf{C}</script> 上的预层. 一方面, </p>
+<h1 id="Yoneda-Lemma"><a href="#Yoneda-Lemma" class="headerlink" title="Yoneda Lemma"></a>Yoneda Lemma</h1><h2 id="Yoneda-Lemma-the-Proof-of-Isomorphism"><a href="#Yoneda-Lemma-the-Proof-of-Isomorphism" class="headerlink" title="Yoneda Lemma: the Proof of Isomorphism"></a>Yoneda Lemma: the Proof of Isomorphism</h2><h3 id="Proposition"><a href="#Proposition" class="headerlink" title="Proposition"></a>Proposition</h3><p>设 <script type="math/tex">\mathsf{C}</script> 是一个范畴, $Y$ 是 <script type="math/tex">\mathsf{C}</script> 中一个对象, <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)</script> 就是 <script type="math/tex">\mathsf{C}</script> 上的一个预层. 又设 <script type="math/tex">F\in \mathsf{C}^\wedge</script> 也是 <script type="math/tex">\mathsf{C}</script> 上的预层. 一方面, </p>
 <script type="math/tex; mode=display">
 \mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)</script><p>是 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Y)</script> 与 $F$ 这两个预层之间的自然变换构成的集合. 另一方面, </p>
 <script type="math/tex; mode=display">
 F(Y)</script><p>是预层 $F$ 在 $Y$ 处的取值, 它也是一个集合. Yoneda引理断言, 这两个集合之间存在一个双射, 即</p>
 <script type="math/tex; mode=display">
-\mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)\cong F(Y).</script><h3 id="·-Proof"><a href="#·-Proof" class="headerlink" title="· Proof"></a>· Proof</h3><p>如果 $\phi\in\mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)$, 我们可以在 $\mathsf{C}$ 中任取一个从 $X$ 到 $Y$ 的态射</p>
+\mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)\cong F(Y).</script><h3 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h3><p>如果 $\phi\in\mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)$, 我们可以在 $\mathsf{C}$ 中任取一个从 $X$ 到 $Y$ 的态射</p>
 <script type="math/tex; mode=display">
 X \xrightarrow{f} Y,</script><p>利用 $\phi$ 的自然性得到如下交换图</p>
 <center>
@@ -429,7 +429,7 @@ X_1 \xrightarrow{h} X_2,</script><p>我们有如下交换图</p>
     \mathcal{A}:\mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)&\longrightarrow F(Y),\\
     \phi&\longmapsto \phi_Y(\mathrm{id}_Y).
 \end{aligned}</script><p>是一个双射. </p>
-<h2 id="·-Yoneda-Lemma-the-Proof-of-Natural-Isomorphism"><a href="#·-Yoneda-Lemma-the-Proof-of-Natural-Isomorphism" class="headerlink" title="· Yoneda Lemma: the Proof of Natural Isomorphism"></a>· Yoneda Lemma: the Proof of Natural Isomorphism</h2><p>Yoneda引理不仅指出了映射 $\mathcal{A}$ 给出以下同构</p>
+<h2 id="Yoneda-Lemma-the-Proof-of-Natural-Isomorphism"><a href="#Yoneda-Lemma-the-Proof-of-Natural-Isomorphism" class="headerlink" title="Yoneda Lemma: the Proof of Natural Isomorphism"></a>Yoneda Lemma: the Proof of Natural Isomorphism</h2><p>Yoneda引理不仅指出了映射 $\mathcal{A}$ 给出以下同构</p>
 <script type="math/tex; mode=display">
 \mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(-,Y),F)\cong F(Y),</script><p>还进一步断言该同构关于 $Y$ 和 $F$ 是自然的. </p>
 <p>具体来说, 我们可以定义二元函子</p>
@@ -494,7 +494,7 @@ v:=F_2(g)\circ\eta_{Y_1}=\eta_{Y_2}\circ F_1(g).</script><p>因为</p>
 </center>
 
 <p>因此, 映射 $\mathcal{A}$ 是从函子 $\mathrm{Nat}(\mathrm{Hom}_{\mathsf{C}}(\cdot,-),-)$ 到函子 $\mathrm{ev}^\wedge$ 的自然同构. </p>
-<h2 id="·-Yoneda-Embedding"><a href="#·-Yoneda-Embedding" class="headerlink" title="· Yoneda Embedding"></a>· Yoneda Embedding</h2><p>Yoneda 引理可以导出一个有用的推论. </p>
+<h2 id="Yoneda-Embedding"><a href="#Yoneda-Embedding" class="headerlink" title="Yoneda Embedding"></a>Yoneda Embedding</h2><p>Yoneda 引理可以导出一个有用的推论. </p>
 <div class="note note-primary">
             <p><strong>推论</strong>. <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)</script> 是一个全忠实函子. </p>
           </div>
@@ -518,7 +518,7 @@ v:=F_2(g)\circ\eta_{Y_1}=\eta_{Y_2}\circ F_1(g).</script><p>因为</p>
 <p>注意到 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)</script> 的对象映射是一个单射, 函子 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(\cdot\,,-)</script> 将 $\mathsf{C}$ 作为一个全子范畴嵌入到 $\mathsf{C}$ 的预层范畴 $[\mathsf{C}^{\mathrm{op}},\mathsf{Set}]$ 中. 这个嵌入被称作 <strong>Yoneda 嵌入</strong>. 由全忠实函子的性质可知, </p>
 <script type="math/tex; mode=display">
 Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(-,Y_2).</script><p>从范畴同构的意义上来讲, 我们可以将 $Y$ 与 $\mathrm{Hom}_{\mathsf{C}}(-,Y)$ 等同. 范畴中的某个对象, 就等于指向该对象所有箭头的总和. 换言之, 在范畴同构的思想下, 我们关心的信息就是一个对象自己和其它对象和会给该对象打上哪些箭头, 对象内部则完全被视为一个黑箱. 而范畴中对象之间的箭头, 就等于指向对象的箭头集之间的转换. 具体来说, 假如 $f$ 是对象 $A$ 到对象 $B$ 的一个箭头, 那么任何打到 $A$ 上的箭头, 都可以通过接上一个 $f$, 转换成打到 $B$ 上的箭头. 反过来, 如果有一种方式能将所有打到 $A$ 上的箭头自然地转换成打到 $B$ 上的箭头, 那么这种转换必然是通过接上一个 $A, B$ 间的箭头来实现的.  </p>
-<h1 id="·-Representable-Functor"><a href="#·-Representable-Functor" class="headerlink" title="· Representable Functor"></a>· Representable Functor</h1><p>范畴 $\mathsf{C}$ 上的一个预层 $F:\mathsf{C}^{\mathrm{op}}\to\mathsf{Set}$ 被称作 <strong>可表函子</strong>, 如果存在 $\mathsf{C}$ 中的一个对象 $Z$, 使得 $\mathrm{Hom}_{\mathsf{C}}(-,Z)$ 与 $F$ 自然同构. 对象 $A$ 与自然同构</p>
+<h1 id="Representable-Functor"><a href="#Representable-Functor" class="headerlink" title="Representable Functor"></a>Representable Functor</h1><p>范畴 $\mathsf{C}$ 上的一个预层 $F:\mathsf{C}^{\mathrm{op}}\to\mathsf{Set}$ 被称作 <strong>可表函子</strong>, 如果存在 $\mathsf{C}$ 中的一个对象 $Z$, 使得 $\mathrm{Hom}_{\mathsf{C}}(-,Z)$ 与 $F$ 自然同构. 对象 $A$ 与自然同构</p>
 <script type="math/tex; mode=display">
 \phi:\mathrm{Hom}_{\mathsf{C}}(-,Z)\longrightarrow F</script><p>构成的二元组 $(Z,\phi)$, 称作 $F$ 的一个 <strong>表示</strong>. </p>
 <p>根据 Yoneda 引理, $\phi$ 由 $F(Z)$ 中的一个元素 $c:=\phi_Z(\mathrm{id}_Z)\in F(Z)$ 唯一确定. 基于这个原因, $(Z,c)$ 被称作 $F$ 的一个代表元, 其中的 $Z$ 被称作 $F$ 的 <strong>表示对象</strong>（representing object）或 <strong>泛对象</strong>（universal object）, 而 $c$ 被称作 $F$ 的 <strong>泛元</strong>（universal element）. </p>

@@ -262,12 +262,12 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 22, 2021 am
+                  Last Update：August 6, 2021 am
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="·-Bidirectional-Reflectance-Distribution-Function"><a href="#·-Bidirectional-Reflectance-Distribution-Function" class="headerlink" title="· Bidirectional Reflectance Distribution Function"></a>· Bidirectional Reflectance Distribution Function</h1><p>Given a reflection plane, the irradiance from the incident light at the point $\mathbf{p}$ can be written as</p>
+              <h1 id="Bidirectional-Reflectance-Distribution-Function"><a href="#Bidirectional-Reflectance-Distribution-Function" class="headerlink" title="Bidirectional Reflectance Distribution Function"></a>Bidirectional Reflectance Distribution Function</h1><p>Given a reflection plane, the irradiance from the incident light at the point $\mathbf{p}$ can be written as</p>
 <script type="math/tex; mode=display">
 E_i(\mathbf{p})=\int_{H^2} L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i,</script><p>where $d\Omega_i=\sin\theta_i\: d\theta_i\:d\phi_i$. The intuitive understanding of the above formula is that the incident light all over the hemisphere is divided into the incident light from many small cones,  in which the irradiance contributed by the small cones in the direction $\boldsymbol{\omega}_i$ is $L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i$. The total irradiance $E_i(\mathbf{p})$ from the incident light can be obtained by adding up the irradiance contributed by all the small cones.</p>
 <p>The above formula is sometimes written in differential form</p>
@@ -283,14 +283,14 @@ dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)=f_{\mathrm{r}}\left
 f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=\frac{dL_o(\mathbf{p},\boldsymbol{\omega}_o,\boldsymbol{\omega}_i)}{dE_i(\mathbf{p},\boldsymbol{\omega}_i)}.</script><p>The function $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$ derived above is called <strong>bidirectional reflectance distribution function</strong>, or BRDF for short. The equation derived above</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>is called <strong>reflection equation</strong>.</p>
-<h1 id="·-Properties"><a href="#·-Properties" class="headerlink" title="· Properties"></a>· Properties</h1><p>Physics based BRDF should have the following three properties:</p>
+<h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><p>Physics based BRDF should have the following three properties:</p>
 <ol>
 <li>Nonnegativity: $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\ge 0$;</li>
 <li>Helmholtz reciprocity: <script type="math/tex">f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)=f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}_o\right)</script>;</li>
 <li>Conservation of energy:<script type="math/tex; mode=display">
 \forall\boldsymbol{\omega}_i,\quad\int_{H^2} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)\cos\theta_o\:d\Omega_o\le 1.</script></li>
 </ol>
-<h1 id="·-Calculation"><a href="#·-Calculation" class="headerlink" title="· Calculation"></a>· Calculation</h1><p>There are three common ways to deal with integral</p>
+<h1 id="Calculation"><a href="#Calculation" class="headerlink" title="Calculation"></a>Calculation</h1><p>There are three common ways to deal with integral</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><ol>
 <li><p>The first kind of surface integral on the unit hemisphere, which can be parameterized by spherical coordinates</p>
@@ -301,7 +301,7 @@ L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{0}^{2\pi}\int_{0}^{\frac{\pi}{2}}f_{
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{A} f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i) \cos \theta_{i} \frac{\cos \theta^\prime \mathrm{d} A}{r^{2}},</script></li>
 </ol>
 <p>where $\theta^\prime$ is the angle between the normal vector at some point on surface $A$ and $-\boldsymbol{\omega}_i$.</p>
-<h1 id="·-Instance-the-BRDF-applied-by-UE4"><a href="#·-Instance-the-BRDF-applied-by-UE4" class="headerlink" title="· Instance: the BRDF applied by UE4"></a>· Instance: the BRDF applied by UE4</h1><p>UE4 engine uses the following BRDF</p>
+<h1 id="Instance-the-BRDF-applied-by-UE4"><a href="#Instance-the-BRDF-applied-by-UE4" class="headerlink" title="Instance: the BRDF applied by UE4"></a>Instance: the BRDF applied by UE4</h1><p>UE4 engine uses the following BRDF</p>
 <script type="math/tex; mode=display">
 f_{r}\left(\omega_{i}, \omega_{o}\right)=k_{d} f_{\text {lambert}}+f_{s}</script><p>where</p>
 <script type="math/tex; mode=display">
@@ -311,19 +311,19 @@ f_{s}=\dfrac{F\left(\mathbf{h}, \mathbf{v}\right) G(\mathbf{l}, \mathbf{v}) D(\m
 k_{s}=F\left(\mathbf{h}, \mathbf{v}\right) \\
 k_{d}=\left(1-k_{s}\right)(1-\text {metalness}).
 \end{array}</script><p>In the above formula, $\mathbf{n}$ is the unit normal vector, $\mathbf{l}$ is the unit incident vector, $\mathbf{v}$ is the unit reflection vector, $\mathbf{h}=(\mathbf{l}+\mathbf{v})/\Vert\mathbf{l}+\mathbf{v}\Vert$ is the microplane unit normal vector. Next, we will describe the specific forms of functions $F,D,G$.</p>
-<h2 id="·-Normal-Distribution-Function-D"><a href="#·-Normal-Distribution-Function-D" class="headerlink" title="· Normal Distribution Function $D$"></a>· Normal Distribution Function $D$</h2><p>GGX (Trowbridge-Reitz) Distribution</p>
+<h2 id="Normal-Distribution-Function-D"><a href="#Normal-Distribution-Function-D" class="headerlink" title="Normal Distribution Function $D$"></a>Normal Distribution Function $D$</h2><p>GGX (Trowbridge-Reitz) Distribution</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \alpha&=\text {roughness}^{2}\\
 D(\mathbf{h})&=\dfrac{\alpha^{2}}{\pi\left((\mathbf{n} \cdot \mathbf{h})^{2}\left(\alpha^{2}-1\right)+1\right)^{2}}
-\end{align}</script><h2 id="·-Geometry-Function-G"><a href="#·-Geometry-Function-G" class="headerlink" title="· Geometry Function $G$"></a>· Geometry Function $G$</h2><p>GGX-Smith correlated joint approximate formula</p>
+\end{align}</script><h2 id="Geometry-Function-G"><a href="#Geometry-Function-G" class="headerlink" title="Geometry Function $G$"></a>Geometry Function $G$</h2><p>GGX-Smith correlated joint approximate formula</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \alpha&=\text {roughness}^{2} \\
 \Lambda(\mathbf{v})&=(\mathbf{n} \cdot \mathbf{l})((\mathbf{n} \cdot \mathbf{v})(1-\alpha)+\alpha) \\
 \Lambda(\mathbf{l})&=(\mathbf{n} \cdot \mathbf{v})((\mathbf{n} \cdot \mathbf{l})(1-\alpha)+\alpha) \\
 G(\mathbf{l}, \mathbf{v})&=\frac{2(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})}{\Lambda(\mathbf{v})+\Lambda(\mathbf{l})}
-\end{align}</script><h2 id="·-Fresnel-Term-F"><a href="#·-Fresnel-Term-F" class="headerlink" title="· Fresnel Term $F$"></a>· Fresnel Term $F$</h2><p>Fresnel-Schlick approximate formula</p>
+\end{align}</script><h2 id="Fresnel-Term-F"><a href="#Fresnel-Term-F" class="headerlink" title="Fresnel Term $F$"></a>Fresnel Term $F$</h2><p>Fresnel-Schlick approximate formula</p>
 <script type="math/tex; mode=display">
 \begin{align}
 F\left(\mathbf{h}, \mathbf{v}\right)&=F_{0}+\left(1-F_{0}\right)(1-(\mathbf{h} \cdot \mathbf{v}))^{5} \\

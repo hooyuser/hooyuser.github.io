@@ -262,12 +262,12 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 22, 2021 am
+                  Last Update：August 6, 2021 am
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="·-Algorithm"><a href="#·-Algorithm" class="headerlink" title="· Algorithm"></a>· Algorithm</h1><p>The dynamics of an object can be described by $n$ vertices and $M$ constraints on vertex position. The mass, position and velocity of the $i$-th vertex are denoted as <script type="math/tex">m_i,\mathbf{x}_i,\mathbf{v}_i</script> respectively. The $j$-th constraint may be an equality or inequality, written as</p>
+              <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><p>The dynamics of an object can be described by $n$ vertices and $M$ constraints on vertex position. The mass, position and velocity of the $i$-th vertex are denoted as <script type="math/tex">m_i,\mathbf{x}_i,\mathbf{v}_i</script> respectively. The $j$-th constraint may be an equality or inequality, written as</p>
 <script type="math/tex; mode=display">
 C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})=0\quad \text{或}\quad C_{j}(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})\ge0.</script><p>We use the symbol $\succ$ to denote $=$ or $\ge$ and let <script type="math/tex">\mathbf{x}=(\mathbf{x}_{1}, \cdots, \mathbf{x}_{N})</script>. Then the $j$-th constraint is denoted as <script type="math/tex">C_{j}(\mathbf{x})\succ 0</script>.</p>
 <p>Position based dynamics can be abbreviated as PBD. The algorithm first calculates the initial predicted position of each vertex <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script>, and then try to move <script type="math/tex">\mathbf{p}_i(i=1,2,\cdots,N)</script> to satisfy all the constraints</p>
@@ -285,7 +285,7 @@ C_j\succ 0(j=1,2,\cdots,M).</script><p>The specific algorithm of PBD can be repr
     padding: 10px;">Figure 1 - Pseudo code for PBD</div>
 </center>
 
-<h1 id="·-Solver"><a href="#·-Solver" class="headerlink" title="· Solver"></a>· Solver</h1><p>在PBD伪代码中, 第8至第10行是求解器的迭代求解. 这里的函数</p>
+<h1 id="Solver"><a href="#Solver" class="headerlink" title="Solver"></a>Solver</h1><p>在PBD伪代码中, 第8至第10行是求解器的迭代求解. 这里的函数</p>
 <script type="math/tex; mode=display">
 \mathrm{ projectConstraints }\left(C_{1}, \cdots, C_{M + M_{\mathrm{Coll }}}, \mathbf{p}_{1}, \ldots, \mathbf{p}_{N}\right)</script><p>是方程/不等式组</p>
 <script type="math/tex; mode=display">
@@ -320,7 +320,7 @@ C_{j}(\mathbf{p}+\Delta \mathbf{p})\approx C_{j}(\mathbf{p})+\nabla C_{j}(\mathb
     padding: 10px;">图2 - $\mathrm{projectConstraints}$ 求解器伪代码</div>
 </center>
 
-<h1 id="·-Specific-constraints"><a href="#·-Specific-constraints" class="headerlink" title="· Specific constraints"></a>· Specific constraints</h1><h2 id="·-Stretch"><a href="#·-Stretch" class="headerlink" title="· Stretch"></a>· Stretch</h2><p>拉伸约束为</p>
+<h1 id="Specific-constraints"><a href="#Specific-constraints" class="headerlink" title="Specific constraints"></a>Specific constraints</h1><h2 id="Stretch"><a href="#Stretch" class="headerlink" title="Stretch"></a>Stretch</h2><p>拉伸约束为</p>
 <script type="math/tex; mode=display">
 C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d,</script><p>其中 $d$ 代表初始长度。计算梯度, 可得</p>
 <script type="math/tex; mode=display">
@@ -341,15 +341,15 @@ C(\mathbf{p}_1,\mathbf{p}_2) = \left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert -
 \lambda&=\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2},\\
 \Delta \mathbf{p}_1&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_1\frac{\mathbf{p}_1-\mathbf{p}_2}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_1}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_2-\mathbf{p}_1),\\
 \Delta \mathbf{p}_2&=-\frac{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert - d}{w_1+w_2}w_2\frac{\mathbf{p}_2-\mathbf{p}_1}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}=\frac{w_2}{w_1+w_2}\left(1-\frac{d}{\left\Vert \mathbf{p}_1-\mathbf{p}_2\right\Vert}\right)(\mathbf{p}_1-\mathbf{p}_2).
-\end{aligned}</script><h2 id="·-SDF-Collision"><a href="#·-SDF-Collision" class="headerlink" title="· SDF Collision"></a>· SDF Collision</h2><p>SDF碰撞约束为</p>
+\end{aligned}</script><h2 id="SDF-Collision"><a href="#SDF-Collision" class="headerlink" title="SDF Collision"></a>SDF Collision</h2><p>SDF碰撞约束为</p>
 <script type="math/tex; mode=display">
 C(\mathbf{p}_i) = \mathrm{SDF}(\mathbf{p}_i).</script><p>矫正量</p>
 <script type="math/tex; mode=display">
-\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= -\frac{\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="·-Example：SDF-collision-for-sphere"><a href="#·-Example：SDF-collision-for-sphere" class="headerlink" title="· Example：SDF collision for sphere"></a>· Example：SDF collision for sphere</h3><p>给定半径为 $r$ 的球面, 它的SDF碰撞约束为</p>
+\Delta\mathbf{p}_i = - \frac{\mathrm{SDF}(\mathbf{p}_i)}{w_i\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}w_i\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)= -\frac{\mathrm{SDF}(\mathbf{p}_i)}{\left\Vert\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i)\right\Vert^2}\nabla_{\mathbf{p}_i}\mathrm{SDF}(\mathbf{p}_i).</script><h3 id="Example：SDF-collision-for-sphere"><a href="#Example：SDF-collision-for-sphere" class="headerlink" title="Example：SDF collision for sphere"></a>Example：SDF collision for sphere</h3><p>给定半径为 $r$ 的球面, 它的SDF碰撞约束为</p>
 <script type="math/tex; mode=display">
 C(\mathbf{p}_i) = \left\Vert\mathbf{p}_i\right\Vert-r.</script><p>矫正量</p>
 <script type="math/tex; mode=display">
-\Delta\mathbf{p}_i = -\frac{\left\Vert\mathbf{p}_i\right\Vert-r}{\left\Vert\mathbf{p}_i\right\Vert^2/\left\Vert\mathbf{p}_i\right\Vert^2}\frac{\mathbf{p}_i}{\left\Vert\mathbf{p}_i\right\Vert}=\left(\frac{r}{\left\Vert\mathbf{p}_i\right\Vert}-1\right)\mathbf{p}_i.</script><h3 id="·-The-calculation-of-numerical-integral"><a href="#·-The-calculation-of-numerical-integral" class="headerlink" title="· The calculation of numerical integral"></a>· The calculation of numerical integral</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
+\Delta\mathbf{p}_i = -\frac{\left\Vert\mathbf{p}_i\right\Vert-r}{\left\Vert\mathbf{p}_i\right\Vert^2/\left\Vert\mathbf{p}_i\right\Vert^2}\frac{\mathbf{p}_i}{\left\Vert\mathbf{p}_i\right\Vert}=\left(\frac{r}{\left\Vert\mathbf{p}_i\right\Vert}-1\right)\mathbf{p}_i.</script><h3 id="The-calculation-of-numerical-integral"><a href="#The-calculation-of-numerical-integral" class="headerlink" title="The calculation of numerical integral"></a>The calculation of numerical integral</h3><p>我们可以使用四面体技巧对 SDF 数值微分的计算进行优化。设</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     \mathbf{k}_0&=(1,-1,-1)\\

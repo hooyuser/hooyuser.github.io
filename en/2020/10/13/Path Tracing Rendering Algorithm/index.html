@@ -210,7 +210,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k Words
+      4.6k Words
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      74
+      73
        Minutes
     </span>
   
@@ -262,12 +262,12 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 22, 2021 am
+                  Last Update：August 6, 2021 am
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="·-Monte-Carlo-integration-method"><a href="#·-Monte-Carlo-integration-method" class="headerlink" title="· Monte Carlo integration method"></a>· Monte Carlo integration method</h1><h2 id="·-Importance-Sampling"><a href="#·-Importance-Sampling" class="headerlink" title="· Importance Sampling"></a>· Importance Sampling</h2><p>Monte Carlo integration method is a numerical method for solving definite integrals. It is assumed that the following integrals need to be calculated.</p>
+              <h1 id="Monte-Carlo-integration-method"><a href="#Monte-Carlo-integration-method" class="headerlink" title="Monte Carlo integration method"></a>Monte Carlo integration method</h1><h2 id="Importance-Sampling"><a href="#Importance-Sampling" class="headerlink" title="Importance Sampling"></a>Importance Sampling</h2><p>Monte Carlo integration method is a numerical method for solving definite integrals. It is assumed that the following integrals need to be calculated.</p>
 <script type="math/tex; mode=display">
 I=\int_a^b f(x)dx.</script><p>First, take a continuous random variable $X$ and its probability density function $p(x)$ is required to satisfy</p>
 <script type="math/tex; mode=display">
@@ -299,7 +299,7 @@ I_N=\frac{1}{N}\sum_{i=1}^N\frac{f(X_i)}{p(X_i)}=\frac{1}{N}\sum_{i=1}^N Y_i,</s
 <p>如果我们简单地让 $X$ 服从 $[a,b]$ 上的均匀分布. 此时估计量为</p>
 <script type="math/tex; mode=display">
 I_N=\frac{b-a}{N}\sum_{i=1}^Nf(X_i).</script><p>直觉上看, 这就是将积分区间等分成 $N$ 段, 用 $N$ 个面积为 <script type="math/tex">\frac{b-a}{N}\cdot f(X_i)</script> 的矩形来估计曲边梯形. 如果我们希望在某个子区间采样数翻倍, 那么这个子区间需要分成两半, 将一个矩形换成宽度为 $\frac{b-a}{2N}$ 的两个矩形. 推而广之就是采样概率越大的区域, 单个样本的权重就越小. 这也是为什么 $I_{N}$ 中要除以 $p(X_i)$ 的原因. </p>
-<h2 id="·-Multiple-Importance-Sampling"><a href="#·-Multiple-Importance-Sampling" class="headerlink" title="· Multiple Importance Sampling"></a>· Multiple Importance Sampling</h2><p>假定需要计算的是下面的积分</p>
+<h2 id="Multiple-Importance-Sampling"><a href="#Multiple-Importance-Sampling" class="headerlink" title="Multiple Importance Sampling"></a>Multiple Importance Sampling</h2><p>假定需要计算的是下面的积分</p>
 <script type="math/tex; mode=display">
 I=\int_a^b f(x)g(x)dx,</script><p>并且已知概率密度函数 $p_X(x)$ 和 $p_Y(x)$ 分别能较好地吻合 $f(x)$ 和 $g(x)$ 的形状, 即它们分别能对</p>
 <script type="math/tex; mode=display">
@@ -318,7 +318,7 @@ I_{n_{f},n_g}=\frac{1}{n_{f}} \sum_{i=1}^{n_{f}} \frac{f\left(X_{i}\right) g\lef
 \end{aligned}</script><p>即 <script type="math/tex">I_{n_{f},n_{g}}</script> 确实是 $I$ 的无偏估计量. 实践中, 常使用如下形式的启发式权重函数</p>
 <script type="math/tex; mode=display">
 w_{f}(x)=\frac{\left(n_{f} p_{X}(x)\right)^{\beta}}{\left(n_{f} p_{X}(x)\right)^{\beta}+\left(n_{g} p_{Y}(x)\right)^{\beta}},\quad w_{g}(x)=\frac{\left(n_{g} p_{Y}(x)\right)^{\beta}}{\left(n_{f} p_{X}(x)\right)^{\beta}+\left(n_{g} p_{Y}(x)\right)^{\beta}}.</script><p>当 $\beta=2$ 时, 往往效果会较好. </p>
-<h1 id="·-Light-Transport-Equation"><a href="#·-Light-Transport-Equation" class="headerlink" title="· Light Transport Equation"></a>· Light Transport Equation</h1><h2 id="·-Basic-Form"><a href="#·-Basic-Form" class="headerlink" title="· Basic Form"></a>· Basic Form</h2><p>之前我们已经见过了反射方程</p>
+<h1 id="Light-Transport-Equation"><a href="#Light-Transport-Equation" class="headerlink" title="Light Transport Equation"></a>Light Transport Equation</h1><h2 id="Basic-Form"><a href="#Basic-Form" class="headerlink" title="Basic Form"></a>Basic Form</h2><p>之前我们已经见过了反射方程</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>如果我们将描述表面反射的双向反射分布函数 $f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$ 替换为双向散射分布函数 $f\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)$, 并加入自发光辐照率 $L_e(\mathbf{p},\boldsymbol{\omega}_o)$, 那么就得到了如下含自发光项的散射方程</p>
 <script type="math/tex; mode=display">
@@ -330,7 +330,7 @@ L_i(\mathbf{p},\boldsymbol{\omega}_i)=L_o(t(\mathbf{p},\boldsymbol{\omega}_i),-\
 L(\mathbf{p},\boldsymbol{\omega}_o)=L_e(\mathbf{p},\boldsymbol{\omega}_o)+\int_{S^2}f\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L(t(\mathbf{p},\boldsymbol{\omega}_i),-\boldsymbol{\omega}_i)\left|\cos\theta_i\right|d\Omega_i.</script><p>光线传输方程也叫做称渲染方程（rendering equation）, 它是关于函数 $L(\mathbf{p},\boldsymbol{\omega}_o)$ 的积分方程, 描述了均衡状态下物体表面任意一点、沿任意方向的辐照率. 实际上, 我们可以也可以得到场景中任意一点、沿任意方向的辐照率, 因为借助前面导出的关系式</p>
 <script type="math/tex; mode=display">
 L(\mathbf{p},\boldsymbol{\omega})=L(t(\mathbf{p},\boldsymbol{\omega}),-\boldsymbol{\omega}),</script><p>我们可以将场景中的辐照率转化为物体表面的辐照率.  </p>
-<h2 id="·-Surface-Form"><a href="#·-Surface-Form" class="headerlink" title="· Surface Form"></a>· Surface Form</h2><p>在上面的光线传输方程中, 场景中物体表面的几何信息全部隐藏在了光线投射函数 $t(\mathbf{p},\boldsymbol{\omega})$ 里. 为了让这些信息显式地表达出来, 我们将导出表面形式的光线传输方程. </p>
+<h2 id="Surface-Form"><a href="#Surface-Form" class="headerlink" title="Surface Form"></a>Surface Form</h2><p>在上面的光线传输方程中, 场景中物体表面的几何信息全部隐藏在了光线投射函数 $t(\mathbf{p},\boldsymbol{\omega})$ 里. 为了让这些信息显式地表达出来, 我们将导出表面形式的光线传输方程. </p>
 <p>之前在对某点各个方向上的入射光做积分时, 我们是在单位球上做积分. 考虑到某点接收的入射光实际上来自于其他物体表面各点的出射光, 我们也可以把单位球上的积分转化为其他物体表面上的积分. 如果我们要用蒙特卡洛积分法估计该积分, 那么我们的采样区域将从单位球转到其他物体的表面. </p>
 <p>下面引入一些记号. 如果从 $\mathbf{p}^\prime$ 点沿 $\boldsymbol{\omega}$ 方向出发的射线经过了 $\mathbf{p}$ 点, 我们记</p>
 <script type="math/tex; mode=display">
@@ -359,7 +359,7 @@ G\left(\mathbf{p} \leftrightarrow \mathbf{p}^{\prime}\right)=V\left(\mathbf{p} \
 <p>当 $V\left(\mathbf{p} \leftrightarrow \mathbf{p}^{\prime}\right)=1$ 时, 光线传输方程可以重写成场景中所有物体表面 $A$ 上的积分</p>
 <script type="math/tex; mode=display">
 L\left(\mathbf{p}^{\prime} \rightarrow \mathbf{p}\right)=L_{\mathrm{e}}\left(\mathbf{p}^{\prime} \rightarrow \mathbf{p}\right)+\int_{A} f\left(\mathbf{p}^{\prime \prime} \rightarrow \mathbf{p}^{\prime} \rightarrow \mathbf{p}\right) L\left(\mathbf{p}^{\prime \prime} \rightarrow \mathbf{p}^{\prime}\right) G\left(\mathbf{p}^{\prime \prime} \leftrightarrow \mathbf{p}^{\prime}\right)\: d A\left(\mathbf{p}^{\prime \prime}\right).</script><p>这就是表面形式的光线传输方程. </p>
-<h2 id="·-Path-Integral-Form"><a href="#·-Path-Integral-Form" class="headerlink" title="· Path Integral Form"></a>· Path Integral Form</h2><p>表面形式的光线传输方程给出了 $L\left(\mathbf{p}_{i+1} \rightarrow \mathbf{p}_i\right)$ 关于 $i$ 的递推关系</p>
+<h2 id="Path-Integral-Form"><a href="#Path-Integral-Form" class="headerlink" title="Path Integral Form"></a>Path Integral Form</h2><p>表面形式的光线传输方程给出了 $L\left(\mathbf{p}_{i+1} \rightarrow \mathbf{p}_i\right)$ 关于 $i$ 的递推关系</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 &L\left(\mathbf{p}_{i+1} \rightarrow \mathbf{p}_i\right)\\
@@ -379,10 +379,10 @@ T\left(\overline{\mathbf{p}}_{n}\right):=\prod_{i=1}^{n-1} f\left(\mathbf{p}_{i+
 <p>我们可以将 <script type="math/tex">L\left(\mathbf{p}_{1}\to\mathbf{p}_{0}\right)</script> 写成级数形式</p>
 <script type="math/tex; mode=display">
 L\left(\mathbf{p}_{1} \rightarrow \mathbf{p}_{0}\right)=\sum_{n=1}^{\infty} P\left(\overline{\mathbf{p}}_{n}\right).</script><p>这被称作路径积分形式的光线传输方程. 注意到等式右端不再包含 $L$, 因此, 我们实际上以级数形式显式地写出了光线传输方程的解. <script type="math/tex">P\left(\overline{\mathbf{p}}_{1}\right)</script> 表示从光源直接射向照相机的光, <script type="math/tex">P\left(\overline{\mathbf{p}}_{2}\right)</script> 表示经过一次散射的直接光, <script type="math/tex">P\left(\overline{\mathbf{p}}_{3}\right),P\left(\overline{\mathbf{p}}_{4}\right),\cdots</script> 表示经过多次散射的间接光. </p>
-<h1 id="·-Path-Tracing-Algorithm"><a href="#·-Path-Tracing-Algorithm" class="headerlink" title="· Path Tracing Algorithm"></a>· Path Tracing Algorithm</h1><p>路径追踪算法（path tracing algorithm）的目标是估计</p>
+<h1 id="Path-Tracing-Algorithm"><a href="#Path-Tracing-Algorithm" class="headerlink" title="Path Tracing Algorithm"></a>Path Tracing Algorithm</h1><p>路径追踪算法（path tracing algorithm）的目标是估计</p>
 <script type="math/tex; mode=display">
 L\left(\mathbf{p}_{1} \rightarrow \mathbf{p}_{0}\right)=\sum_{n=1}^{\infty} P\left(\overline{\mathbf{p}}_{n}\right).</script><p>的值. 需要解决的问题有两个: 第一个是如何估计无穷求和, 第二个是如何估计积分项 $P\left(\overline{\mathbf{p}}_{n}\right)$. </p>
-<h2 id="·-Russian-Roulette"><a href="#·-Russian-Roulette" class="headerlink" title="· Russian Roulette"></a>· Russian Roulette</h2><p>无穷求和的困难可以由所谓的俄罗斯轮盘赌（Russian roulette）解决. </p>
+<h2 id="Russian-Roulette"><a href="#Russian-Roulette" class="headerlink" title="Russian Roulette"></a>Russian Roulette</h2><p>无穷求和的困难可以由所谓的俄罗斯轮盘赌（Russian roulette）解决. </p>
 <p>假设我们有办法得到任意一个 <script type="math/tex">P\left(\overline{\mathbf{p}}_{n}\right)</script> 的无偏估计量 <script type="math/tex">\widehat{P}\left(\overline{\mathbf{p}}_{n}\right)</script>, 那么我们可以立刻写出 <script type="math/tex">\sum\limits_{n=1}^{\infty} {P} \left(\overline{\mathbf{p}}_{n}\right)</script> 的一个无偏估计量</p>
 <script type="math/tex; mode=display">
 \sum_{n=1}^{\infty} \widehat{P} \left(\overline{\mathbf{p}}_{n}\right).</script><p>但问题是在现实中, 我们只能获得有限项的 <script type="math/tex">\widehat{P}\left(\overline{\mathbf{p}}_{n}\right)</script>. 俄罗斯轮盘赌的想法, 就是以一定概率 $q$ 丢弃第 $N$ 项之后的所有项之和 <script type="math/tex">\sum\limits_{n=N}^{\infty} \widehat{P} \left(\overline{\mathbf{p}}_{n}\right)</script>. 而在没有被丢弃的情况下, 放大 <script type="math/tex">\sum\limits_{n=N}^{\infty} \widehat{P} \left(\overline{\mathbf{p}}_{n}\right)</script> 作为补偿. </p>
@@ -422,7 +422,7 @@ L\left(\mathbf{p}_{1} \rightarrow \mathbf{p}_{0}\right)=\sum_{n=1}^{\infty} P\le
 &=\sum_{n=1}^{2} P\left(\overline{\mathbf{p}}_{n}\right)+\sum_{n=3}^{\infty}\frac{1}{(1-q)^{n-2}} P\left(\overline{\mathbf{p}}_{n}\right)(1-q)^{n-2}\\
 &=\sum_{n=1}^{\infty} P\left(\overline{\mathbf{p}}_{n}\right).
 \end{aligned}</script><p>注意到 $\mathrm{P}(\tau&lt;\infty)=1$, 即 $\widehat{Q}$ 为有限项的概率为 $1$, 我们完全可以在现实中求出 $\widehat{Q}$ 的估计值. </p>
-<h2 id="·-Pseudo-Code"><a href="#·-Pseudo-Code" class="headerlink" title="· Pseudo Code"></a>· Pseudo Code</h2><p>路径追踪算法的伪代码如下: </p>
+<h2 id="Pseudo-Code"><a href="#Pseudo-Code" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h2><p>路径追踪算法的伪代码如下: </p>
 <pre><code>shade(p, wo):
     # Contribution from the light source.
     uniformly sample the light at x’ (pdf_light = 1 / A);
