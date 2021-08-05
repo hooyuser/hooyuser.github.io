@@ -1280,7 +1280,7 @@ post-content strong {
   -ms-overflow-style: none;
 }
 #tocbot ol {
-  list-style: none;
+  list-style-type: disc;
   padding-inline-start: 1rem;
 }
 #tocbot::-webkit-scrollbar {
