@@ -1275,7 +1275,6 @@ post-content strong {
 }
 #tocbot {
   max-height: 100%;
-  overflow-y: auto;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 }
