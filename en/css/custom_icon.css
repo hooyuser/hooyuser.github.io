@@ -7,7 +7,6 @@
 
 .iconfont {
     font-family: "iconfont" !important;
-    font-size: 1rem !important;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -15,4 +14,5 @@
 
 .icon-shiyan:before {
     content: "\e643";
+    font-size: 1rem !important;
 }
