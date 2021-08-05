@@ -205,7 +205,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.7k Words
+      3.6k Words
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      61
+      63
        Minutes
     </span>
   
@@ -257,7 +257,7 @@
             
               <p class="note note-info">
                 
-                  Last Update：April 22, 2021 am
+                  Last Update：August 5, 2021 pm
                 
               </p>
             
@@ -277,11 +277,11 @@
 </center>
 
 <p>At the same time, there may exist emission in the medium.</p>
-<h2 id="·-Absorption"><a href="#·-Absorption" class="headerlink" title="· Absorption"></a>· Absorption</h2><p>Absorption is described by the <strong>absorption cross section</strong> of the medium, usually denoted as $\sigma_a$. 假设沿 $\boldsymbol{\omega}$ 方向的光线与点 $\bf p$ 处的介质发生作用, $\sigma_a(\mathbf{p},\boldsymbol{\omega})$ 表示光线在点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向行进单位长度后, 被吸收的辐照率占原先辐照率的比值, 也可以理解为光被吸收的概率. 如果不考虑光在介质中的散射, 即光始终沿直线传播, 那么我们可以得到关于辐照率的如下公式</p>
+<h2 id="·-Absorption"><a href="#·-Absorption" class="headerlink" title="· Absorption"></a>· Absorption</h2><p>Absorption is described by the <strong>absorption cross section</strong> of the medium, usually denoted as $\sigma_a$. Suppose that the light along $\boldsymbol{\omega}$ interacts with the medium at the point $\bf p$. Let $\sigma_a(\mathbf{p},\boldsymbol{\omega})$ be the ratio of the absorbed radiance to the original radiance after the light travels a unit length along the direction of $\boldsymbol{\omega}$ at the point $\bf p$, which can also be understood as the probability of light absorption. If the scattering of light in the medium is not considered, that is, the light always propagates along a straight line, then we can get the following formula about the radiance</p>
 <script type="math/tex; mode=display">
-d L_{o}(\mathbf{p},\boldsymbol{\omega})=-\sigma_{a}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) d t.</script><h2 id="·-Out-scattering"><a href="#·-Out-scattering" class="headerlink" title="· Out-scattering"></a>· Out-scattering</h2><p>如果沿 $\boldsymbol{\omega}$ 方向行进的光线, 在点 $\bf p$ 处被散射到了其他方向, 那么我们称此时的散射为 <strong>外散射</strong>（out-scattering）. <strong>散射系数</strong>（scattering coefficient）<script type="math/tex">\sigma_s(\mathbf{p},\boldsymbol{\omega})</script> 表示光在点 $\bf p$ 处沿 <script type="math/tex">\boldsymbol{\omega}</script> 方向行进单位长度后, 被外散射的辐照率占原先辐照率的比值. 外散射现象与吸收现象类似, 都会导致点 $\bf p$ 处沿 <script type="math/tex">\boldsymbol{\omega}</script> 方向出射的辐照率 <script type="math/tex">L_{o}(\mathbf{p},\boldsymbol{\omega})</script> 减小. 外散射导致的辐照率变化率可由下式描述</p>
+d L_{o}(\mathbf{p},\boldsymbol{\omega})=-\sigma_{a}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) d t.</script><h2 id="·-Out-scattering"><a href="#·-Out-scattering" class="headerlink" title="· Out-scattering"></a>· Out-scattering</h2><p>If the light traveling along the direction $\boldsymbol{\omega}$ is scattered to other directions at the point $\bf p$, we call this kind of scattering <strong>out-scattering</strong>. <strong>scattering coefficient</strong> <script type="math/tex">\sigma_s(\mathbf{p},\boldsymbol{\omega})</script> represents the ratio of the emissivity scattered by the outside to the original emissivity after the light travels unit length in the direction of <script type="math/tex">\boldsymbol{\omega}</script> at the point $\bf p$. The out-scattering phenomenon is similar to the absorption phenomenon, which will lead to a decrease in the radiance emitted in the direction <script type="math/tex">\boldsymbol{\omega}</script> at the point $\bf p$, denoted by <script type="math/tex">L_{o}(\mathbf{p},\boldsymbol{\omega})</script>. The change rate of radiance caused by out-scattering can be described by the following formula</p>
 <script type="math/tex; mode=display">
-\frac{d L_{o}(\mathbf{p},\boldsymbol{\omega})}{d t}=-\sigma_{s}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}) .</script><p>吸收和外散射的合效应称为 <strong>衰减</strong>（attenuation）或者 <strong>灭减</strong>（extinction）. <strong>衰减系数</strong> $\sigma_{t}$ 定义为</p>
+\frac{d L_{o}(\mathbf{p},\boldsymbol{\omega})}{d t}=-\sigma_{s}(\mathbf{p},\boldsymbol{\omega}) L_{i}(\mathbf{p},-\boldsymbol{\omega}).</script><p>吸收和外散射的合效应称为 <strong>衰减</strong>（attenuation）或者 <strong>灭减</strong>（extinction）. <strong>衰减系数</strong> $\sigma_{t}$ 定义为</p>
 <script type="math/tex; mode=display">
 \sigma_{\mathrm{t}}(\mathbf{p},\boldsymbol{\omega})=\sigma_{a}(\mathbf{p},\boldsymbol{\omega})+\sigma_{s}(\mathbf{p},\boldsymbol{\omega}).</script><p>衰减效应可由下式描述</p>
 <script type="math/tex; mode=display">
@@ -311,15 +311,15 @@ T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime\prime}\right)=T_{r}\left(\m
 \end{aligned}</script><p>特别地, 如果 $\sigma_{\mathrm{t}}$ 是常数, 我们有</p>
 <script type="math/tex; mode=display">
 T_{r}\left(\mathbf{p} \rightarrow \mathbf{p}^{\prime}\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}h}=\mathrm{e}^{-\sigma_{\mathrm{t}}\Vert\mathbf{p} -\mathbf{p}^{\prime}\Vert}.</script><p>上式被称作 Beer-Lambert 定律. </p>
-<h2 id="·-Emission"><a href="#·-Emission" class="headerlink" title="· Emission"></a>· Emission</h2><p>点 $\mathbf{p}$ 处的介质沿 $\boldsymbol{\omega}$ 方向单位长度内产生的辐照率为 $L_{\mathrm{e}}(\mathrm{p}, \omega)$, 公式写作</p>
+<h2 id="·-Emission"><a href="#·-Emission" class="headerlink" title="· Emission"></a>· Emission</h2><p>点 $\mathbf{p}$ 处的介质沿 $\boldsymbol{\omega}$ 方向单位长度内产生的辐射率为 $L_{\mathrm{e}}(\mathrm{p}, \omega)$, 公式写作</p>
 <script type="math/tex; mode=display">
 \mathrm{d} L_{o}(\mathrm{p}, \omega)=L_{\mathrm{e}}(\mathrm{p}, \omega) \mathrm{d} t.</script><h2 id="·-In-scattering"><a href="#·-In-scattering" class="headerlink" title="· In-scattering"></a>· In-scattering</h2><p>如果在点 $\bf p$ 处, 来自其他方向的光线被散射到了 $\boldsymbol{\omega}$ 方向, 则称这种散射为 <strong>内散射</strong>（in-scattering）. </p>
-<p>我们用 <strong>相函数</strong>（phase function）$p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)$ 来描述散射辐照率在各个方向上的分布, 其中 $\mathbf{p}$ 是点的位置, $\boldsymbol{\omega}_i$ 是入射光方向, $\boldsymbol{\omega}_o$ 是散射光方向. 根据定义, 相函数必须满足：</p>
+<p>我们用 <strong>相函数</strong>（phase function）$p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)$ 来描述散射辐射率在各个方向上的分布, 其中 $\mathbf{p}$ 是点的位置, $\boldsymbol{\omega}_i$ 是入射光方向, $\boldsymbol{\omega}_o$ 是散射光方向. 根据定义, 相函数必须满足：</p>
 <script type="math/tex; mode=display">
-\int_{S^2}p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)d\boldsymbol{\omega}_o=1.</script><p>内散射效应使点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向出射的辐照率增加. 如果考虑介质发射产生的辐照率, 那么内散射和发射导致的单位长度辐照率增加的总量可以用</p>
+\int_{S^2}p(\mathbf{p},\boldsymbol{\omega}_i,\boldsymbol{\omega}_o)d\boldsymbol{\omega}_o=1.</script><p>内散射效应使点 $\bf p$ 处沿 $\boldsymbol{\omega}$ 方向出射的辐射率增加. 如果考虑介质发射产生的辐射率, 那么内散射和发射导致的单位长度辐射率增加的总量可以用</p>
 <script type="math/tex; mode=display">
 L_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega})=L_{\mathrm{e}}(\mathbf{p},\boldsymbol{\omega})+ \int_{\mathrm{S}^{2}} p\left(\mathbf{p}, \boldsymbol{\omega}_i, \boldsymbol{\omega}\right) \sigma_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega}_i)L_{i}\left(\mathbf{p},\boldsymbol{\omega}_i\right) d\boldsymbol{\omega}_i</script><p>来表示. $L_{\mathrm{s}}(\mathbf{p},\boldsymbol{\omega})$ 通常称为 <strong>源项</strong>（source term）. </p>
-<h1 id="·-The-Equation-of-Transfer"><a href="#·-The-Equation-of-Transfer" class="headerlink" title="· The Equation of Transfer"></a>· The Equation of Transfer</h1><h2 id="·-Differential-integral-Equation-Form"><a href="#·-Differential-integral-Equation-Form" class="headerlink" title="· Differential-integral Equation Form"></a>· Differential-integral Equation Form</h2><p>设 $\mathbf{p}(t)=\mathbf{p}_0+t\boldsymbol{\omega}$, 点 $\mathbf{p}(t)$ 处 $\boldsymbol{\omega}$ 方向辐照率的变化率由衰减效应和源项决定. 根据这个关系得到的方程</p>
+<h1 id="·-The-Equation-of-Transfer"><a href="#·-The-Equation-of-Transfer" class="headerlink" title="· The Equation of Transfer"></a>· The Equation of Transfer</h1><h2 id="·-Differential-integral-Equation-Form"><a href="#·-Differential-integral-Equation-Form" class="headerlink" title="· Differential-integral Equation Form"></a>· Differential-integral Equation Form</h2><p>设 $\mathbf{p}(t)=\mathbf{p}_0+t\boldsymbol{\omega}$, 点 $\mathbf{p}(t)$ 处 $\boldsymbol{\omega}$ 方向辐射率的变化率由衰减效应和源项决定. 根据这个关系得到的方程</p>
 <script type="math/tex; mode=display">
 \frac{d L_{o}(\mathbf{p}(t),\boldsymbol{\omega})}{d t}=-\sigma_{t}(\mathbf{p}(t),\boldsymbol{\omega}) L_{i}(\mathbf{p}(t),-\boldsymbol{\omega})+ L_{\mathrm{s}}(\mathbf{p}(t),\boldsymbol{\omega}),</script><p>即</p>
 <script type="math/tex; mode=display">
@@ -431,11 +431,11 @@ v\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\operatorname{sh
 \operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\widehat{T}_r\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)</script><p>表示体积阴影. 如果 $\sigma_t(\mathbf{p})$ 是常数 $\sigma_t$, 体积阴影的表达式为</p>
 <script type="math/tex; mode=display">
 \operatorname{volshad}\left(\mathbf{p}^\prime, \mathbf{p}_{\text {light}_{i}}\right)=\mathrm{e}^{-\sigma_{\mathrm{t}}N_j\Delta t},</script><p>其中 <script type="math/tex">N_j\Delta t</script> 是从 <script type="math/tex">\mathbf{p}^\prime</script> 向 <script type="math/tex">\mathbf{p}_{\text {light}_{i}}</script> 进行光线步进得到的光线在体积中行进的距离. </p>
-<p>源项估计式中的 <script type="math/tex">c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)</script> 是第 $i$ 个灯光的辐照率, 通常取作</p>
+<p>源项估计式中的 <script type="math/tex">c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)</script> 是第 $i$ 个灯光的辐射率, 通常取作</p>
 <script type="math/tex; mode=display">
 c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)=c_{\text {light}_{i,0}}\left(\frac{r_{0}}{ \left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|}\right)^{2},</script><p>或</p>
 <script type="math/tex; mode=display">
-c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)=c_{\text {light}_{i,0}}\left(\frac{r_{0}}{\max \left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|, r_{\min }\right)}\right)^{2},</script><p>其中 <script type="math/tex">c_{\text {light}_{i,0}}</script> 表示 <script type="math/tex">\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|=r_0</script> 时第 $i$ 个灯光的辐照率. </p>
+c_{\text{light}_i}\left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|\right)=c_{\text {light}_{i,0}}\left(\frac{r_{0}}{\max \left(\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|, r_{\min }\right)}\right)^{2},</script><p>其中 <script type="math/tex">c_{\text {light}_{i,0}}</script> 表示 <script type="math/tex">\left\|\mathbf{p}^\prime-\mathbf{p}_{\text{light}_{i}}\right\|=r_0</script> 时第 $i$ 个灯光的辐射率. </p>
 <h2 id="·-Total-Radiance-Estimation"><a href="#·-Total-Radiance-Estimation" class="headerlink" title="· Total Radiance Estimation"></a>· Total Radiance Estimation</h2><p>假设衰减系数 $\sigma_\mathrm{t}$ 只与位置有关, 即</p>
 <script type="math/tex; mode=display">
 \sigma_{\mathrm{t}}(\mathbf{p}^\prime,\boldsymbol{\omega}_i)=\sigma_{\mathrm{t}}(\mathbf{p}^\prime).</script><p>当 $\mathbf{p}_1$ 和 $\mathbf{p}_2$ 距离 $\Delta t$ 较小时, 我们可以用</p>
@@ -455,7 +455,7 @@ S_J=\sum\limits_{k=1}^{J}\sigma_{\mathrm{t}}(\mathbf{p}^\prime_k),\quad \mathbf{
 \begin{aligned}
    \widehat{L}_{i}(\mathbf{p}, -\boldsymbol{\omega})&=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)\mathrm{e}^{-S_{N_k}\Delta t}+\sum_{k=1}^{N_k}\widehat{L}_{s}\left(\mathbf{p}^\prime_k,\boldsymbol{\omega}\right)  \int_{(k-1)\Delta t}^{k\Delta t}\mathrm{e}^{-\sigma_{\mathrm{t}}t'}dt'\\
    &=L_{o}\left(\mathbf{p}_{0},\boldsymbol{\omega}\right)\mathrm{e}^{-S_{N_k}\Delta t}+\frac{1}{\sigma_{\mathrm{t}}}\sum_{k=1}^{N_k}\widehat{L}_{s}\left(\mathbf{p}^\prime_k,\boldsymbol{\omega}\right)  \mathrm{e}^{-\sigma_{\mathrm{t}}(k-1)\Delta t}(1-\mathrm{e}^{-\sigma_{\mathrm{t}}\Delta t}).
-\end{aligned}</script><h2 id="·-Instance"><a href="#·-Instance" class="headerlink" title="· Instance"></a>· Instance</h2><p>取定常数衰减系数 $\sigma_{\mathrm{t}}$ 和各向同性相函数, 辐照率的计算公式为</p>
+\end{aligned}</script><h2 id="·-Instance"><a href="#·-Instance" class="headerlink" title="· Instance"></a>· Instance</h2><p>取定常数衰减系数 $\sigma_{\mathrm{t}}$ 和各向同性相函数, 辐射率的计算公式为</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
    &\widehat{L}_{i}(\mathbf{p}, -\boldsymbol{\omega})\\
@@ -477,9 +477,9 @@ S_J=\sum\limits_{k=1}^{J}\sigma_{\mathrm{t}}(\mathbf{p}^\prime_k),\quad \mathbf{
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/en/tags/PBR/">PBR</a>
-                    
                       <a class="hover-with-bg" href="/en/tags/Computer-Graphics/">Computer Graphics</a>
+                    
+                      <a class="hover-with-bg" href="/en/tags/PBR/">PBR</a>
                     
                       <a class="hover-with-bg" href="/en/tags/Volume-Rendering/">Volume Rendering</a>
                     
