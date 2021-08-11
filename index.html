@@ -340,10 +340,16 @@
           
             
           
-          基于图像的实时环境光照基于图像的环境光照，是指用一张图片来存储来自每个方向的环境光的辐射率，并利用这张图片进行着色计算．这张图片被称作环境纹理．
-原始的反射方程为
+          基于图像的实时环境光照基于图像的环境光照，是指用一张图片来存储来自每个方向的环境光的辐射率，并利用这张图片进行着色计算．这张图片被称作环境纹理．下图就是一张通过等距矩形投影（equirectangular projection）得到的环境纹理．
 
-L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\o
+    
+    
+    图1 - 等距矩形投影环境纹理
+
+
+反射方程原始的形式为
+
+L_o(\mathbf{p},\boldsymbol{\omeg
         </a>
       </p>
 

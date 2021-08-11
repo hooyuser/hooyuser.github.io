@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/icon.png">
-  <link rel="icon" type="image/png" href="/en/img/icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cn/img/icon.png">
+  <link rel="icon" type="image/png" href="/cn/img/icon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -17,10 +17,23 @@
   <meta name="description" content="">
   <meta name="author" content="Hooy">
   <meta name="keywords" content="">
-  <title>Categories - Topos Cat</title>
+  <title>符号约定 - Topos Cat</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/cn/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -32,19 +45,17 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
-<link  rel="stylesheet" href="/en/css/main.css" />
+<link  rel="stylesheet" href="/cn/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
   
-<link rel="stylesheet" href="/en/css/custom_icon.css">
-<link rel="stylesheet" href="/en/css/custom_toc.css">
-<link rel="stylesheet" href="/en/css/markdown.css">
+<link rel="stylesheet" href="/cn/css/custom_icon.css">
 
 
 
-  <script  src="/en/js/utils.js" ></script>
-  <script  src="/en/js/color-schema.js" ></script>
+  <script  src="/cn/js/utils.js" ></script>
+  <script  src="/cn/js/color-schema.js" ></script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -57,7 +68,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/en/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
+       href="/cn/">&nbsp;<strong>Topos Cat</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -74,9 +85,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/">
+              <a class="nav-link" href="/cn/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                主页
               </a>
             </li>
           
@@ -86,9 +97,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/archives/">
+              <a class="nav-link" href="/cn/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archive
+                归档
               </a>
             </li>
           
@@ -98,9 +109,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/categories/">
+              <a class="nav-link" href="/cn/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Category
+                分类
               </a>
             </li>
           
@@ -110,9 +121,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/tags/">
+              <a class="nav-link" href="/cn/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tag
+                标签
               </a>
             </li>
           
@@ -122,9 +133,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/demo/">
+              <a class="nav-link" href="/cn/demo/">
                 <i class="iconfont icon-shiyan"></i>
-                Demo
+                演示
               </a>
             </li>
           
@@ -134,9 +145,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/about/">
+              <a class="nav-link" href="/cn/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -146,9 +157,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/links/">
+              <a class="nav-link" href="/cn/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Link
+                友链
               </a>
             </li>
           
@@ -171,7 +182,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/en/img/Category.jpg') no-repeat center center;
+         style="background: url('/cn/img/notation_convention/notation_convention.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -200,152 +211,27 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+<div class="page-content">
+  <p>所有数学类文章或者包含数学推导的文章，都采用下图所示的三维直角坐标系以及球坐标系</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/cn/img/notation_convention/3D_Spherical.svg">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图1 - 三维直角坐标系以及球坐标系</div>
+</center>
 
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-cks79vk3p0004ocu93ipzceln" role="tab" data-toggle="collapse" href="#collapse-cks79vk3p0004ocu93ipzceln"
-        aria-expanded="false"
-      >
-        Computer Graphics
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/en/categories/Computer-Graphics/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>7</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-cks79vk3p0004ocu93ipzceln" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-cks79vk3p0004ocu93ipzceln">
-    
-    
-    
-      
-      
-        <a href="/en/2021/04/30/Precomputed%20Radiance%20Transfer/" class="list-group-item list-group-item-action">
-          <span class="category-post">Precomputed Radiance Transfer</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2021/04/27/Image-Based%20Lighting/" class="list-group-item list-group-item-action">
-          <span class="category-post">Image-Based Lighting</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/11/22/Position%20Based%20Dynamics/" class="list-group-item list-group-item-action">
-          <span class="category-post">Position Based Dynamics</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/10/13/Path%20Tracing%20Rendering%20Algorithm/" class="list-group-item list-group-item-action">
-          <span class="category-post">Path Tracing Rendering Algorithm</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/10/13/PBR%20-%20Surface%20Reflection/" class="list-group-item list-group-item-action">
-          <span class="category-post">PBR - Surface Reflection</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/10/12/Color%20Science/" class="list-group-item list-group-item-action">
-          <span class="category-post">Color Science</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/10/10/Radiometry%20and%20Photometry/" class="list-group-item list-group-item-action">
-          <span class="category-post">Radiometry and Photometry</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-cks79vk3u000cocu92et17to5" role="tab" data-toggle="collapse" href="#collapse-cks79vk3u000cocu92et17to5"
-        aria-expanded="false"
-      >
-        Mathematics
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/en/categories/Mathematics/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>4</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-cks79vk3u000cocu92et17to5" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-cks79vk3u000cocu92et17to5">
-    
-    
-    
-      
-      
-        <a href="/en/2021/01/29/Yoneda%20Lemma/" class="list-group-item list-group-item-action">
-          <span class="category-post">Yoneda Lemma</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/12/04/Differentiable%20Manifold/" class="list-group-item list-group-item-action">
-          <span class="category-post">Differentiable Manifold</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2020/01/12/Tensor%20-%20Calculation/" class="list-group-item list-group-item-action">
-          <span class="category-post">Tensor - Calculation</span>
-        </a>
-      
-    
-      
-      
-        <a href="/en/2019/08/25/Understand%20Linear%20Transformation%20Intuitively/" class="list-group-item list-group-item-action">
-          <span class="category-post">Understand Linear Transformation Intuitively</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
+<p>坐标记号也与图片保持一致．直角坐标系与球坐标的转换关系为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+r&=\sqrt{x^{2}+y^{2}+z^{2}} \\
+\theta&=\arccos \frac{z}{r}=\arccos \frac{z}{\sqrt{x^{2}+y^{2}+z^{2}}}=\arctan \frac{\sqrt{x^{2}+y^{2}}}{z} \\
+\varphi&=\arctan\frac{y}{x} .
+\end{aligned}</script>
 </div>
 
               </div>
@@ -368,7 +254,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -377,7 +263,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -401,6 +287,13 @@
     
 
     
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">鄂ICP备19020559号-2</a>
+    
+  </div>
+
 
     
   </div>
@@ -409,11 +302,17 @@
 <!-- SCRIPTS -->
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/en/js/debouncer.js" ></script>
-<script  src="/en/js/main.js" ></script>
+<script  src="/cn/js/debouncer.js" ></script>
+<script  src="/cn/js/main.js" ></script>
 
 <!-- Plugins -->
 
+
+  
+    
+      <script  src="/cn/js/lazyload.js" ></script>
+    
+  
 
 
 
@@ -422,7 +321,7 @@
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/en/js/clipboard-use.js" ></script>
+  <script  src="/cn/js/clipboard-use.js" ></script>
 
 
 
@@ -431,7 +330,7 @@
 
 
   
-<script src="/en/js/to_cn.js"></script>
+<script src="/cn/js/to_en.js"></script>
 
 
 
@@ -443,7 +342,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Category&nbsp;",
+        "符号约定&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -458,11 +357,28 @@
 
 
 
-
-
-  <script  src="/en/js/local-search.js" ></script>
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
-    var path = "/en/local-search.xml";
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+      icon: "↩"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/cn/js/local-search.js" ></script>
+  <script>
+    var path = "/cn/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
       searchFunc(path, 'local-search-input', 'local-search-result');
@@ -475,6 +391,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.2.0/es5/tex-svg.js" ></script>
+
+  
 
 
 
