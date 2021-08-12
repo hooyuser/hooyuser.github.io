@@ -376,10 +376,8 @@ graph.on('node:mousedown', (ev) => {
     const node = ev.item;
 
     // 将所有相关边的 running 状态置为 true，此时将会触发自定义节点的 setState 函数
-    if (node.getModel().id !== c_id) {
-        graph.setItemState(node, 'click', true);
-        graph.setItemState(c_node, 'click', false);
-    }
+
+    graph.setItemState(node, 'click', true);
     window.location.href = window.location.origin + node.getModel().link
 });
 
