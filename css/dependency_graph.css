@@ -1,0 +1,47 @@
+.g6-component-tooltip {
+/*    visibility: hidden;*/
+      width: fit-content;
+   background-color: #2f4154;
+    color: #fff;
+    text-align: center;
+   border-radius: 6px;
+    padding: 3.5px 8px;
+    position: absolute;
+/*    z-index: 1;*/
+/*    bottom: 150%;*/
+/*    left: 50%;*/
+/*    margin-left: -60px;*/
+
+    font-size: 16px;
+    font-weight: bold !important;
+    letter-spacing: 1.3px;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+
+.node_container{
+    width: fit-content;
+    margin: auto;
+}
+
+#button_graph{
+    position: absolute;
+    margin: 0 auto;
+    display: inline-block;
+    margin-top: 37px;
+}
+#dependency_graph{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.horizonal_line_top{
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+}
+
+.horizonal_line_bottom{
+    margin-top: 0 !important;
+    margin-bottom: 40px !important;
+}
+

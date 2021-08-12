@@ -51,6 +51,7 @@
 
   
 <link rel="stylesheet" href="/cn/css/custom_icon.css">
+<link rel="stylesheet" href="/cn/cn/css/dependency_graph.css">
 
 
 
@@ -261,7 +262,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月11日 下午
+                  本文最后更新于：2021年8月12日 下午
                 
               </p>
             
@@ -475,8 +476,9 @@ C(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)&=\dfrac{F_{0}+\left(1-F_{0}\right)(1
 A &\approx \frac{1}{N} \sum_{k=1}^{N} \frac{\frac{D\left(\boldsymbol{\omega}_{h}^{(k)}\right) G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)}{4\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{i}^{(k)} \cdot \mathbf{n}\right)}\left(1-\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}\right)\left(\boldsymbol{\omega}_{i}^{(k)} \cdot \mathbf{n}\right)}{\mathrm{pdf}\left(\boldsymbol{\omega}_{i}^{(k)}\right)}\\
 &=\frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}\right)}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)},
 \end{aligned}</script><script type="math/tex; mode=display">
-B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)}.</script><h2 id="基于Vulkan的算法实现"><a href="#基于Vulkan的算法实现" class="headerlink" title="基于Vulkan的算法实现"></a>基于Vulkan的算法实现</h2><h3 id="环境纹理"><a href="#环境纹理" class="headerlink" title="环境纹理"></a>环境纹理</h3><p>在 <a target="_blank" rel="noopener" href="https://polyhaven.com/">Poly Haven</a> 网站上，我们可以免费下载 <a target="_blank" rel="noopener" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> 授权的高动态范围（HDR）环境纹理。</p>
-
+B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)}.</script><h2 id="基于Vulkan的算法实现"><a href="#基于Vulkan的算法实现" class="headerlink" title="基于Vulkan的算法实现"></a>基于Vulkan的算法实现</h2><h3 id="环境纹理"><a href="#环境纹理" class="headerlink" title="环境纹理"></a>环境纹理</h3><p>在 <a target="_blank" rel="noopener" href="https://polyhaven.com/">Poly Haven</a> 网站上，我们可以免费下载 <a target="_blank" rel="noopener" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> 授权的高动态范围（HDR）环境纹理。该网站提供的这些环境纹理都是通过如下 equirectangular projection 得到的</p>
+<script type="math/tex; mode=display">
+u=</script>
             </div>
             <hr>
             <div>
