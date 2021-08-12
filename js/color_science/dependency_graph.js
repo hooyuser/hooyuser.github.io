@@ -24,7 +24,7 @@ const config = {
     },
     math: {
         style: {
-            stroke: '#5F95FF', // 节点描边色
+            stroke: '#5f95ff', // 节点描边色
             fill: '#e0ebff', // 节点填充色
         },
     }
@@ -185,6 +185,7 @@ G6.registerNode(
                             y: 0,
                             r: item.get('model').size / 2.8,
                             fill: item.get('model').color,
+                            cursor: "pointer",
                         },
                         name: 'center-shape',
                     });
@@ -210,6 +211,7 @@ const graph = new G6.Graph({
         size: 20,
         style: {
             lineWidth: 2, // 节点描边粗细
+            cursor: 'pointer'
         },
     },
     defaultEdge: {
@@ -231,9 +233,10 @@ const graph = new G6.Graph({
     plugins: [tooltip]
 });
 
+
+
 graph.on('node:mouseenter', (ev) => {
     // 获得当前鼠标操作的目标节点
-
     const node = ev.item;
 
     // 将所有相关边的 running 状态置为 true，此时将会触发自定义节点的 setState 函数
@@ -261,7 +264,6 @@ graph.on('node:mouseleave', (ev) => {
 
 graph.on('node:mousedown', (ev) => {
     // 获得当前鼠标操作的目标节点
-
     const node = ev.item;
 
     // 将所有相关边的 running 状态置为 true，此时将会触发自定义节点的 setState 函数
