@@ -33,21 +33,80 @@ const config = {
 var nodes = [
     {
         id: '0', // String，该节点存在则必须，节点的唯一标识
-        name: '辐射度量学与光度学',
-        category: "graphics",
-        link: "/2020/10/10/Radiometry%20and%20Photometry/"
-    },
-    {
-        id: '1', // String，该节点存在则必须，节点的唯一标识
         name: '线性变换的直观理解',
         category: "math",
         link: "/2019/08/25/Understand%20Linear%20Transformation%20Intuitively/"
     },
     {
-        id: '2',
+        id: '1', // String，该节点存在则必须，节点的唯一标识
+        name: '张量 - 计算篇',
+        category: "math",
+    },
+    {
+        id: '2', // String，该节点存在则必须，节点的唯一标识
+        name: '辐射度量学与光度学',
+        category: "graphics",
+        link: "/2020/10/10/Radiometry%20and%20Photometry/",
+    },
+    {
+        id: '3',
         name: '色彩科学',
         category: "graphics",
         link: "/2020/10/12/Color%20Science/"
+    },
+    {
+        id: '4',
+        name: '基于物理的渲染 - 表面反射',
+        category: "graphics",
+        link: "/2020/10/13/PBR%20-%20Surface%20Reflection/"
+    },
+    {
+        id: '5',
+        name: '路径追踪渲染算法',
+        category: "graphics",
+        link: "/2020/10/13/Path%20Tracing%20Rendering%20Algorithm/"
+    },
+    {
+        id: '6',
+        name: '基于位置的动力学',
+        category: "graphics",
+        link: "/2020/11/22/Position%20Based%20Dynamics/"
+    },
+    {
+        id: '7',
+        name: '微分流形',
+        category: "math",
+        link: "/2020/12/04/Differentiable%20Manifold/"
+    },
+    {
+        id: '8',
+        name: '体积渲染',
+        category: "graphics",
+        link: "/2021/01/17/Volume%20Rendering/"
+    },
+    {
+        id: '9',
+        name: 'Yoneda引理',
+        category: "math",
+        link: "/2021/01/29/Yoneda%20Lemma/"
+    },
+    {
+        id: '10',
+        name: '基于图像的光照',
+        category: "graphics",
+        link: "/2021/04/27/Image-Based%20Lighting/"
+    },
+    {
+        id: '11',
+        name: '预计算辐射率传递',
+        category: "graphics",
+        link: "/2021/04/30/Precomputed%20Radiance%20Transfer/"
+    },
+    {
+        id: '12',
+        name: '张量 - 理论篇',
+        category: "math",
+        link: "/cn/2021/07/22/Tensor%20-%20Theory/"
     },
 ];
 
@@ -60,12 +119,62 @@ data = {
     nodes,
     edges: [
         {
+            source: '2', // String，必须，起始点 id
+            target: '3', // String，必须，目标点 id
+        },
+        {
             source: '0', // String，必须，起始点 id
-            target: '2', // String，必须，目标点 id
+            target: '3', // String，必须，目标点 id
+        },
+        {
+            source: '0', // String，必须，起始点 id
+            target: '1', // String，必须，目标点 id
+        },
+        {
+            source: '0', // String，必须，起始点 id
+            target: '12', // String，必须，目标点 id
+        },
+        {
+            source: '2', // String，必须，起始点 id
+            target: '4', // String，必须，目标点 id
+        },
+        {
+            source: '4', // String，必须，起始点 id
+            target: '5', // String，必须，目标点 id
+        },
+        {
+            source: '5', // String，必须，起始点 id
+            target: '8', // String，必须，目标点 id
+        },
+        {
+            source: '4', // String，必须，起始点 id
+            target: '10', // String，必须，目标点 id
+        },
+        {
+            source: '10', // String，必须，起始点 id
+            target: '11', // String，必须，目标点 id
         },
         {
             source: '1', // String，必须，起始点 id
-            target: '2', // String，必须，目标点 id
+            target: '7', // String，必须，目标点 id
+        },
+        {
+            source: '12', // String，必须，起始点 id
+            target: '7', // String，必须，目标点 id
+        },
+        {
+            source: '3', // String，必须，起始点 id
+            target: '4', // String，必须，目标点 id
+            style:{
+                lineDash: [4]
+            }
+        },
+        {
+            source: '9', // String，必须，起始点 id
+            target: '7', // String，必须，目标点 id
+            style:{
+                lineDash: [4]
+            }
         },
     ],
 };
@@ -202,8 +311,8 @@ G6.registerNode(
 
 const graph = new G6.Graph({
     container: 'dependency_graph',
-    width: 550,
-    height: 100,
+    width: 750,
+    height: 550,
     fitView: true,
     //fitCenter: true,
     defaultNode: {
@@ -217,8 +326,8 @@ const graph = new G6.Graph({
     defaultEdge: {
         style: {
             lineWidth: 2,
-            opacity: 0.5, // 边透明度
-            stroke: '#b4b4b4', // 边描边颜色
+            opacity: 0.6, // 边透明度
+            stroke: '#b1b1b1', // 边描边颜色
         },
         type: "cubic-horizontal",
     },
@@ -226,8 +335,8 @@ const graph = new G6.Graph({
         type: 'dagre',
         rankdir: 'LR', // 可选，默认为图的中心
         //align: 'DL', // 可选
-        nodesep: 10, // 可选
-        ranksep: 60, // 可选
+        nodesep: 25, // 可选
+        ranksep: 40, // 可选
         controlPoints: true, // 可选
     },
     plugins: [tooltip]
@@ -279,7 +388,4 @@ graph.data(data);
 graph.render();
 
 
-const c_id = '2';
-var c_node = graph.findById(c_id);
-graph.setItemState(c_node, 'click', true);
 
