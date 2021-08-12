@@ -339,8 +339,8 @@ graph.setItemState(c_node, 'click', true);
 
 
 document.getElementsByClassName("depsgraph_button").onclick = function() {
-    window.localStorage["previous_node"]= node.getModel().id;
-    console.log(node.getModel().id);
+    window.localStorage["previous_node"]= c_id;
+    console.log(c_id);
     console.log(localStorage["previous_node"]);
 };
 
