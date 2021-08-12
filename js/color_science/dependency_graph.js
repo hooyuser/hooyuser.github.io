@@ -324,9 +324,10 @@ graph.on('node:mousedown', (ev) => {
     if (node.getModel().id !== c_id) {
         graph.setItemState(node, 'click', true);
         graph.setItemState(c_node, 'click', false);
-        localStorage["previous_node"]= node;
     }
-    window.location.href = window.location.origin + node.getModel().link
+    window.localStorage["previous_node"]= node.getModel().id;
+    console.log(localStorage["previous_node"]);
+    window.location.href = window.location.origin + node.getModel().link;
 });
 
 
