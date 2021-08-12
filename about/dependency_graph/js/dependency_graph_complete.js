@@ -165,14 +165,14 @@ data = {
         {
             source: '3', // String，必须，起始点 id
             target: '4', // String，必须，目标点 id
-            style:{
+            style: {
                 lineDash: [4]
             }
         },
         {
             source: '9', // String，必须，起始点 id
             target: '7', // String，必须，目标点 id
-            style:{
+            style: {
                 lineDash: [4]
             }
         },
@@ -344,7 +344,6 @@ const graph = new G6.Graph({
 });
 
 
-
 graph.on('node:mouseenter', (ev) => {
     // 获得当前鼠标操作的目标节点
     const node = ev.item;
@@ -386,5 +385,8 @@ graph.on('node:mousedown', (ev) => {
 graph.data(data);
 graph.render();
 
+window.onload = function () {
+    graph.setItemState(localStorage["previous_node"], 'click', true);
+}
 
 
