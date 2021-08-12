@@ -27,7 +27,7 @@
     position: absolute;
     margin: 0 auto;
     display: inline-block;
-    margin-top: 37px;
+    margin-top: 44px;
 }
 #dependency_graph{
     display: flex !important;
