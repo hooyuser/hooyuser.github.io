@@ -385,7 +385,7 @@ graph.on('node:mousedown', (ev) => {
 graph.data(data);
 graph.render();
 
-var c_node = graph.findById(localStorage["previous_node"]);
+var c_node = graph.findById(c_id);
 graph.setItemState(c_node, 'click', true);
 
 

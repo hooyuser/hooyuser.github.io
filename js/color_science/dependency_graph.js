@@ -321,11 +321,12 @@ graph.on('node:mousedown', (ev) => {
     const node = ev.item;
 
     // 将所有相关边的 running 状态置为 true，此时将会触发自定义节点的 setState 函数
-    if (node.getModel().id !== c_id) {
+    let node_id = node.getModel().id;
+    if (node_id !== c_id) {
         graph.setItemState(node, 'click', true);
         graph.setItemState(c_node, 'click', false);
     }
-    window.location.href = window.location.origin + node.getModel().link;
+    window.location.href = window.location.origin + node_id.getModel().link + '?id=' + node_id ;
 });
 
 
@@ -337,11 +338,5 @@ const c_id = '3';
 var c_node = graph.findById(c_id);
 graph.setItemState(c_node, 'click', true);
 
-
-document.getElementsByClassName("depsgraph_button").onclick = function() {
-    window.localStorage["previous_node"]= c_id;
-    console.log(c_id);
-    console.log(localStorage["previous_node"]);
-};
 
 
