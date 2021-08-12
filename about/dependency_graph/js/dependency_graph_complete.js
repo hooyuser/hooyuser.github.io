@@ -1,6 +1,6 @@
 const tooltip = new G6.Tooltip({
     offsetX: 8,
-    offsetY: 8,
+    offsetY: 12,
     // 允许出现 tooltip 的 item 类型
     itemTypes: ['node'],
     fixToNode: [1, -0.5],
@@ -231,7 +231,7 @@ G6.registerNode(
                     child1.animate(
                         {
                             // Magnifying and disappearing
-                            r: r + 10,
+                            r: r + 14,
                             opacity: 0.05,
                         },
                         {
@@ -245,7 +245,7 @@ G6.registerNode(
                     child2.animate(
                         {
                             // Magnifying and disappearing
-                            r: r + 10,
+                            r: r + 14,
                             opacity: 0.05,
                         },
                         {
@@ -259,7 +259,7 @@ G6.registerNode(
                     child3.animate(
                         {
                             // Magnifying and disappearing
-                            r: r + 10,
+                            r: r + 14,
                             opacity: 0.05,
                         },
                         {
@@ -311,13 +311,14 @@ G6.registerNode(
 
 const graph = new G6.Graph({
     container: 'dependency_graph',
-    width: 750,
-    height: 550,
-    fitView: true,
+    width: 950,
+    height: 470,
+    //fitView: true,
+    fitViewPadding: [10, 20],
     //fitCenter: true,
     defaultNode: {
         type: 'background-animate',
-        size: 20,
+        size: 26,
         style: {
             lineWidth: 2, // 节点描边粗细
             cursor: 'pointer'
@@ -336,7 +337,7 @@ const graph = new G6.Graph({
         rankdir: 'LR', // 可选，默认为图的中心
         //align: 'DL', // 可选
         nodesep: 25, // 可选
-        ranksep: 40, // 可选
+        ranksep: 50, // 可选
         controlPoints: true, // 可选
     },
     plugins: [tooltip]
@@ -351,7 +352,7 @@ graph.on('node:mouseenter', (ev) => {
     // 将所有相关边的 running 状态置为 true，此时将会触发自定义节点的 setState 函数
     graph.updateItem(node, {
         style: {
-            lineWidth: 3
+            lineWidth: 4
         },
     });
     graph.setItemState(node, 'hover', true);
