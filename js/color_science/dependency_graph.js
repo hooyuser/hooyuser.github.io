@@ -325,8 +325,6 @@ graph.on('node:mousedown', (ev) => {
         graph.setItemState(node, 'click', true);
         graph.setItemState(c_node, 'click', false);
     }
-    window.localStorage["previous_node"]= node.getModel().id;
-    console.log(localStorage["previous_node"]);
     window.location.href = window.location.origin + node.getModel().link;
 });
 
@@ -338,4 +336,12 @@ graph.render();
 const c_id = '3';
 var c_node = graph.findById(c_id);
 graph.setItemState(c_node, 'click', true);
+
+
+document.getElementsByClassName("depsgraph_button").onclick = function() {
+    window.localStorage["previous_node"]= node.getModel().id;
+    console.log(node.getModel().id);
+    console.log(localStorage["previous_node"]);
+};
+
 
