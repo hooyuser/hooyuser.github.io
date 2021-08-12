@@ -385,8 +385,7 @@ graph.on('node:mousedown', (ev) => {
 graph.data(data);
 graph.render();
 
-window.onload = function () {
-    graph.setItemState(localStorage["previous_node"], 'click', true);
-}
+graph.setItemState(localStorage["previous_node"], 'click', true);
+
 
 
