@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      71
+      72
        分钟
     </span>
   
@@ -262,12 +262,19 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月12日 下午
+                  本文最后更新于：2021年8月13日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>基于图像的环境光照，是指用一张图片来存储来自每个方向的环境光的辐射率，并利用这张图片进行着色计算．这张图片被称作环境纹理．下图就是一张通过等距矩形投影（equirectangular projection）得到的环境纹理．</p>
+              <hr class='horizonal_line_top'></hr>
+<button class="btn depsgraph_button" id='button_image_based_lighting' title="跳转至：知识图谱">知识图谱</button>
+<div class='node_container'><div id="dependency_graph" style=""></div></div>
+
+<hr class='horizonal_line_bottom'></hr>
+
+<p>基于图像的环境光照，是指用一张图片来存储环境光照的辐射率，并利用这张图片进行着色计算．本文介绍了基于图像的实时环境光照理论，并提供了利用Vulkan实现这一算法的源码和技术细节．</p>
+<h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>环境纹理通常会存储来自每个方向的环境光的辐射率．下图就是一张通过等距矩形投影（equirectangular projection）得到的环境纹理．</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
@@ -478,7 +485,11 @@ A &\approx \frac{1}{N} \sum_{k=1}^{N} \frac{\frac{D\left(\boldsymbol{\omega}_{h}
 \end{aligned}</script><script type="math/tex; mode=display">
 B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)}.</script><h2 id="基于Vulkan的算法实现"><a href="#基于Vulkan的算法实现" class="headerlink" title="基于Vulkan的算法实现"></a>基于Vulkan的算法实现</h2><h3 id="环境纹理"><a href="#环境纹理" class="headerlink" title="环境纹理"></a>环境纹理</h3><p>在 <a target="_blank" rel="noopener" href="https://polyhaven.com/">Poly Haven</a> 网站上，我们可以免费下载 <a target="_blank" rel="noopener" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> 授权的高动态范围（HDR）环境纹理。该网站提供的这些环境纹理都是通过如下 equirectangular projection 得到的</p>
 <script type="math/tex; mode=display">
-u=</script>
+u=</script><p><link rel="stylesheet" type="text/css" href="/cn/css/dependency_graph.css"></p>
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="/cn/js/lib/g6.min.js"></script>
+<script src="/cn/js/image_based_lighting/image_based_lighting_graph_data.js"></script>
+<script src="/cn/js/dependency_graph.js"></script>
             </div>
             <hr>
             <div>

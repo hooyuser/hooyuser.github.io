@@ -273,8 +273,8 @@
 
 <hr class='horizonal_line_bottom'></hr>
 
-<p>色彩科学的研究表明，人类能感知到的所有颜色构成一个3维线性空间。只要选定一个基，我们就能将颜色编码成3维坐标。不同的编码方式，对应了不同的色彩空间。本文介绍了一些常见的色彩空间以及如何在色彩空间之间进行转换。</p>
-<h1 id="CIE-RGB-色彩空间"><a href="#CIE-RGB-色彩空间" class="headerlink" title="CIE RGB 色彩空间"></a>CIE RGB 色彩空间</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>考虑一个离散化的光谱能量分布（Spectral Power Distribution，简称 SPD）空间，这里的光谱能量用辐照率衡量，波长范围取 $380nm-720nm$，波长梯度取 $0.1nm$。该空间是一个 $3401$ 维的线性空间 $\mathbb{R}^{3401}$．在一个固定的辐照率下，一个基为：<script type="math/tex">\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}</script>．</p>
+<p>色彩科学的研究表明，人类能感知到的所有颜色构成一个3维线性空间．只要选定一个基，我们就能将颜色编码成3维坐标．不同的编码方式，对应了不同的色彩空间．本文介绍了一些常见的色彩空间以及如何在色彩空间之间进行转换．</p>
+<h1 id="CIE-RGB-色彩空间"><a href="#CIE-RGB-色彩空间" class="headerlink" title="CIE RGB 色彩空间"></a>CIE RGB 色彩空间</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>考虑一个离散化的光谱能量分布（Spectral Power Distribution，简称 SPD）空间，这里的光谱能量用辐照率衡量，波长范围取 $380nm-720nm$，波长梯度取 $0.1nm$．该空间是一个 $3401$ 维的线性空间 $\mathbb{R}^{3401}$．在一个固定的辐照率下，一个基为：<script type="math/tex">\mathbf{l}_{380.0}, \mathbf{l}_{380.1},\cdots, \mathbf{l}_{720.0}</script>．</p>
 <p>设 $C$ 为人类色彩映射，它将 SPD 空间的光谱能量分布映射成色觉空间 $P$ 中的色彩．我们下面将说明：色觉空间是 $3$ 维线性空间，色彩映射</p>
 <script type="math/tex; mode=display">
 C:\mathbb{R}^{3401}\longrightarrow P</script><p>是一个线性映射．</p>
@@ -456,7 +456,7 @@ z&=Y,
 
 <h1 id="sRGB-色彩空间"><a href="#sRGB-色彩空间" class="headerlink" title="sRGB 色彩空间"></a>sRGB 色彩空间</h1><p>从 CIE XYZ 空间到 sRGB 空间需要经过两步．第一步是换基，将 CIE XYZ 空间变为线性 sRGB 空间．第二步是 Gamma 变换，将线性 sRGB 空间变成最终的 sRGB 空间．</p>
 <h2 id="标准光源"><a href="#标准光源" class="headerlink" title="标准光源"></a>标准光源</h2><p>标准光源 CIE Standard Illuminant D65 是一个相对 SPD，与辐照度无关．一方面，它在 CIE XYZ 空间中为一条直线 $k(0.95047,1,1.08883)$，直线上 $Y=1$ 的点 $(0.95047,1,1.08883)$ 称为白点．另一方面，它在CIE xy 色度图中为一个点 $(0.31271,0.32902)$．</p>
-<h2 id="线性-sRGB-空间"><a href="#线性-sRGB-空间" class="headerlink" title="线性 sRGB 空间"></a>线性 sRGB 空间</h2><p>设色觉空间 $P$ 的一个基 $(\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)$ 导出了线性 sRGB 空间。 基 $(\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)$ 是由下列条件唯一确定的：</p>
+<h2 id="线性-sRGB-空间"><a href="#线性-sRGB-空间" class="headerlink" title="线性 sRGB 空间"></a>线性 sRGB 空间</h2><p>设色觉空间 $P$ 的一个基 $(\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)$ 导出了线性 sRGB 空间． 基 $(\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B)$ 是由下列条件唯一确定的：</p>
 <ol>
 <li><p>三原色（primaries）：$\mathbf{c}_R,\mathbf{c}_G,\mathbf{c}_B$ 的 CIE xy 色度分别为 $(0.64,0.33),(0.30,0.60),(0.15,0.06)$，即</p>
 <script type="math/tex; mode=display">
@@ -540,13 +540,14 @@ B_{sRGB}
 \gamma(R_{\text {linear }})\\
 \gamma(G_{\text {linear }})\\
 \gamma(B_{\text {linear }})
-\end{pmatrix}.</script><p>此外，如果有坐标分量值超出了 $1$，那么该分量会被钳制到 $1$．因为钳制的存在，从 CIE XYZ 空间到 sRGB 空间的映射并不是单射。因此，sRGB 空间能够表示的颜色是 CIE XYZ 空间的一个子集。下面展示了sRGB空间的色度图．<br><img src="/img/color_science/CIE1931xy_gamut_comparison.svg" srcset="/cn/img/loading.gif" alt=""></p>
+\end{pmatrix}.</script><p>此外，如果有坐标分量值超出了 $1$，那么该分量会被钳制到 $1$．因为钳制的存在，从 CIE XYZ 空间到 sRGB 空间的映射并不是单射．因此，sRGB 空间能够表示的颜色是 CIE XYZ 空间的一个子集．下面展示了sRGB空间的色度图．<br><img src="/img/color_science/CIE1931xy_gamut_comparison.svg" srcset="/cn/img/loading.gif" alt=""></p>
 <hr>
 <p><strong>扩展阅读</strong>：<a target="_blank" rel="noopener" href="https://chrisbrejon.com/cg-cinematography/chapter-1-5-academy-color-encoding-system-aces/">ACES(Academy Color Encoding System)</a></p>
 <p><link rel="stylesheet" type="text/css" href="/cn/css/dependency_graph.css"></p>
 <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
 <script src="/cn/js/lib/g6.min.js"></script>
-<script src="/cn/js/color_science/dependency_graph.js"></script>
+<script src="/cn/js/color_science/color_science_graph_data.js"></script>
+<script src="/cn/js/dependency_graph.js"></script>
             </div>
             <hr>
             <div>

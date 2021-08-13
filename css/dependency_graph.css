@@ -23,7 +23,7 @@
     margin: auto;
 }
 
-#button_graph{
+.depsgraph_button{
     position: absolute;
     margin: 0 auto;
     display: inline-block;
