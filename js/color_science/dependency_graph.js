@@ -326,7 +326,7 @@ graph.on('node:mousedown', (ev) => {
         graph.setItemState(node, 'click', true);
         graph.setItemState(c_node, 'click', false);
     }
-    window.location.href = window.location.origin + node_id.getModel().link + '?id=' + node_id ;
+    window.location.href = window.location.origin + node_id.getModel().link  ;
 });
 
 
@@ -336,7 +336,12 @@ graph.render();
 
 const c_id = '3';
 var c_node = graph.findById(c_id);
-graph.setItemState(c_node, 'click', true);
+graph.setItemState(c_node, 'click', true)
+
+
+$('.depsgraph_button').click(function() {
+    window.location= window.location.origin + '/cn/about/dependency_graph/?id=' + c_id;
+});
 
 
 

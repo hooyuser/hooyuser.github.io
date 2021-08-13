@@ -385,7 +385,8 @@ graph.on('node:mousedown', (ev) => {
 graph.data(data);
 graph.render();
 
-var c_node = graph.findById(c_id);
+var url = window.location.href;
+var c_node = graph.findById(url.slice(url.lastIndexOf('=') + 1));
 graph.setItemState(c_node, 'click', true);
 
 
