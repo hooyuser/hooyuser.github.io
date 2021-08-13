@@ -210,7 +210,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      4.9k 字
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      72
+      78
        分钟
     </span>
   
@@ -262,7 +262,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月13日 下午
+                  本文最后更新于：2021年8月13日 晚上
                 
               </p>
             
@@ -273,21 +273,8 @@
 
 <hr class='horizonal_line_bottom'></hr>
 
-<p>基于图像的环境光照，是指用一张图片来存储环境光照的辐射率，并利用这张图片进行着色计算．本文介绍了基于图像的实时环境光照理论，并提供了利用Vulkan实现这一算法的源码和技术细节．</p>
-<h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>环境纹理通常会存储来自每个方向的环境光的辐射率．下图就是一张通过等距矩形投影（equirectangular projection）得到的环境纹理．</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/cn/img/image_based_lighting/equirectangular.png" srcset="/cn/img/loading.gif" width="90%">
-    <br>
-    <div style="color:orange;
-    font-size:14px;
-    display: inline-block;
-    color: #999;
-    padding: 10px;">图1 - 等距矩形投影环境纹理</div>
-</center>
-
-<p>反射方程原始的形式为</p>
+<p>基于图像的环境光照，是指用一张图片来存储各个方向上环境光照的辐射率，并利用这张图片进行着色计算．本文介绍了基于图像的实时环境光照理论，并提供了利用Vulkan实现这一算法的源码和技术细节．</p>
+<h1 id="基于图像的实时环境光照"><a href="#基于图像的实时环境光照" class="headerlink" title="基于图像的实时环境光照"></a>基于图像的实时环境光照</h1><p>环境纹理的每一个纹素，都会存储来自某个方向的环境光的辐射率．考虑原始形式的反射方程</p>
 <script type="math/tex; mode=display">
 L_o(\mathbf{p},\boldsymbol{\omega}_o)=\int_{H^2}f_{\mathrm{r}}\left(\mathbf{p}, \boldsymbol{\omega}_o, \boldsymbol{\omega}_i\right)L_i(\mathbf{p},\boldsymbol{\omega}_i)\cos\theta_i\:d\Omega_i.</script><p>这里我们不考虑环境光以外的其他光照，并假设环境光对于任意着色点 $\mathbf{p}$ 都是相同的，因此环境纹理可以记作 $L_i(\boldsymbol{\omega}_i)$．相应地，反射方程可以写作</p>
 <script type="math/tex; mode=display">
@@ -483,9 +470,63 @@ C(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)&=\dfrac{F_{0}+\left(1-F_{0}\right)(1
 A &\approx \frac{1}{N} \sum_{k=1}^{N} \frac{\frac{D\left(\boldsymbol{\omega}_{h}^{(k)}\right) G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)}{4\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{i}^{(k)} \cdot \mathbf{n}\right)}\left(1-\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}\right)\left(\boldsymbol{\omega}_{i}^{(k)} \cdot \mathbf{n}\right)}{\mathrm{pdf}\left(\boldsymbol{\omega}_{i}^{(k)}\right)}\\
 &=\frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}\right)}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)},
 \end{aligned}</script><script type="math/tex; mode=display">
-B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)}.</script><h2 id="基于Vulkan的算法实现"><a href="#基于Vulkan的算法实现" class="headerlink" title="基于Vulkan的算法实现"></a>基于Vulkan的算法实现</h2><h3 id="环境纹理"><a href="#环境纹理" class="headerlink" title="环境纹理"></a>环境纹理</h3><p>在 <a target="_blank" rel="noopener" href="https://polyhaven.com/">Poly Haven</a> 网站上，我们可以免费下载 <a target="_blank" rel="noopener" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> 授权的高动态范围（HDR）环境纹理。该网站提供的这些环境纹理都是通过如下 equirectangular projection 得到的</p>
+B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \boldsymbol{\omega}_{i}^{(k)}\right)\left(\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)\left(1-\boldsymbol{\omega}_{o} \cdot \boldsymbol{\omega}_{h}^{(k)}\right)^{5}}{\left(\boldsymbol{\omega}_{o} \cdot \mathbf{n}\right)\left(\boldsymbol{\omega}_{h}^{(k)} \cdot \mathbf{n}\right)}.</script><h2 id="基于Vulkan的算法实现"><a href="#基于Vulkan的算法实现" class="headerlink" title="基于Vulkan的算法实现"></a>基于Vulkan的算法实现</h2><h3 id="环境纹理"><a href="#环境纹理" class="headerlink" title="环境纹理"></a>环境纹理</h3><p>在 <a target="_blank" rel="noopener" href="https://polyhaven.com/">Poly Haven</a> 网站上，我们可以免费下载 <a target="_blank" rel="noopener" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> 授权的高动态范围（HDR）环境纹理。该网站提供的这些环境纹理都是通过如下 <strong>等距矩形投影</strong> 得到的</p>
 <script type="math/tex; mode=display">
-u=</script><p><link rel="stylesheet" type="text/css" href="/cn/css/dependency_graph.css"></p>
+\begin{aligned}
+    u&=\frac{1}{2\pi}\varphi=\frac{1}{2\pi}\arctan\frac{y}{x},\\
+    v&=\frac{1}{\pi}\theta=\frac{1}{\pi}\arccos \frac{z}{r},
+\end{aligned}</script><p>其中 $(x,y,z)$ 和 $(r,\theta,\varphi)$ 分别是方向向量的直角坐标与球坐标，$(u,v)$ 是归一化到 $[0,1]$ 区间的纹理坐标。实际中，纹理的宽度与高度之比通常为 $2:1$。下图就是一张通过等距矩形投影（equirectangular projection）得到的环境纹理．</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/cn/img/image_based_lighting/equirectangular.png" srcset="/cn/img/loading.gif" width="90%">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图1 - 等距矩形投影环境纹理</div>
+</center>
+
+<p>存储辐射率的所有方向构成了一个球面，我们暂且称之为环境光球面。需要指出的是，一些 3D 软件在解释环境纹理时，会认为环境纹理是贴在环境光球面内部的。以上图为例，如果在 Blender 软件中打开这张环境纹理，我们会发现蓝色的牌子在白色的牌子左边。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/cn/img/image_based_lighting/blender.png" srcset="/cn/img/loading.gif" width="90%">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图2 - Blender中展示的环境纹理</div>
+</center>
+
+<p>观察原始的矩形环境纹理，蓝色牌子同样在白色牌子左边。这就说明，Blender 在解释环境纹理时，使用的等距矩形投影其实是下式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \tilde{u}&=1-\frac{1}{2\pi}\varphi=1-\frac{1}{2\pi}\arctan\frac{y}{x},\\
+    \tilde{v}&=\frac{1}{\pi}\theta=\frac{1}{\pi}\arccos \frac{z}{r}.
+\end{aligned}</script><p>除了这种矩形环境纹理，立方盒贴图（Cubemap）也常常被用作环境纹理。存储辐射率的所有方向构成了一个球面，立方盒贴图可以看作是把球面上每一点，沿径向投影到与球面中心重合的立方体的表面上。因此，立方盒贴图是由立方体 6 个表面的 6 张正方形贴图共同组成的。我们在 Vulkan 中，将使用这种立方盒贴图作为环境纹理。</p>
+<p>在继续下面的内容之前，我们要先讲清楚 Vulkan 的坐标系问题。OpenGL 使用如下坐标系</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/cn/img/image_based_lighting/opengl_coordinate_system.png" srcset="/cn/img/loading.gif" width="40%">
+    <br>
+    <div style="color:orange;
+    font-size:14px;
+    display: inline-block;
+    color: #999;
+    padding: 10px;">图3 - OpenGL 坐标系</div>
+</center>
+
+<p>Vulkan 使用的坐标系则与 OpenGL 不同。但为了使用基于 OpenGL 坐标系的数学库 <a target="_blank" rel="noopener" href="https://github.com/g-truc/glm">GLM</a>，我对 VkViewport 进行了如下设置。<br><pre><code class="hljs abnf">VkViewport viewport&#123;&#125;<span class="hljs-comment">;</span>
+	
+viewport.width = renderer.extent.width<span class="hljs-comment">;</span>
+viewport.height = -renderer.extent.height<span class="hljs-comment">;</span>
+viewport.x = <span class="hljs-number">0</span><span class="hljs-comment">;   </span>
+viewport.y = renderer.extent.height<span class="hljs-comment">;</span></code></pre><br>这样一来， Vulkan 的坐标系就和与 OpenGL 一样了。这部分内容也可以参考 <a target="_blank" rel="noopener" href="https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/">Sascha Willems 的博客</a>。</p>
+<p><link rel="stylesheet" type="text/css" href="/cn/css/dependency_graph.css"></p>
 <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
 <script src="/cn/js/lib/g6.min.js"></script>
 <script src="/cn/js/image_based_lighting/image_based_lighting_graph_data.js"></script>

@@ -241,7 +241,7 @@ graph.on('node:mousedown', (ev) => {
         graph.setItemState(node, 'click', true);
         graph.setItemState(c_node, 'click', false);
     }
-    window.location.href = window.location.origin + node_id.getModel().link  ;
+    window.location = window.location.origin + node.getModel().link  ;
 });
 
 
