@@ -88,7 +88,6 @@ G6.registerNode(
                     child1.attr('opacity', 1);
                     child2.attr('opacity', 1);
                     child3.attr('opacity', 1);
-                    console.log(child1.get('attrs').opacity)
                     child1.animate(
                         {
                             // Magnifying and disappearing
@@ -144,7 +143,6 @@ G6.registerNode(
                     child1.attr('r', 10);
                     child2.attr('r', 10);
                     child3.attr('r', 10);
-                    console.log(child2.get('attrs').opacity)
                 }
             } else if (name === 'click') {
                 if (value) {
