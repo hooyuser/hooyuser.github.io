@@ -8,37 +8,41 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/cn/img/icon.png">
-  <link rel="icon" type="image/png" href="/cn/img/icon.png">
+  <link rel="icon" href="/cn/img/icon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  <meta name="description" content="Yoneda 引理是范畴论中一个颇具哲学色彩的定理，Dan Piponi 称它为“数学中最难的平凡之物”．本文尝试用清晰明了、符合动机、图文并茂的方式叙述并证明 Yoneda 引理，同时介绍它的重要推论 Yoneda 嵌入和可表函子．">
   <meta name="author" content="Hooy">
   <meta name="keywords" content="">
+  
   <title>Yoneda引理 - Topos Cat</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/cn/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/androidstudio.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/androidstudio.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -55,6 +59,10 @@
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"toposcat.top","root":"/cn/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"↩"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
   <script  src="/cn/js/utils.js" ></script>
   <script  src="/cn/js/color-schema.js" ></script>
 <!-- hexo injector head_end start -->
@@ -167,13 +175,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -182,13 +190,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/cn/img/yoneda_lemma/yoneda_lemma_banner.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Yoneda引理">
               
             </span>
 
@@ -250,13 +258,13 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Yoneda引理</h1>
             
@@ -266,7 +274,7 @@
                 
               </p>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p>Yoneda 引理是范畴论中一个颇具哲学色彩的定理．Dan Piponi 称它为“数学中最难的平凡之物”，Emily Riehl 则直言“可以说是范畴论中最重要的结果”．在 <a target="_blank" rel="noopener" href="https://ncatlab.org/nlab/show/HomePage">nLab</a> 上，它被认为是“基本的，但是深刻且核心的”．本文尝试用清晰明了、符合动机、图文并茂的方式叙述并证明 Yoneda 引理，同时介绍它的重要推论 Yoneda 嵌入和可表函子．</p>
 <h1 id="预层范畴"><a href="#预层范畴" class="headerlink" title="预层范畴"></a>预层范畴</h1><p>给定两个范畴 $\mathsf{C}_1,\mathsf{C}_2$，我们可以定义函子范畴 $\mathrm{Fct}(\mathsf{C}_1,\mathsf{C}_2)$，其对象为 $\mathsf{C}_1$ 到 $\mathsf{C}_2$ 的函子，态射为函子间的自然变换．函子范畴 $\mathrm{Fct}(\mathsf{C}_1,\mathsf{C}_2)$ 也可记作 $[\mathsf{C}_1,\mathsf{C}_2]$．设 $F,G\in[\mathsf{C}_1,\mathsf{C}_2]$，$F,G$ 之间的态射集可记作</p>
 <script type="math/tex; mode=display">
@@ -289,7 +297,7 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f1.svg" srcset="/cn/img/loading.gif" width="50%">
+    src="/img/yoneda_lemma/f1.svg" srcset="/cn/img/loading.gif" lazyload width="50%">
     <br>
 </center>
 
@@ -309,7 +317,7 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f5.svg" srcset="/cn/img/loading.gif" width="50%">
+    src="/img/yoneda_lemma/f5.svg" srcset="/cn/img/loading.gif" lazyload width="50%">
     <br>
     <br>
 </center>
@@ -331,7 +339,7 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f2.svg" srcset="/cn/img/loading.gif" width="50%">
+    src="/img/yoneda_lemma/f2.svg" srcset="/cn/img/loading.gif" lazyload width="50%">
     <br>
     <br>
 </center>
@@ -353,7 +361,7 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f4.svg" srcset="/cn/img/loading.gif" width="50%">
+    src="/img/yoneda_lemma/f4.svg" srcset="/cn/img/loading.gif" lazyload width="50%">
     <br>
     <br>
 </center>
@@ -367,7 +375,7 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f3.svg" srcset="/cn/img/loading.gif" width="60%">
+    src="/img/yoneda_lemma/f3.svg" srcset="/cn/img/loading.gif" lazyload width="60%">
     <br>
 </center>
 
@@ -383,7 +391,7 @@ X \xrightarrow{f} Y,</script><p>利用 $\phi$ 的自然性得到如下交换图<
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f6.svg" srcset="/cn/img/loading.gif" width="90%">
+    src="/img/yoneda_lemma/f6.svg" srcset="/cn/img/loading.gif" lazyload width="90%">
     <br>
     <br>
 </center>
@@ -407,7 +415,7 @@ X_1 \xrightarrow{h} X_2,</script><p>我们有如下交换图</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f7.svg" srcset="/cn/img/loading.gif" width="90%">
+    src="/img/yoneda_lemma/f7.svg" srcset="/cn/img/loading.gif" lazyload width="90%">
     <br>
     <br>
 </center>
@@ -447,7 +455,7 @@ X_1 \xrightarrow{h} X_2,</script><p>我们有如下交换图</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f8.svg" srcset="/cn/img/loading.gif" width="72%">
+    src="/img/yoneda_lemma/f8.svg" srcset="/cn/img/loading.gif" lazyload width="72%">
     <br>
     <br>
 </center>
@@ -466,7 +474,7 @@ X_1 \xrightarrow{h} X_2,</script><p>我们有如下交换图</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f9.svg" srcset="/cn/img/loading.gif" width="42%">
+    src="/img/yoneda_lemma/f9.svg" srcset="/cn/img/loading.gif" lazyload width="42%">
     <br>
     <br>
 </center>
@@ -488,7 +496,7 @@ v:=F_2(g)\circ\eta_{Y_1}=\eta_{Y_2}\circ F_1(g).</script><p>因为</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/img/yoneda_lemma/f10.svg" srcset="/cn/img/loading.gif" width="74%">
+    src="/img/yoneda_lemma/f10.svg" srcset="/cn/img/loading.gif" lazyload width="74%">
     <br>
     <br>
 </center>
@@ -530,7 +538,7 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
 <mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.415ex" xmlns="http://www.w3.org/2000/svg" width="22.246ex" height="3.962ex" role="img" focusable="false" viewBox="0 -1125.6 9832.6 1751.1" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-3-TEX-SS-1D5A2" d="M59 347Q59 440 100 521T218 654T392 705Q473 705 550 680Q577 670 577 667Q576 666 572 642T564 595T559 571Q515 601 479 613T392 626Q300 626 232 549T164 347Q164 231 229 150T397 68Q453 68 489 80T568 120L581 129L582 110Q584 91 585 71T587 46Q580 40 566 31T502 5T396 -11Q296 -11 218 41T99 174T59 347Z"></path><path id="MJX-3-TEX-S4-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path><path id="MJX-3-TEX-S4-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-3-TEX-N-48" d="M128 622Q121 629 117 631T101 634T58 637H25V683H36Q57 680 180 680Q315 680 324 683H335V637H302Q262 636 251 634T233 622L232 500V378H517V622Q510 629 506 631T490 634T447 637H414V683H425Q446 680 569 680Q704 680 713 683H724V637H691Q651 636 640 634T622 622V61Q628 51 639 49T691 46H724V0H713Q692 3 569 3Q434 3 425 0H414V46H447Q489 47 498 49T517 61V332H232V197L233 61Q239 51 250 49T302 46H335V0H324Q303 3 180 3Q45 3 36 0H25V46H58Q100 47 109 49T128 61V622Z"></path><path id="MJX-3-TEX-N-6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z"></path><path id="MJX-3-TEX-N-6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path><path id="MJX-3-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-3-TEX-N-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path><path id="MJX-3-TEX-N-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path id="MJX-3-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-3-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-3-TEX-N-2227" d="M318 591Q325 598 333 598Q344 598 348 591Q349 590 414 445T545 151T611 -4Q609 -22 591 -22Q588 -22 586 -21T581 -20T577 -17T575 -13T572 -9T570 -4L333 528L96 -4Q87 -20 80 -21Q78 -22 75 -22Q57 -22 55 -4Q55 2 120 150T251 444T318 591Z"></path><path id="MJX-3-TEX-S4-2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path><path id="MJX-3-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path id="MJX-3-TEX-I-1D44D" d="M58 8Q58 23 64 35Q64 36 329 334T596 635L586 637Q575 637 512 637H500H476Q442 637 420 635T365 624T311 598T266 548T228 469Q227 466 226 463T224 458T223 453T222 450L221 448Q218 443 202 443Q185 443 182 453L214 561Q228 606 241 651Q249 679 253 681Q256 683 487 683H718Q723 678 723 675Q723 673 717 649Q189 54 188 52L185 49H274Q369 50 377 51Q452 60 500 100T579 247Q587 272 590 277T603 282H607Q628 282 628 271Q547 5 541 2Q538 0 300 0H124Q58 0 58 8Z"></path><path id="MJX-3-TEX-SS-1D7E3" d="M94 612Q172 616 211 632T284 678H307V73H430V0H88V73H213V317Q213 560 212 560Q210 558 197 554T155 546T96 540L83 539V612H94Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtable"><g data-mml-node="mtr" transform="translate(0,-375.6)"><g data-mml-node="mtd"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D5A2" xlink:href="#MJX-3-TEX-SS-1D5A2"></use></g></g><g data-mml-node="mpadded" transform="translate(639,0)"></g></g><g data-mml-node="mtd" transform="translate(1139,0)"><g data-mml-node="mover"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-3-TEX-S4-2192" transform="translate(1750,0)"></use><svg width="1850" height="865" x="0" y="-182" viewBox="462.5 -182 1850 865"><use data-c="2212" xlink:href="#MJX-3-TEX-S4-2212" transform="scale(3.567,1)"></use></svg></g><g data-mml-node="mpadded" transform="translate(1138.1,870.8) scale(0.707)"><g transform="translate(330,100)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mspace"></g><g data-mml-node="msub" transform="translate(-2300,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="48" xlink:href="#MJX-3-TEX-N-48"></use><use data-c="6F" xlink:href="#MJX-3-TEX-N-6F" transform="translate(750,0)"></use><use data-c="6D" xlink:href="#MJX-3-TEX-N-6D" transform="translate(1250,0)"></use></g></g><g data-mml-node="TeXAtom" transform="translate(2116,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D5A2" xlink:href="#MJX-3-TEX-SS-1D5A2"></use></g></g></g></g><g data-mml-node="mo" transform="translate(317.8,0)"><use data-c="28" xlink:href="#MJX-3-TEX-N-28"></use></g><g data-mml-node="mo" transform="translate(706.8,0)"><use data-c="22C5" xlink:href="#MJX-3-TEX-N-22C5"></use></g><g data-mml-node="mo" transform="translate(984.8,0)"><use data-c="2C" xlink:href="#MJX-3-TEX-N-2C"></use></g><g data-mml-node="mo" transform="translate(1262.8,0)"><use data-c="2212" xlink:href="#MJX-3-TEX-N-2212"></use></g><g data-mml-node="mo" transform="translate(2040.8,0)"><use data-c="29" xlink:href="#MJX-3-TEX-N-29"></use></g></g></g></g></g></g><g data-mml-node="mtd" transform="translate(4389,0)"><g data-mml-node="msup"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D5A2" xlink:href="#MJX-3-TEX-SS-1D5A2"></use></g></g><g data-mml-node="mo" transform="translate(672,413) scale(0.707)"><use data-c="2227" xlink:href="#MJX-3-TEX-N-2227"></use></g></g></g><g data-mml-node="mtd" transform="translate(6082.6,0)"><g data-mml-node="mover"><g data-mml-node="mo"><use data-c="2190" xlink:href="#MJX-3-TEX-S4-2190"></use><svg width="1850" height="865" x="900" y="-182" viewBox="462.5 -182 1850 865"><use data-c="2212" xlink:href="#MJX-3-TEX-S4-2212" transform="scale(3.567,1)"></use></svg></g><g data-mml-node="mpadded" transform="translate(1138.1,838.2) scale(0.707)"><g transform="translate(330,100)"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D457" xlink:href="#MJX-3-TEX-I-1D457"></use></g><g data-mml-node="mi" transform="translate(445,-150) scale(0.707)"><use data-c="1D44D" xlink:href="#MJX-3-TEX-I-1D44D"></use></g></g></g></g></g></g><g data-mml-node="mtd" transform="translate(9332.6,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mn"><use data-c="1D7E3" xlink:href="#MJX-3-TEX-SS-1D7E3"></use></g></g></g></g></g></g></g></svg></mjx-container>
 <p>对应的逗号范畴 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(\cdot,-)/j_Z</script>，其中 <script type="math/tex">\mathsf{1}</script> 是恰有一个对象和一个态射的范畴，<script type="math/tex">j_Z</script> 把 <script type="math/tex">\mathsf{1}</script> 中唯一的一个对象映成 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(-,Z)</script>．我们可以将上述命题重述如下．</p>
 <div class="note note-primary">
-            <p><strong>命题</strong>．如果 <script type="math/tex">(Z,\phi)</script> 是可表函子 $F$ 的一个表示，那么 $(Z,\phi)$ 是 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(\cdot,-)/j_Z</script> 中的一个终对象．换言之，对于任意 $(Y,\psi)\in\mathrm{Hom}_{\mathsf{C}}(\cdot,-)/j_Z$，存在唯一的态射 $g:Y\to Z$，使得下图在 $\mathsf{C}^\wedge$ 中交换．</p><center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"     src="/img/yoneda_lemma/f11.svg" srcset="/cn/img/loading.gif" width="50%">    <br></center>
+            <p><strong>命题</strong>．如果 <script type="math/tex">(Z,\phi)</script> 是可表函子 $F$ 的一个表示，那么 $(Z,\phi)$ 是 <script type="math/tex">\mathrm{Hom}_{\mathsf{C}}(\cdot,-)/j_Z</script> 中的一个终对象．换言之，对于任意 $(Y,\psi)\in\mathrm{Hom}_{\mathsf{C}}(\cdot,-)/j_Z$，存在唯一的态射 $g:Y\to Z$，使得下图在 $\mathsf{C}^\wedge$ 中交换．</p><center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"     src="/img/yoneda_lemma/f11.svg" srcset="/cn/img/loading.gif" lazyload width="50%">    <br></center>
           </div>
 <p><strong>证明</strong>．事实上，因为 $\phi$ 是同构，所以图表交换等价于</p>
 <script type="math/tex; mode=display">
@@ -569,10 +577,14 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -601,31 +613,25 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
               <!-- Comments -->
               <article class="comments" id="comments">
                 
+                  
                 
-  <div id="vcomments"></div>
+                
+  <div id="valine"></div>
   <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "vjkw64ePz7yaH6jhWSQCKRQx-gzGzoHsz",
-          app_key: "FnH9uRrc0O6C9Rc00UjmDqgl",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: false,
-          recordIP: false,
-          serverURLs: "",
-        });
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"vjkw64ePz7yaH6jhWSQCKRQx-gzGzoHsz","appKey":"FnH9uRrc0O6C9Rc00UjmDqgl","placeholder":"说点什么","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[],"appid":"vjkw64ePz7yaH6jhWSQCKRQx-gzGzoHsz","appkey":"FnH9uRrc0O6C9Rc00UjmDqgl"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
       });
-    }
-    waitElementVisible('vcomments', loadValine);
+    });
   </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
               </article>
@@ -638,7 +644,7 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -650,16 +656,15 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -680,47 +685,58 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
   <!-- 备案信息 -->
   <div class="beian">
-    <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">鄂ICP备19020559号-2</a>
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        鄂ICP备19020559号-2
+      </a>
+    </span>
     
   </div>
 
 
-    
-  </div>
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/cn/js/debouncer.js" ></script>
-<script  src="/cn/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/cn/js/events.js" ></script>
+<script  src="/cn/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
     
-      <script  src="/cn/js/lazyload.js" ></script>
+      <script  src="/cn/js/img-lazyload.js" ></script>
     
   
 
@@ -730,8 +746,23 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/cn/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/cn/js/local-search.js" ></script>
 
 
 
@@ -739,102 +770,16 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
 
 
 
-  
-<script src="/cn/js/to_en.js"></script>
 
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Yoneda引理&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-      icon: "↩"
+      typing(title)
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/cn/js/local-search.js" ></script>
-  <script>
-    var path = "/cn/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    })(window, document);
   </script>
 
 
@@ -876,7 +821,7 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
       };
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.2.0/es5/tex-svg.js" ></script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
 
   
 
@@ -889,10 +834,13 @@ Y_1\cong Y_2\iff \mathrm{Hom}_{\mathsf{C}}(-,Y_1)\cong\mathrm{Hom}_{\mathsf{C}}(
 
 
 
+  
+<script src="/cn/js/to_en.js"></script>
 
 
 
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/cn/js/boot.js" ></script>
 
 
 </body>
