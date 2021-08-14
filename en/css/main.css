@@ -1509,16 +1509,16 @@ post-custom {
 .toc-header > i {
   font-size: 1.25rem;
 }
-#tocbot {
-  max-height: 100%;
+.toc-body {
+  max-height: 75vh;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 }
-#tocbot ol {
+.toc-body ol {
   list-style-type: disc;
   padding-inline-start: 1rem;
 }
-#tocbot::-webkit-scrollbar {
+.toc-body::-webkit-scrollbar {
   display: none;
 }
 .tocbot-list ol {
@@ -1527,6 +1527,10 @@ post-custom {
 }
 .tocbot-list a {
   font-size: 0.95rem;
+}
+.toc-list-item {
+  white-space: break-spaces !important;
+  overflow: visible !important;
 }
 .tocbot-link {
   color: var(--text-color);
@@ -1540,8 +1544,8 @@ post-custom {
 }
 .tocbot-is-collapsible {
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
   padding-left: 18px !important;
-  transition: all 300ms ease-in-out;
 }
 @media (max-width: 1024px) {
   .toc-container {
