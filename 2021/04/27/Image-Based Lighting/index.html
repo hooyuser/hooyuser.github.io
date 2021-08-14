@@ -537,11 +537,11 @@ B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \bold
     padding: 10px;">图4 - OpenGL 坐标系</div>
 </center>
 
-<p>Vulkan 使用的世界坐标系则与 OpenGL 不同．但为了使用基于 OpenGL 坐标系的数学库 <a target="_blank" rel="noopener" href="https://github.com/g-truc/glm">GLM</a>，我对 <code>VkViewport</code> 对象进行了如下设置．<br><div class="hljs"><pre><code class="hljs abnf">VkViewport viewport&#123;&#125;<span class="hljs-comment">;</span>
-viewport.width = renderer.extent.width<span class="hljs-comment">;</span>
-viewport.height = -renderer.extent.height<span class="hljs-comment">;</span>
-viewport.x = <span class="hljs-number">0</span><span class="hljs-comment">;   </span>
-viewport.y = renderer.extent.height<span class="hljs-comment">;</span></code></pre></div><br>这样一来， Vulkan 的坐标系就和与 OpenGL 一样了．这部分内容也可以参考 <a target="_blank" rel="noopener" href="https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/">Sascha Willems 的博客</a>，里面有更加详细的介绍．</p>
+<p>Vulkan 使用的世界坐标系则与 OpenGL 不同．但为了使用基于 OpenGL 坐标系的数学库 <a target="_blank" rel="noopener" href="https://github.com/g-truc/glm">GLM</a>，我对 <code>VkViewport</code> 对象进行了如下设置．<br><div class="hljs"><pre><code class="hljs cpp">VkViewport viewport&#123;&#125;;
+viewport.width = renderer.extent.width;
+viewport.height = -renderer.extent.height;
+viewport.x = <span class="hljs-number">0</span>;   
+viewport.y = renderer.extent.height;</code></pre></div><br>这样一来， Vulkan 的坐标系就和与 OpenGL 一样了．这部分内容也可以参考 <a target="_blank" rel="noopener" href="https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/">Sascha Willems 的博客</a>，里面有更加详细的介绍．</p>
 <p>接下来，我们介绍 Vulkan 对于立方盒贴图的规定．首先，与矩形环境纹理贴在环境光球面内部不同，6 张立方盒贴图是贴在立方盒外部的． 下图是图 1 对应的立方盒贴图．</p>
 <center>
     <img style="border-radius: 0.3125em;
