@@ -927,7 +927,7 @@ img[lazyload] {
   font-weight: bold;
 }
 .markdown-body pre {
-  font-size: 100% !important;
+  font-size: 95% !important;
 }
 .markdown-body pre code {
   overflow-x: auto;
