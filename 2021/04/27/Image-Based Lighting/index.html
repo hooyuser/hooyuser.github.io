@@ -587,8 +587,8 @@ viewport.y = renderer.extent.height<span class="hljs-comment">;</span></code></p
 <p>HDR 图片的每个纹素占用 32 比特，采用 R8G8B8E8 的编码方式，即每个色彩通道是 8 比特，三个色彩通道共用 8 比特的指数。我们使用只含头文件的轻量级开源库 <a target="_blank" rel="noopener" href="https://github.com/nothings/stb">stb</a> 对它进行读写。读 HDR 可以使用 <code>stbi_loadf</code> 函数，返回的指针所指内存的布局为 R32G32B32A32 ，即 4 通道浮点格式。写 HDR 可以使用 <code>stbi_write_hdr</code> 函数，将布局为 R32G32B32A32 的数据存为 HDR。</p>
 <p>EXR 图片的格式比较复杂。对于环境纹理而言，最常用的是 B32G32R32 布局的 3 通道浮点格式，和 B16G16R16 布局的 3 通道半精度浮点格式。我们使用只含头文件的轻量级开源库 <a target="_blank" rel="noopener" href="https://github.com/syoyo/tinyexr">tinyexr</a> 对它进行读写。读 EXR 可以使用 <code>LoadEXR</code> 函数，对于 B32G32R32、B16G16R16、A32B32G32R32、A16B16G16R16 格式的 EXR 图片，返回的指针所指内存的布局均为 R32G32B32A32 ，即 4 通道浮点格式。写 EXR 可以用 <code>SaveEXRImageToFile</code> 函数，将布局为 R32G32B32A32  的数据存为指定格式的 EXR 图片。</p>
 <h4 id="矩形纹理转立方盒贴图"><a href="#矩形纹理转立方盒贴图" class="headerlink" title="矩形纹理转立方盒贴图"></a>矩形纹理转立方盒贴图</h4><p>将矩形纹理转成立方盒贴图，思路就是把矩形纹理贴到一个立方体上，然后分别对立方体的 6 个面进行拍屏，使立方体的表面正好占据整个屏幕空间。</p>
-<p>下面的代码会输出投影矩阵和观察矩阵的乘积，分别表示从右、左、上、下、前、后架设摄像机拍摄立方体。<br><div class="hljs"><pre><code class="hljs angelscript">glm::mat4 captureProjection =
-		glm::perspective((<span class="hljs-built_in">float</span>)M_PI / <span class="hljs-number">2.0f</span>, <span class="hljs-number">1.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">10.0f</span>);
+<p>下面的代码会输出投影矩阵和观察矩阵的乘积，分别表示从右、左、上、下、前、后架设摄像机拍摄立方体。<br><div class="hljs"><pre><code class="hljs cpp">glm::mat4 captureProjection =
+		glm::perspective((<span class="hljs-keyword">float</span>)M_PI / <span class="hljs-number">2.0f</span>, <span class="hljs-number">1.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">10.0f</span>);
 glm::mat4 captureViews[] = &#123;
     glm::lookAt(glm::vec3(<span class="hljs-number">2.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>, <span class="hljs-number">1.0f</span>,  <span class="hljs-number">0.0f</span>)),
     glm::lookAt(glm::vec3(<span class="hljs-number">-2.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>, <span class="hljs-number">1.0f</span>,  <span class="hljs-number">0.0f</span>)),
@@ -597,21 +597,21 @@ glm::mat4 captureViews[] = &#123;
     glm::lookAt(glm::vec3(<span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">2.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>, <span class="hljs-number">1.0f</span>,  <span class="hljs-number">0.0f</span>)),
     glm::lookAt(glm::vec3(<span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">-2.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>,  <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>), glm::vec3(<span class="hljs-number">0.0f</span>, <span class="hljs-number">1.0f</span>,  <span class="hljs-number">0.0f</span>))
 &#125;;
-<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i++)
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i++)
 &#123;
-    std::cout &lt;&lt; glm::to_string(captureProjection * captureViews[i]) &lt;&lt; std::endl;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; glm::to_string(captureProjection * captureViews[i]) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
 &#125;</code></pre></div></p>
 <p>我们可以将输出的矩阵复制到顶点着色器中进行着色。下面是顶点着色器的代码。</p>
-<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-comment">//shader.vert</span>
-#version <span class="hljs-number">450</span>
+<div class="hljs"><pre><code class="hljs glsl"><span class="hljs-comment">//shader.vert</span>
+<span class="hljs-meta">#version 450</span>
 
-layout(push_constant) uniform PushConstant &#123;
-    <span class="hljs-built_in">int</span> index;
+<span class="hljs-keyword">layout</span>(push_constant) <span class="hljs-keyword">uniform</span> PushConstant &#123;
+    <span class="hljs-type">int</span> <span class="hljs-keyword">index</span>;
 &#125; constant;
-layout(location = <span class="hljs-number">0</span>) <span class="hljs-keyword">in</span> vec3 aLocalPos;
-layout(location = <span class="hljs-number">0</span>) <span class="hljs-keyword">out</span> vec3 localPos;
+<span class="hljs-keyword">layout</span>(<span class="hljs-keyword">location</span> = <span class="hljs-number">0</span>) <span class="hljs-keyword">in</span> <span class="hljs-type">vec3</span> aLocalPos;
+<span class="hljs-keyword">layout</span>(<span class="hljs-keyword">location</span> = <span class="hljs-number">0</span>) <span class="hljs-keyword">out</span> <span class="hljs-type">vec3</span> localPos;
 
-<span class="hljs-keyword">const</span> mat4 mProjViews[<span class="hljs-number">6</span>] = &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-type">mat4</span> mProjViews[<span class="hljs-number">6</span>] = &#123;
     &#123;&#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">-1.010101</span>, <span class="hljs-number">-1.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">-1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">1.919192</span>, <span class="hljs-number">2.000000</span>&#125;&#125;,
     &#123;&#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">1.010101</span>, <span class="hljs-number">1.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">1.919192</span>, <span class="hljs-number">2.000000</span>&#125;&#125;,
     &#123;&#123;<span class="hljs-number">1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">-1.010101</span>, <span class="hljs-number">-1.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">-1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">1.919192</span>, <span class="hljs-number">2.000000</span>&#125;&#125;,
@@ -620,9 +620,9 @@ layout(location = <span class="hljs-number">0</span>) <span class="hljs-keyword"
     &#123;&#123;<span class="hljs-number">-1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">1.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">1.010101</span>, <span class="hljs-number">1.000000</span>&#125;, &#123;<span class="hljs-number">0.000000</span>, <span class="hljs-number">0.000000</span>, <span class="hljs-number">1.919192</span>, <span class="hljs-number">2.000000</span>&#125;&#125;
 &#125;;
 
-<span class="hljs-built_in">void</span> main() &#123;
+<span class="hljs-type">void</span> main() &#123;
     localPos = aLocalPos;
-    gl_Position = mProjViews[constant.index] * vec4(aLocalPos, <span class="hljs-number">1.0</span>);
+    <span class="hljs-built_in">gl_Position</span> = mProjViews[constant.<span class="hljs-keyword">index</span>] * <span class="hljs-type">vec4</span>(aLocalPos, <span class="hljs-number">1.0</span>);
 &#125;</code></pre></div>
 <p>这里我们不打算依靠 UV 映射为立方体去贴纹理，而是根据世界坐标去贴纹理，所以需要将世界坐标传入片元着色器。片元着色器的代码如下。<br><div class="hljs"><pre><code class="hljs glsl"><span class="hljs-comment">//shader.frag</span>
 <span class="hljs-meta">#version 450</span>
@@ -649,21 +649,21 @@ layout(location = <span class="hljs-number">0</span>) <span class="hljs-keyword"
     \tilde{u}&=1-\frac{1}{2\pi}\mathrm{mod}\left(\mathrm{arctan2}\left(\frac{y}{x}\right),2\pi\right),\\
     \tilde{v}&=\frac{1}{\pi}\arccos \frac{z}{r}.
 \end{aligned}</script><p>但是，具体形式上有所差别。一是因为如果不在意贴图是否发生了旋转，那么取模函数 $x\mapsto\mathrm{mod}(x,2\pi)$ 可以用平移函数 $x\mapsto x+\pi$ 进行替换。二是因为我们在 Vulkan 中使用的坐标系与本文在数学推导时采用的坐标系不同，在将本文公式转化为 GLSL 代码时，应该把坐标 $(x,y,z)$ 依次用 $(y,z,x)$ 进行替换。</p>
-<h4 id="Vulkan中的立方盒贴图"><a href="#Vulkan中的立方盒贴图" class="headerlink" title="Vulkan中的立方盒贴图"></a>Vulkan中的立方盒贴图</h4><p>在 Vulkan 中，在为立方盒贴图创建 <code>VkImage</code> 对象时，需要如下创建信息。<br><div class="hljs"><pre><code class="hljs abnf">VkImageCreateInfo imageInfo&#123;&#125;<span class="hljs-comment">;</span>
-//...
-imageInfo.arrayLayers = <span class="hljs-number">6</span><span class="hljs-comment">;</span>
-imageInfo.flags = VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT<span class="hljs-comment">;</span></code></pre></div><br>其他涉及到<code>VkImage</code>的操作，也同样要将图片的层数<code>layerCount</code>设置为 6。比如说，如果使用了 staging buffer，在进行<code>vkCmdCopyBufferToImage</code>时，要设置<br><div class="hljs"><pre><code class="hljs abnf">VkBufferImageCopy region&#123;&#125;<span class="hljs-comment">;</span>
-//...
-region.imageSubresource.layerCount = <span class="hljs-number">6</span><span class="hljs-comment">;</span></code></pre></div><br>在使用<code>vkCmdPipelineBarrier</code>时，要设置<br><div class="hljs"><pre><code class="hljs glsl">VkImageMemoryBarrier <span class="hljs-built_in">barrier</span>&#123;&#125;;
+<h4 id="Vulkan中的立方盒贴图"><a href="#Vulkan中的立方盒贴图" class="headerlink" title="Vulkan中的立方盒贴图"></a>Vulkan中的立方盒贴图</h4><p>在 Vulkan 中，在为立方盒贴图创建 <code>VkImage</code> 对象时，需要如下创建信息。<br><div class="hljs"><pre><code class="hljs cpp">VkImageCreateInfo imageInfo&#123;&#125;;
 <span class="hljs-comment">//...</span>
-<span class="hljs-built_in">barrier</span>.subresourceRange.layerCount = <span class="hljs-number">6</span>;</code></pre></div><br>在使用<code>vkCmdBlitImage</code>创建 Mipmap 的时候，也要设置<br><div class="hljs"><pre><code class="hljs abnf">VkImageBlit blit&#123;&#125;<span class="hljs-comment">;</span>
-//...
-blit.srcSubresource.layerCount = <span class="hljs-number">6</span><span class="hljs-comment">;</span>
-blit.dstSubresource.layerCount = <span class="hljs-number">6</span><span class="hljs-comment">;</span></code></pre></div><br>在为立方盒贴图创建 <code>VkImageView</code> 对象时，需要如下创建信息。<br><div class="hljs"><pre><code class="hljs abnf">VkImageViewCreateInfo viewInfo&#123;&#125;<span class="hljs-comment">;</span>
-//...
-viewInfo.viewType = VK_IMAGE_VIEW_TYPE_CUBE<span class="hljs-comment">;</span>
-viewInfo.subresourceRange.layerCount = <span class="hljs-number">6</span><span class="hljs-comment">;</span></code></pre></div></p>
-<h4 id="立方盒贴图的渲染"><a href="#立方盒贴图的渲染" class="headerlink" title="立方盒贴图的渲染"></a>立方盒贴图的渲染</h4><p>程序源码见 <a target="_blank" rel="noopener" href="https://github.com/hooyuser/Vulkan_Demos/tree/master/demos/003_Vulkan_Skybox">003_Vulkan_Skybox</a>。在渲染立方盒贴图时，我们要消除摄像机观察矩阵中的平移，因此会对观察矩阵做如下处理。<br><div class="hljs"><pre><code class="hljs ini"><span class="hljs-attr">ubo.view</span> = glm::mat4(glm::mat3(camera.viewMatrix()))<span class="hljs-comment">;</span></code></pre></div><br>着色器的代码就是简单地渲染一个立方体。只需要注意，在采样立方盒贴图时，需要使用一个一个<code>vec3</code>类型的方向向量作为纹理坐标。<br><div class="hljs"><pre><code class="hljs glsl"><span class="hljs-comment">//shader.vert</span>
+imageInfo.arrayLayers = <span class="hljs-number">6</span>;
+imageInfo.flags = VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT;</code></pre></div><br>其他涉及到<code>VkImage</code>的操作，也同样要将图片的层数<code>layerCount</code>设置为 6。比如说，如果使用了 staging buffer，在进行<code>vkCmdCopyBufferToImage</code>时，要设置<br><div class="hljs"><pre><code class="hljs cpp">VkBufferImageCopy region&#123;&#125;;
+<span class="hljs-comment">//...</span>
+region.imageSubresource.layerCount = <span class="hljs-number">6</span>;</code></pre></div><br>在使用<code>vkCmdPipelineBarrier</code>时，要设置<br><div class="hljs"><pre><code class="hljs cpp">VkImageMemoryBarrier barrier&#123;&#125;;
+<span class="hljs-comment">//...</span>
+barrier.subresourceRange.layerCount = <span class="hljs-number">6</span>;</code></pre></div><br>在使用<code>vkCmdBlitImage</code>创建 Mipmap 的时候，也要设置<br><div class="hljs"><pre><code class="hljs cpp">VkImageBlit blit&#123;&#125;;
+<span class="hljs-comment">//...</span>
+blit.srcSubresource.layerCount = <span class="hljs-number">6</span>;
+blit.dstSubresource.layerCount = <span class="hljs-number">6</span>;</code></pre></div><br>在为立方盒贴图创建 <code>VkImageView</code> 对象时，需要如下创建信息。<br><div class="hljs"><pre><code class="hljs cpp">VkImageViewCreateInfo viewInfo&#123;&#125;;
+<span class="hljs-comment">//...</span>
+viewInfo.viewType = VK_IMAGE_VIEW_TYPE_CUBE;
+viewInfo.subresourceRange.layerCount = <span class="hljs-number">6</span>;</code></pre></div></p>
+<h4 id="立方盒贴图的渲染"><a href="#立方盒贴图的渲染" class="headerlink" title="立方盒贴图的渲染"></a>立方盒贴图的渲染</h4><p>程序源码见 <a target="_blank" rel="noopener" href="https://github.com/hooyuser/Vulkan_Demos/tree/master/demos/003_Vulkan_Skybox">003_Vulkan_Skybox</a>。在渲染立方盒贴图时，我们要消除摄像机观察矩阵中的平移，因此会对观察矩阵做如下处理。<br><div class="hljs"><pre><code class="hljs cpp">ubo.view = glm::mat4(glm::mat3(camera.viewMatrix()));</code></pre></div><br>着色器的代码就是简单地渲染一个立方体。只需要注意，在采样立方盒贴图时，需要使用一个一个<code>vec3</code>类型的方向向量作为纹理坐标。<br><div class="hljs"><pre><code class="hljs glsl"><span class="hljs-comment">//shader.vert</span>
 <span class="hljs-meta">#version 450</span>
 
 <span class="hljs-keyword">layout</span>(<span class="hljs-keyword">binding</span> = <span class="hljs-number">0</span>) <span class="hljs-keyword">uniform</span> UniformBufferObject &#123;
@@ -687,20 +687,20 @@ viewInfo.subresourceRange.layerCount = <span class="hljs-number">6</span><span c
 <span class="hljs-type">void</span> main() &#123;
     outColor = <span class="hljs-built_in">texture</span>(texSampler, fragTexCoord);
 &#125;</code></pre></div></p>
-<h3 id="预计算辐照度贴图"><a href="#预计算辐照度贴图" class="headerlink" title="预计算辐照度贴图"></a>预计算辐照度贴图</h3><p>对于重要性采样所需的随机数，我们使用 Sobol 低差异序列来加速收敛。<br><div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-comment">//shader.frag</span>
-#version <span class="hljs-number">450</span>
+<h3 id="预计算辐照度贴图"><a href="#预计算辐照度贴图" class="headerlink" title="预计算辐照度贴图"></a>预计算辐照度贴图</h3><p>对于重要性采样所需的随机数，我们使用 Sobol 低差异序列来加速收敛。<br><div class="hljs"><pre><code class="hljs glsl"><span class="hljs-comment">//shader.frag</span>
+<span class="hljs-meta">#version 450</span>
 
-layout(binding = <span class="hljs-number">1</span>) uniform samplerCube cubeMap;
+<span class="hljs-keyword">layout</span>(<span class="hljs-keyword">binding</span> = <span class="hljs-number">1</span>) <span class="hljs-keyword">uniform</span> <span class="hljs-type">samplerCube</span> cubeMap;
 
-layout(location = <span class="hljs-number">0</span>) <span class="hljs-keyword">in</span> vec3 localPos;
-layout(location = <span class="hljs-number">0</span>) <span class="hljs-keyword">out</span> vec4 outColor;
+<span class="hljs-keyword">layout</span>(<span class="hljs-keyword">location</span> = <span class="hljs-number">0</span>) <span class="hljs-keyword">in</span> <span class="hljs-type">vec3</span> localPos;
+<span class="hljs-keyword">layout</span>(<span class="hljs-keyword">location</span> = <span class="hljs-number">0</span>) <span class="hljs-keyword">out</span> <span class="hljs-type">vec4</span> outColor;
 
-#define PI <span class="hljs-number">3.14159265359</span>
-#define SAMPLE_NUM <span class="hljs-number">262144</span>
+<span class="hljs-meta">#define PI 3.14159265359</span>
+<span class="hljs-meta">#define SAMPLE_NUM 262144</span>
 
-uvec2 Sobol(<span class="hljs-built_in">uint</span> n) &#123;
-    uvec2 p = uvec2(<span class="hljs-number">0</span>u);
-    uvec2 d = uvec2(<span class="hljs-number">0x80000000</span>u);
+<span class="hljs-type">uvec2</span> Sobol(<span class="hljs-type">uint</span> n) &#123;
+    <span class="hljs-type">uvec2</span> p = <span class="hljs-type">uvec2</span>(<span class="hljs-number">0</span>u);
+    <span class="hljs-type">uvec2</span> d = <span class="hljs-type">uvec2</span>(<span class="hljs-number">0x80000000</span>u);
 
     <span class="hljs-keyword">for</span>(; n != <span class="hljs-number">0</span>u; n &gt;&gt;= <span class="hljs-number">1</span>u) &#123;
         <span class="hljs-keyword">if</span>((n &amp; <span class="hljs-number">1</span>u) != <span class="hljs-number">0</span>u)
@@ -714,7 +714,7 @@ uvec2 Sobol(<span class="hljs-built_in">uint</span> n) &#123;
 &#125;
 
 <span class="hljs-comment">// adapted from: https://www.shadertoy.com/view/3lcczS</span>
-<span class="hljs-built_in">uint</span> ReverseBits(<span class="hljs-built_in">uint</span> x) &#123;
+<span class="hljs-type">uint</span> ReverseBits(<span class="hljs-type">uint</span> x) &#123;
     x = ((x &amp; <span class="hljs-number">0xaaaaaaaa</span>u) &gt;&gt; <span class="hljs-number">1</span>) | ((x &amp; <span class="hljs-number">0x55555555</span>u) &lt;&lt; <span class="hljs-number">1</span>);
     x = ((x &amp; <span class="hljs-number">0xcccccccc</span>u) &gt;&gt; <span class="hljs-number">2</span>) | ((x &amp; <span class="hljs-number">0x33333333</span>u) &lt;&lt; <span class="hljs-number">2</span>);
     x = ((x &amp; <span class="hljs-number">0xf0f0f0f0</span>u) &gt;&gt; <span class="hljs-number">4</span>) | ((x &amp; <span class="hljs-number">0x0f0f0f0f</span>u) &lt;&lt; <span class="hljs-number">4</span>);
@@ -724,7 +724,7 @@ uvec2 Sobol(<span class="hljs-built_in">uint</span> n) &#123;
 
 <span class="hljs-comment">// EDIT: updated with a new hash that fixes an issue with the old one.</span>
 <span class="hljs-comment">// details in the post linked at the top.</span>
-<span class="hljs-built_in">uint</span> OwenHash(<span class="hljs-built_in">uint</span> x, <span class="hljs-built_in">uint</span> seed) &#123; <span class="hljs-comment">// works best with random seeds</span>
+<span class="hljs-type">uint</span> OwenHash(<span class="hljs-type">uint</span> x, <span class="hljs-type">uint</span> seed) &#123; <span class="hljs-comment">// works best with random seeds</span>
     x ^= x * <span class="hljs-number">0x3d20adea</span>u;
     x += seed;
     x *= (seed &gt;&gt; <span class="hljs-number">16</span>) | <span class="hljs-number">1</span>u;
@@ -733,42 +733,42 @@ uvec2 Sobol(<span class="hljs-built_in">uint</span> n) &#123;
     <span class="hljs-keyword">return</span> x;
 &#125;
 
-<span class="hljs-built_in">uint</span> OwenScramble(<span class="hljs-built_in">uint</span> p, <span class="hljs-built_in">uint</span> seed) &#123;
+<span class="hljs-type">uint</span> OwenScramble(<span class="hljs-type">uint</span> p, <span class="hljs-type">uint</span> seed) &#123;
     p = ReverseBits(p);
     p = OwenHash(p, seed);
     <span class="hljs-keyword">return</span> ReverseBits(p);
 &#125;
 
-vec2 sobol2d(<span class="hljs-built_in">uint</span> index, <span class="hljs-built_in">uint</span> seed) &#123;
-    uvec2 p = Sobol(index);
+<span class="hljs-type">vec2</span> sobol2d(<span class="hljs-type">uint</span> <span class="hljs-keyword">index</span>, <span class="hljs-type">uint</span> seed) &#123;
+    <span class="hljs-type">uvec2</span> p = Sobol(<span class="hljs-keyword">index</span>);
     p.x = OwenScramble(p.x, <span class="hljs-number">0xe7843fbf</span>u);
     p.y = OwenScramble(p.y, <span class="hljs-number">0x8d8fb1e0</span>u);
-    <span class="hljs-keyword">return</span> vec2(p) / <span class="hljs-built_in">float</span>(<span class="hljs-number">0xffffffff</span>u);
+    <span class="hljs-keyword">return</span> <span class="hljs-type">vec2</span>(p) / <span class="hljs-type">float</span>(<span class="hljs-number">0xffffffff</span>u);
 &#125;
 
-vec3 genNu(<span class="hljs-built_in">uint</span> index, <span class="hljs-built_in">uint</span> seed) &#123;
-    vec2 psi = sobol2d(index, seed);
-    <span class="hljs-built_in">float</span> a = sqrt(psi.x);
-    <span class="hljs-built_in">float</span> b = <span class="hljs-number">2.0</span> * PI * psi.y;
-    <span class="hljs-keyword">return</span> vec3(a * sin(b), sqrt(<span class="hljs-number">1.0</span> -psi.x), a * cos(b));
+<span class="hljs-type">vec3</span> genNu(<span class="hljs-type">uint</span> <span class="hljs-keyword">index</span>, <span class="hljs-type">uint</span> seed) &#123;
+    <span class="hljs-type">vec2</span> psi = sobol2d(<span class="hljs-keyword">index</span>, seed);
+    <span class="hljs-type">float</span> a = <span class="hljs-built_in">sqrt</span>(psi.x);
+    <span class="hljs-type">float</span> b = <span class="hljs-number">2.0</span> * PI * psi.y;
+    <span class="hljs-keyword">return</span> <span class="hljs-type">vec3</span>(a * <span class="hljs-built_in">sin</span>(b), <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> -psi.x), a * <span class="hljs-built_in">cos</span>(b));
 &#125;
 
-vec3 genSampleDirection(vec3 nu, vec3 N) &#123;
-    vec3 T = cross(vec3(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>), N);
-    vec3 B = cross(N, T);
+<span class="hljs-type">vec3</span> genSampleDirection(<span class="hljs-type">vec3</span> nu, <span class="hljs-type">vec3</span> N) &#123;
+    <span class="hljs-type">vec3</span> T = <span class="hljs-built_in">cross</span>(<span class="hljs-type">vec3</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>), N);
+    <span class="hljs-type">vec3</span> B = <span class="hljs-built_in">cross</span>(N, T);
     <span class="hljs-keyword">return</span> B * nu.x + N *nu.y + T * nu.z;
 &#125;
 
-<span class="hljs-built_in">void</span> main() &#123;
-    vec3 irradiance = vec3(<span class="hljs-number">0.0</span>);
-    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">uint</span> i = <span class="hljs-number">0</span>; i &lt; SAMPLE_NUM; i++)&#123;
-        <span class="hljs-built_in">uint</span> seed = <span class="hljs-built_in">uint</span>(<span class="hljs-built_in">float</span>(<span class="hljs-number">0x00004000</span>u) * gl_FragCoord.x) + <span class="hljs-built_in">uint</span>(<span class="hljs-built_in">float</span>(<span class="hljs-number">0x40000000</span>u) * gl_FragCoord.y);
-        vec3 nu = genNu(i, OwenHash(i, seed));
-        vec3 dir = genSampleDirection(nu, normalize(localPos));
-        irradiance += texture(cubeMap, dir).rgb;
+<span class="hljs-type">void</span> main() &#123;
+    <span class="hljs-type">vec3</span> irradiance = <span class="hljs-type">vec3</span>(<span class="hljs-number">0.0</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">uint</span> i = <span class="hljs-number">0</span>; i &lt; SAMPLE_NUM; i++)&#123;
+        <span class="hljs-type">uint</span> seed = <span class="hljs-type">uint</span>(<span class="hljs-type">float</span>(<span class="hljs-number">0x00004000</span>u) * <span class="hljs-built_in">gl_FragCoord</span>.x) + <span class="hljs-type">uint</span>(<span class="hljs-type">float</span>(<span class="hljs-number">0x40000000</span>u) * <span class="hljs-built_in">gl_FragCoord</span>.y);
+        <span class="hljs-type">vec3</span> nu = genNu(i, OwenHash(i, seed));
+        <span class="hljs-type">vec3</span> dir = genSampleDirection(nu, <span class="hljs-built_in">normalize</span>(localPos));
+        irradiance += <span class="hljs-built_in">texture</span>(cubeMap, dir).rgb;
     &#125;
-    irradiance /= <span class="hljs-built_in">float</span>(SAMPLE_NUM);
-    outColor = vec4(irradiance, <span class="hljs-number">1.0</span>);
+    irradiance /= <span class="hljs-type">float</span>(SAMPLE_NUM);
+    outColor = <span class="hljs-type">vec4</span>(irradiance, <span class="hljs-number">1.0</span>);
 &#125;</code></pre></div><br>2^18 次采样下得到的辐照度贴图如下</p>
 <center>
     <img style="border-radius: 0.3125em;
