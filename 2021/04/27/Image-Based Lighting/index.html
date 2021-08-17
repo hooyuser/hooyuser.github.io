@@ -270,7 +270,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月15日 凌晨
+                  本文最后更新于：2021年8月17日 下午
                 
               </p>
             
@@ -466,7 +466,7 @@ S(\mathbf{n}^*,\alpha)=\frac{\sum_{k=1}^NC(\boldsymbol{\omega}_i^{(k)},\mathbf{n
 C(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)&=\dfrac{F_{0}+\left(1-F_{0}\right)(1-( \mathbf{n}^*\cdot\mathbf{h} ))^{5}}{2(\mathbf{n}^* \cdot \boldsymbol{\omega}_i^{(k)})(2-\alpha)+2\alpha}.
 \end{aligned}</script><p>我们可以为某些 $\alpha$ 预计算 <script type="math/tex">S(\mathbf{n}^{*},\alpha)</script>，像 Mipmap 一样生成多张立方盒贴图．对于其它的 $\alpha$，$S(\mathbf{n}^*,\alpha)$ 的值可由三线性插值得到．在渲染时，第一部分分裂积分可估算为</p>
 <script type="math/tex; mode=display">
-\frac{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o) L_{i}(\boldsymbol{\omega}_i)(\mathbf{n}^* \cdot \boldsymbol{\omega}_i) d\Omega_i}{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)\mathbf{n}^* \cdot \boldsymbol{\omega}_i d\Omega_i}\approx S(\mathbf{r}(\boldsymbol{\omega}_o),\alpha)=S(2(\boldsymbol{\omega}_o\cdot\mathbf{n})\mathbf{n}-\boldsymbol{\omega}_o,\alpha).</script><h3 id="分裂和-第-2-部分"><a href="#分裂和-第-2-部分" class="headerlink" title="分裂和 - 第 2 部分"></a>分裂和 - 第 2 部分</h3><h4 id="公式推导-1"><a href="#公式推导-1" class="headerlink" title="公式推导"></a>公式推导</h4><p>分裂积分的右边可以化简为</p>
+\frac{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o) L_{i}(\boldsymbol{\omega}_i)(\mathbf{n} \cdot \boldsymbol{\omega}_i) d\Omega_i}{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)\mathbf{n} \cdot \boldsymbol{\omega}_i d\Omega_i}\approx S(\mathbf{r}(\boldsymbol{\omega}_o),\alpha)=S(2(\boldsymbol{\omega}_o\cdot\mathbf{n})\mathbf{n}-\boldsymbol{\omega}_o,\alpha).</script><h3 id="分裂和-第-2-部分"><a href="#分裂和-第-2-部分" class="headerlink" title="分裂和 - 第 2 部分"></a>分裂和 - 第 2 部分</h3><h4 id="公式推导-1"><a href="#公式推导-1" class="headerlink" title="公式推导"></a>公式推导</h4><p>分裂积分的右边可以化简为</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     &\; \int_{H^2} f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)\mathbf{n} \cdot \boldsymbol{\omega}_i d\Omega_i\\
