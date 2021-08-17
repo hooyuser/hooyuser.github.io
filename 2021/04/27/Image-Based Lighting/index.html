@@ -218,7 +218,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.5k 字
+      4.7k 字
     </span>
   
 
@@ -228,7 +228,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      74
+      76
        分钟
     </span>
   
@@ -270,7 +270,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月17日 下午
+                  本文最后更新于：2021年8月17日 晚上
                 
               </p>
             
@@ -416,6 +416,7 @@ pdf(\mathbf{h})=D(\mathbf{n}^*,\mathbf{h})\cos\theta_{\mathbf{h}}=\dfrac{\alpha^
 \mathbf{n}^* \cdot \boldsymbol{\omega}_i^{(k)}=2\cos^2\theta_{\mathbf{h}^{(k)}}-1=2(\mathbf{n}^* \cdot\mathbf{h}^{(k)})^2-1,</script><p>而 $\mathbf{h}^{(k)}$ 是半球 $H^2_{\mathbf{n}^*}$ 上的随机变量，服从概率密度函数为</p>
 <script type="math/tex; mode=display">
 pdf(\mathbf{h})=\dfrac{\alpha^{2}\cos\theta_{\mathbf{h}}}{\pi\left(\left(\alpha^{2}-1\right)\cos^2\theta_{\mathbf{h}}+1\right)^{2}}</script><p>的概率分布．</p>
+<p>值得一提的是，虚幻引擎在实验中发现：即使在得到的估计式去掉 $C(\boldsymbol{\omega}_i,\mathbf{n}^<em>)$，效果也不错。同时，这也会让预计算更加简单。本文则尝试保留 $C(\boldsymbol{\omega}_i,\mathbf{n}^</em>)$，目的在于展示另一种可能的做法。</p>
 <h4 id="采样方案"><a href="#采样方案" class="headerlink" title="采样方案"></a>采样方案</h4><p>为应用逆变换采样法，先将 $\mathbf{h}^{(k)}$ 在 $\mathbf{n}^*$ 处的切空间上参数化为球坐标 <script type="math/tex">(\theta_{\mathbf{h}^{(k)}},\varphi_{\mathbf{h}^{(k)}})\in[0,\pi/2]\times[0,2\pi]</script>．设 <script type="math/tex">\xi_{1}^{(k)}, \xi_{2}^{(k)}</script> 独立且服从均匀分布 $U(0,1)$．由</p>
 <script type="math/tex; mode=display">
 cdf_{\theta,\varphi}\left(\theta_{\mathbf{h}^{(k)}},\varphi_{\mathbf{h}^{(k)}}\right)=\int_{0}^{\varphi_{\mathbf{h}^{(k)}}} \mathrm{d} \varphi_{\mathbf{h}} \int_{0}^{\theta_{\mathbf{h}^{(k)}}} \frac{\alpha^{2} \cos \theta_{\mathbf{h}}  \sin \theta_{\mathbf{h}} }{\pi\left(\left(\alpha^{2}-1\right) \cos ^{2} \theta_{\mathbf{h}} +1\right)^{2}} d\theta_{\mathbf{h}}</script><p>可知 <script type="math/tex">\theta_{\mathbf{h}^{(k)}},\varphi_{\mathbf{h}^{(k)}}</script> 是独立的．于是，我们可以分别求出 <script type="math/tex">\theta_{\mathbf{h}^{(k)}},\varphi_{\mathbf{h}^{(k)}}</script> 的边缘分布</p>
@@ -459,15 +460,15 @@ cdf_{\varphi}\left(\varphi_{\mathbf{h}^{(k)}}\right)&=cdf_{\theta,\varphi}\left(
     \dfrac{1-(1+\alpha^2)\xi_{1}^{(k)}}{1-(1-\alpha^2)\xi_{1}^{(k)}}
 \end{bmatrix}.</script><p>最终，我们可以导出第一部分分裂积分的估计量</p>
 <script type="math/tex; mode=display">
-S(\mathbf{n}^*,\alpha)=\frac{\sum_{k=1}^NC(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)L_{i}(\boldsymbol{\omega}_i^{(k)})\mathbf{n}^* \cdot \boldsymbol{\omega}_i^{(k)}}{\sum_{k=1}^NC(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)\mathbf{n}^*\cdot \boldsymbol{\omega}_i^{(k)}},</script><p>其中</p>
+S(\mathbf{n}^*,\alpha,F_0)=\frac{\sum_{k=1}^NC(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)L_{i}(\boldsymbol{\omega}_i^{(k)})\mathbf{n}^* \cdot \boldsymbol{\omega}_i^{(k)}}{\sum_{k=1}^NC(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)\mathbf{n}^*\cdot \boldsymbol{\omega}_i^{(k)}},</script><p>其中</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     \mathbf{n}^*&=\mathbf{r}(\boldsymbol{\omega}_o)=2(\boldsymbol{\omega}_o\cdot\mathbf{n})\mathbf{n}-\boldsymbol{\omega}_o,\\
 C(\boldsymbol{\omega}_i^{(k)},\mathbf{n}^*)&=\dfrac{F_{0}+\left(1-F_{0}\right)(1-( \mathbf{n}^*\cdot\mathbf{h} ))^{5}}{2(\mathbf{n}^* \cdot \boldsymbol{\omega}_i^{(k)})(2-\alpha)+2\alpha}.
-\end{aligned}</script><p>记 $\widetilde{S}(\boldsymbol{\omega}_o,\alpha)=S(\mathbf{r}(\boldsymbol{\omega}_o),\alpha)$．每给定一个 $\alpha$，我们就可以让 $\boldsymbol{\omega}_o$ 取各个方向，预计算 <script type="math/tex">\widetilde{S}(\boldsymbol{\omega}_o,\alpha)</script> 的值，得到一张立方盒贴图．对不同的 $\alpha$，我们可以像 Mipmap 一样生成多张立方盒贴图．$\alpha$ 越大，生成的立方盒贴图分辨率就越小．对于其它的 $\alpha$，$\widetilde{S}(\boldsymbol{\omega}_o,\alpha)$ 的值可由三线性插值得到．这些预计算得到的立方盒贴图，被称作 <strong>预过滤环境贴图</strong>（pre-filtered environment map）．</p>
+\end{aligned}</script><p>记 $\widetilde{S}(\boldsymbol{\omega}_o,\alpha,F_0)=S(\mathbf{r}(\boldsymbol{\omega}_o),\alpha,F_0)$．为了简化起见，我们只计算 $F_0$ 为 0 和 1 的情况。确定 $F_0$ 后每给定一个 $\alpha$，我们就可以让 $\boldsymbol{\omega}_o$ 取各个方向，预计算出 <script type="math/tex">\widetilde{S}(\boldsymbol{\omega}_o,\alpha,F_0)</script> 的值，得到一张立方盒贴图．对不同的 $\alpha$，我们可以像 Mipmap 一样生成多张立方盒贴图．$\alpha$ 越大，生成的立方盒贴图分辨率就越小．对于其它的 $\alpha$，$\widetilde{S}(\boldsymbol{\omega}_o,\alpha,F_0)$ 的值可由三线性插值得到．而对于 $F_0$ 不为 0 和 1 的情况，则对结果再进行一次线性插值。这些预计算得到的立方盒贴图，被称作 <strong>预过滤环境贴图</strong>（pre-filtered environment map）．</p>
 <p>在渲染时，对于任意的 $\boldsymbol{\omega}_o$ 和 $\alpha$，第一部分分裂积分可估计为</p>
 <script type="math/tex; mode=display">
-\frac{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o) L_{i}(\boldsymbol{\omega}_i)(\mathbf{n} \cdot \boldsymbol{\omega}_i) d\Omega_i}{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)\mathbf{n} \cdot \boldsymbol{\omega}_i d\Omega_i}\approx \widetilde{S}(\boldsymbol{\omega}_o,\alpha).</script><h3 id="分裂和-第-2-部分"><a href="#分裂和-第-2-部分" class="headerlink" title="分裂和 - 第 2 部分"></a>分裂和 - 第 2 部分</h3><h4 id="公式推导-1"><a href="#公式推导-1" class="headerlink" title="公式推导"></a>公式推导</h4><p>分裂积分的右边可以化简为</p>
+\frac{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o) L_{i}(\boldsymbol{\omega}_i)(\mathbf{n} \cdot \boldsymbol{\omega}_i) d\Omega_i}{\int_{H^2}f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)\mathbf{n} \cdot \boldsymbol{\omega}_i d\Omega_i}\approx \widetilde{S}(\boldsymbol{\omega}_o,\alpha,F_0).</script><h3 id="分裂和-第-2-部分"><a href="#分裂和-第-2-部分" class="headerlink" title="分裂和 - 第 2 部分"></a>分裂和 - 第 2 部分</h3><h4 id="公式推导-1"><a href="#公式推导-1" class="headerlink" title="公式推导"></a>公式推导</h4><p>分裂积分的右边可以化简为</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
     &\; \int_{H^2} f_s(\mathbf{n},\boldsymbol{\omega}_i, \boldsymbol{\omega}_o)\mathbf{n} \cdot \boldsymbol{\omega}_i d\Omega_i\\
@@ -616,7 +617,7 @@ B \approx \frac{1}{N} \sum_{k=1}^{N} \frac{G\left(\boldsymbol{\omega}_{o}, \bold
     padding: 10px;">图8 - 辐照度贴图</div>
 </center>
 
-<h4 id="预过滤环境贴图"><a href="#预过滤环境贴图" class="headerlink" title="预过滤环境贴图"></a>预过滤环境贴图</h4><p>我们选取 $\alpha=0, 0.25, 0.5, 0.75, 1.0$ 这 5 个值进行预计算．</p>
+<h4 id="预过滤环境贴图"><a href="#预过滤环境贴图" class="headerlink" title="预过滤环境贴图"></a>预过滤环境贴图</h4><p>我们选取 $\alpha=0.0, 0.25, 0.5, 0.75, 1.0$ 这 5 个值进行预计算．</p>
 <p><link rel="stylesheet" type="text/css" href="/cn/css/dependency_graph.css"></p>
 <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
 <script src="/cn/js/lib/g6.min.js"></script>
