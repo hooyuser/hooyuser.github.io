@@ -10,7 +10,7 @@ if ('en' === language.now) {
 }
 btn.innerHTML = `<li class="nav-item">
     <a class="nav-link" href="${language.href}">
-    <i class="iconfont2 icon-zhongyingwenyuyan"></i>
+    <i class="iconfont2 icon-qiehuanyuyan"></i>
     ${language.label}
     </a>
     </li>`
