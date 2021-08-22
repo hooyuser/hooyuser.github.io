@@ -13,9 +13,9 @@
 
 @font-face {
     font-family: "iconfont2"; /* Project id 2761546 */
-    src: url('//at.alicdn.com/t/font_2761546_xjtx01ibbh.woff2?t=1629648133750') format('woff2'),
-    url('//at.alicdn.com/t/font_2761546_xjtx01ibbh.woff?t=1629648133750') format('woff'),
-    url('//at.alicdn.com/t/font_2761546_xjtx01ibbh.ttf?t=1629648133750') format('truetype');
+    src: url('//at.alicdn.com/t/font_2761546_4xlxr49t5l.woff2?t=1629649720956') format('woff2'),
+    url('//at.alicdn.com/t/font_2761546_4xlxr49t5l.woff?t=1629649720956') format('woff'),
+    url('//at.alicdn.com/t/font_2761546_4xlxr49t5l.ttf?t=1629649720956') format('truetype');
 }
 
 .iconfont2 {
@@ -27,15 +27,15 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-zhongyingwenyuyan:before {
-    content: "\e609";
+.icon-listzuhe:before {
+    content: "\e71b";
+    font-size: 20px !important;
+    vertical-align: -1.7px;
 }
 
 .icon-qiehuanyuyan:before {
     content: "\e769";
     font-size: 18px !important;
-    /*position: relative;*/
-    /*top: -0.1rem;*/
     vertical-align: -2px;
 }
 
