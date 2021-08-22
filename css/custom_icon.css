@@ -29,7 +29,7 @@
 
 .icon-listzuhe:before {
     content: "\e71b";
-    font-size: 20px !important;
+    font-size: 1rem !important;
     vertical-align: -1.7px;
 }
 
