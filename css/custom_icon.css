@@ -21,6 +21,7 @@
 .iconfont2 {
     font-family: "iconfont2" !important;
     font-size: 16px;
+    line-height: 1;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -32,5 +33,9 @@
 
 .icon-qiehuanyuyan:before {
     content: "\e769";
+    font-size: 18px !important;
+    /*position: relative;*/
+    /*top: -0.1rem;*/
+    vertical-align: -2px;
 }
 
